@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trust Center — SpinWave</title>
+<meta name="description" content="What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vellum:#EDE4D0; --parchment:#DCCFAF; --umber:#2E2419; --sepia:#4A3B28;
+    --oxblood:#6E3232; --olive:#6B6B4A; --gold:#A8894A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'EB Garamond',Georgia,serif;background:var(--vellum);color:var(--umber);line-height:1.65;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 1.4rem;}
+  header.site{position:sticky;top:0;z-index:50;background:rgba(237,228,208,.96);border-bottom:2px solid var(--gold);}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.4rem;}
+  .brand{font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.95rem;color:var(--umber);text-decoration:none;}
+  .brand b{color:var(--oxblood);}
+  nav.mini a{margin-left:1.1rem;font-size:.92rem;color:var(--sepia);text-decoration:none;letter-spacing:.06em;}
+  nav.mini a:hover{color:var(--oxblood);}
+  .hero{padding:3.2rem 0 1.6rem;text-align:center;}
+  .kicker{letter-spacing:.28em;text-transform:uppercase;font-size:.8rem;color:var(--oxblood);margin-bottom:.9rem;}
+  h1{font-size:2.6rem;font-weight:600;letter-spacing:.04em;margin-bottom:.7rem;}
+  .sub{font-style:italic;color:var(--sepia);font-size:1.12rem;max-width:34rem;margin:0 auto;}
+  .onpage{margin:1.8rem 0 0;padding:1rem 1.2rem;border:1px solid var(--gold);background:rgba(255,255,255,.4);}
+  .onpage h2{font-size:.85rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sepia);margin-bottom:.6rem;}
+  .onpage a{display:inline-block;margin:.22rem .5rem .22rem 0;padding:.28rem .8rem;border:1px solid var(--gold);border-radius:999px;font-size:.92rem;color:var(--umber);text-decoration:none;background:rgba(255,255,255,.35);}
+  .onpage a:hover{background:var(--gold);color:#fff;}
+  section.block{margin:2.6rem 0;scroll-margin-top:5.5rem;}
+  section.block h2{font-size:1.7rem;font-weight:600;margin-bottom:.4rem;color:var(--umber);}
+  section.block h2 .rule{display:block;width:3.2rem;height:3px;background:var(--gold);margin-top:.45rem;}
+  section.block p{margin:.7rem 0;color:var(--sepia);font-size:1.06rem;}
+  section.block p strong{color:var(--umber);}
+  .card{background:rgba(255,255,255,.5);border:1px solid var(--gold);padding:1.3rem 1.4rem;margin:1rem 0;}
+  .live-list{list-style:none;margin:.6rem 0;}
+  .live-list li{display:flex;gap:.7rem;align-items:baseline;padding:.5rem 0;border-bottom:1px dotted rgba(168,137,74,.6);}
+  .chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.95rem;}
+  .dot{width:.6rem;height:.6rem;border-radius:50%;flex:none;}
+  .dot.live{background:var(--olive);box-shadow:0 0 6px rgba(107,107,74,.8);}
+  .dot.pending{background:#C9973F;box-shadow:0 0 6px rgba(201,151,63,.8);}
+  .dot.locked{background:var(--oxblood);}
+  .lbl{font-weight:600;}
+  .risk-list{list-style:none;margin:.8rem 0;}
+  .risk-list li{padding:.65rem 0 .65rem 2rem;position:relative;border-bottom:1px dotted rgba(168,137,74,.6);color:var(--sepia);}
+  .risk-list li::before{content:"⚠";position:absolute;left:.2rem;color:var(--oxblood);}
+  .risk-list li strong{color:var(--umber);}
+  .btn{display:inline-block;margin-top:.8rem;padding:.6rem 1.4rem;background:var(--umber);color:var(--vellum);text-decoration:none;letter-spacing:.1em;font-size:.95rem;border:2px solid var(--umber);}
+  .btn:hover{background:var(--oxblood);border-color:var(--oxblood);}
+  footer.site{margin-top:3.5rem;border-top:2px solid var(--gold);padding:1.8rem 0 2.4rem;}
+  footer.site .disclaimer{font-style:italic;color:var(--sepia);font-size:.98rem;max-width:44rem;margin-bottom:1.1rem;}
+  footer.site nav a{display:inline-block;margin:.25rem 1.1rem .25rem 0;font-size:.88rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sepia);text-decoration:none;}
+  footer.site nav a:hover{color:var(--oxblood);}
+  .fine{margin-top:1.2rem;font-size:.85rem;color:var(--sepia);}
+  code.addr{font-family:ui-monospace,monospace;font-size:.85rem;background:rgba(46,36,25,.08);padding:.15rem .45rem;word-break:break-all;}
+  @media(max-width:640px){h1{font-size:2rem;}}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Spin<b>Wave</b></a>
+    <nav class="mini">
+      <a href="index.html">The Tale</a>
+      <a href="flow.html">Capital Flow</a>
+      <a href="token.html">Token</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">The fox keeps honest books</div>
+    <h1>TRUST CENTER</h1>
+    <p class="sub">What is live, what is not, and what a pending recognition actually is. Written to be read in five minutes.</p>
+    <div class="onpage">
+      <h2>On this page</h2>
+      <a href="#how">How recognition works</a>
+      <a href="#pending">What “pending” means</a>
+      <a href="#live">What is live and what is not</a>
+      <a href="#token">Token status</a>
+      <a href="#trailmarks">Trail-marks</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#security">Security</a>
+      <a href="#risks">Risks</a>
+    </div>
+  </div>
+
+  <section class="block" id="how">
+    <h2>How recognition works<span class="rule"></span></h2>
+    <p>SpinWave is becoming a <strong>scholarly repository</strong>: scholars upload manuscripts and datasets, and the clever recognize their own — in SPIN. Readers will pay SPIN to browse and license data. That is the whole economy, and it is deliberately simple.</p>
+    <p>The repository opens in <strong>Phase 1</strong>. Until then, any recognition recorded for scholars is <strong>pending</strong> — counted, not paid. Reader licensing follows in <strong>Phase 2</strong>. Amounts are always counted in SPIN, never in dollars. We do not promise what a token is worth; we only promise to keep the books straight.</p>
+  </section>
+
+  <section class="block" id="pending">
+    <h2>What “pending” means<span class="rule"></span></h2>
+    <div class="card">
+      <p><strong>Pending means reserved, not paid.</strong> Nothing has been sent to you and nothing is held in an account in your name. It is not a balance and is never shown as one.</p>
+      <p>The form and timing of recognition are set by the terms published when Phase 1 opens — not by anything written before. <strong>If Phase 1 never opens, pending recognition has no value.</strong></p>
+    </div>
+  </section>
+
+  <section class="block" id="live">
+    <h2>What is live and what is not<span class="rule"></span></h2>
+    <p>This list is generated from the same configuration that drives every status label on this site — the page cannot say one thing here and another elsewhere.</p>
+    <ul class="live-list" id="live-list"></ul>
+  </section>
+
+  <section class="block" id="token">
+    <h2>Token status<span class="rule"></span></h2>
+    <p>The SPIN token <strong>is live on Base</strong>. The contract address is published on the Token page — and nowhere else first. <strong>Treat any address you see elsewhere as fake.</strong></p>
+    <p>The pool is deployed but has seen <strong>no trades</strong>. There is, effectively, no market yet.</p>
+    <a class="btn" href="token.html">READ THE TOKEN PAGE →</a>
+  </section>
+
+  <section class="block" id="trailmarks">
+    <h2>Trail-marks<span class="rule"></span></h2>
+    <p>Your trail-mark is derived from your wallet — share it, and the den knows who walked you in. Trail-marks carry <strong>recognition, not payment</strong>: they mark standing among the clever, never a balance. One walker, one mark.</p>
+  </section>
+
+  <section class="block" id="privacy">
+    <h2>Privacy<span class="rule"></span></h2>
+    <p>Connecting a wallet shares two things: <strong>your address and your on-chain SPIN balance</strong> — that is all we read, and we read it only to show your standing. We never see, ask for, or store anything else. No email is collected on this site.</p>
+  </section>
+
+  <section class="block" id="security">
+    <h2>Security<span class="rule"></span></h2>
+    <p><strong>SpinWave will never ask for a seed phrase or a private key.</strong> Scholar recognition and anything claimable in the future happen only on this site, signed in with your own wallet. Messages offering early recognition, bonus SPIN, or “support” are not from us.</p>
+  </section>
+
+  <section class="block" id="risks">
+    <h2>Risks<span class="rule"></span></h2>
+    <p>Said plainly, because the fox respects a reader who reads:</p>
+    <ul class="risk-list">
+      <li><strong>No market yet.</strong> The pool has seen zero trades. Price discovery has not happened, and there is no price to point at.</li>
+      <li><strong>A token can lose some or all of its value.</strong> Anything counted in SPIN carries that risk.</li>
+      <li><strong>Code can fail.</strong> The token, the pool, and the vesting reserve are smart contracts, and smart contracts can have bugs.</li>
+      <li><strong>The vesting reserve's release mechanics are not yet published.</strong> 15B SPIN sits in the token contract; how it unlocks is undecided.</li>
+      <li><strong>The pool is paired with TAO.</strong> TAO's own price moves will move the pair.</li>
+      <li><strong>The repository does not exist yet.</strong> Scholar recognition and reader licensing are Phase 1 and Phase 2. Pending is not a balance.</li>
+      <li><strong>Nothing here is financial advice</strong>, and holding SPIN is not an investment.</li>
+    </ul>
+  </section>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="disclaimer">Recognition is pending and locked until Phase 1. It is not a balance and cannot be withdrawn. The token is live on Base, but the pool has seen no trades. Nothing here is financial advice.</p>
+    <nav>
+      <a href="trust.html">Trust Center</a>
+      <a href="flow.html">Capital Flow</a>
+      <a href="trust.html#pending">What Pending Means</a>
+      <a href="token.html">Token Status</a>
+      <a href="trust.html#risks">Risks</a>
+    </nav>
+    <p class="fine">SpinWave · The straight line. Contract: <code class="addr">0x4c972afefa2e4552307b87cf944e53136c361ba3</code> · Base</p>
+  </div>
+</footer>
+
+<script src="status.js"></script>
+<script>
+(function(){
+  "use strict";
+  var list = document.getElementById("live-list");
+  var states = { live: "LIVE", pending: "NOT YET", locked: "LOCKED" };
+  if (list && window.SPIN_STATUS) {
+    list.innerHTML = window.SPIN_STATUS.map(function(s){
+      return '<li><span class="chip"><span class="dot ' + s.state + '"></span><span class="lbl">' + (states[s.state] || s.state.toUpperCase()) + '</span></span><span>' + s.label + ' — ' + s.text + '</span></li>';
+    }).join("");
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpinWave — The straight line.</title>
+<meta name="description" content="Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox — the ember still burns. SpinWave is the straight line.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vellum:#EDE4D0;
+    --parchment:#DCCFAF;
+    --umber:#2E2419;
+    --sepia:#4A3B28;
+    --oxblood:#6E3232;
+    --olive:#6B6B4A;
+    --gold:#A8894A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'EB Garamond',Georgia,serif;
+    color:var(--umber);
+    background-color:var(--vellum);
+    background-image:
+      radial-gradient(ellipse at 18% 8%, rgba(168,137,74,.07), transparent 55%),
+      radial-gradient(ellipse at 85% 92%, rgba(74,59,40,.06), transparent 50%),
+      radial-gradient(ellipse at 70% 30%, rgba(110,50,50,.03), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 3px, rgba(46,36,25,.010) 3px 4px);
+    line-height:1.75;
+    font-size:clamp(1.02rem, 1.6vw, 1.15rem);
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--oxblood);color:var(--vellum);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem);}
+
+  /* ---------- hero frame with filigree corners ---------- */
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.65rem clamp(1.25rem,5vw,2.5rem);
+    background:rgba(237,228,208,.97);
+    border-bottom:3px double var(--gold);
+  }
+  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:none;}
+  .brand-seal{width:38px;height:38px;border:2px double var(--gold);border-radius:50%;overflow:hidden;background:var(--parchment);flex:none;}
+  .brand-seal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:sepia(.45) contrast(.92) brightness(1.03);}
+  .brand-word{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.28em;text-indent:.28em;font-weight:700;font-size:1.12rem;color:var(--umber);}
+  .nav-links{display:flex;gap:1.7rem;}
+  .nav-links a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
+  .nav-links a:hover{color:var(--oxblood);}
+  @media(max-width:760px){.nav-links{display:none;}}
+  @media(max-width:760px){
+    .hero{display:block;min-height:0;background:none;border-bottom:3px double var(--gold);}
+    .hero::before{display:none;}
+    .hero-img-mobile{display:block;width:100%;height:auto;border-bottom:3px double var(--gold);}
+    .hero-inner{margin:0;max-width:none;padding:2.75rem clamp(1.25rem,6vw,2rem);}
+    .lede-box{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:none;box-shadow:none;padding:0;margin:0 0 1.4rem;max-width:none;}
+    .hero h1{color:var(--umber);text-shadow:none;}
+    .hero .hero-sub{color:var(--sepia);text-shadow:none;}
+    .eyebrow-light{color:var(--oxblood);text-shadow:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;display:flex;align-items:flex-start;
+    min-height:min(88vh,720px);
+    background:url('painting-hero-gate.jpg') center 35%/cover no-repeat, var(--umber);
+    border-bottom:3px double var(--gold);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(92deg, rgba(22,15,9,.45) 0%, rgba(22,15,9,.22) 42%, rgba(22,15,9,0) 78%);
+  }
+  .hero-inner{position:relative;max-width:640px;text-align:left;padding:clamp(1.5rem,4vw,2.5rem) clamp(1.25rem,5vw,3rem) clamp(2.5rem,6vw,4rem);}
+  .lede-box{
+    max-width:520px;margin:0 0 1.5rem;padding:1.1rem 1.4rem;
+    background:rgba(24,17,10,.44);
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px) brightness(.9);
+    border:3px double rgba(168,137,74,.8);
+    box-shadow:0 12px 40px rgba(0,0,0,.35);
+  }
+  .hero .eyebrow{font-size:clamp(.8rem,1.6vw,.92rem);}
+  .eyebrow-light{color:#CFC9BB;text-shadow:0 1px 6px rgba(0,0,0,.65);}
+  .hero h1{color:var(--vellum);text-align:left;text-shadow:0 2px 14px rgba(0,0,0,.65);font-size:clamp(2.4rem,6vw,3.6rem);margin-bottom:.9rem;}
+  .hero .hero-sub{color:#EDE4D0;text-align:left;margin:0 0 1.5rem;max-width:34em;font-size:clamp(.92rem,1.4vw,1.02rem);line-height:1.6;text-shadow:0 1px 8px rgba(0,0,0,.65);}
+  .lede-box .hero-sub{margin:0;}
+  .hero .btn{font-size:.9rem;padding:.7rem 1.9rem;}
+  .hero-img-mobile{display:none;}
+
+  .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:var(--oxblood);
+    font-weight:600;
+    font-size:clamp(.95rem,2.4vw,1.1rem);
+    margin-bottom:1.25rem;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(2.9rem,9vw,4.8rem);
+    line-height:1.05;
+    color:var(--umber);
+    margin-bottom:1.5rem;
+  }
+  .hero-sub{
+    max-width:34em;margin:0 auto 2.25rem;
+    color:var(--sepia);font-size:clamp(1.05rem,2.4vw,1.25rem);line-height:1.7;
+  }
+  .btn{
+    display:inline-block;font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.22em;text-indent:.22em;
+    font-weight:700;font-size:1.05rem;
+    color:var(--vellum);background:var(--oxblood);
+    border:1px solid var(--oxblood);
+    padding:.9rem 2.4rem;text-decoration:none;cursor:pointer;
+    transition:background .25s,color .25s;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--umber);border-color:var(--umber);outline:none;}
+  .btn:focus-visible{box-shadow:0 0 0 3px rgba(168,137,74,.6);}
+
+  /* ---------- fleuron divider ---------- */
+  .fleuron{display:flex;align-items:center;gap:1.1rem;margin:clamp(3rem,8vw,4.5rem) auto;color:var(--oxblood);}
+  .fleuron::before,.fleuron::after{content:"";flex:1;border-top:3px double var(--gold);}
+  .fleuron span{font-size:1.6rem;line-height:1;}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:clamp(2.5rem,7vw,4rem);}
+  h2.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.32em;text-indent:.32em;
+    color:var(--oxblood);font-weight:600;
+    font-size:clamp(1.25rem,3.4vw,1.6rem);
+    text-align:center;margin-bottom:1.5rem;
+  }
+  .card{
+    background:var(--parchment);
+    border:3px double var(--gold);
+    padding:clamp(1.75rem,5vw,2.75rem);
+    box-shadow:0 6px 24px rgba(46,36,25,.10);
+  }
+  .card p + p{margin-top:1.1em;}
+  .dropcap::first-letter{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:4em;line-height:.82;
+    float:left;padding:.06em .14em 0 0;color:var(--oxblood);
+  }
+  .figure-sketch{
+    width:min(280px,64vw);margin:2rem auto 0;
+    border:3px double var(--gold);background:var(--vellum);
+    padding:.6rem;box-shadow:0 6px 20px rgba(46,36,25,.14);
+  }
+  .figure-sketch img{display:block;width:100%;height:auto;filter:sepia(.35) contrast(.95);}
+  .figure-sketch figcaption{
+    text-align:center;font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.2em;color:var(--sepia);
+    font-size:.95rem;padding-top:.6rem;
+  }
+  .painting{
+    margin:0 0 1.75rem;border:3px double var(--gold);
+    background:var(--parchment);padding:.6rem;
+    box-shadow:0 6px 20px rgba(46,36,25,.14);
+  }
+  .painting img{display:block;width:100%;height:auto;}
+  .painting.portrait{max-width:430px;margin-left:auto;margin-right:auto;}
+  .era{margin-bottom:1.6rem;}
+  .era:last-child{margin-bottom:0;}
+  .era-date{
+    display:inline-block;
+    font-family:'Cormorant Garamond',serif;font-variant:small-caps;
+    letter-spacing:.2em;color:var(--vellum);background:var(--oxblood);
+    font-weight:700;font-size:.95rem;margin-bottom:.6rem;
+    padding:.3rem 1rem;
+  }
+
+  /* ---------- bullets ---------- */
+  .ticks{list-style:none;margin:1.1rem 0 0;}
+  .ticks li{position:relative;padding-left:1.7rem;margin-bottom:.65rem;}
+  .ticks li::before{content:"\2766";position:absolute;left:0;color:var(--oxblood);font-size:.95em;}
+
+  /* ---------- pillars carousel ---------- */
+  .pillar-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(74vw,290px);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.25rem .1rem 1rem;scrollbar-width:thin;}
+  .pillar{scroll-snap-align:start;background:var(--parchment);border:3px double var(--gold);padding:1.7rem 1.3rem;text-align:center;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .pillar-num{display:block;font-family:'Cormorant Garamond',serif;color:var(--oxblood);font-size:1.7rem;font-weight:700;margin-bottom:.6rem;}
+  .pillar p{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;color:var(--umber);line-height:1.4;}
+  .swipe-hint{text-align:center;color:var(--sepia);opacity:.6;font-size:.88rem;letter-spacing:.12em;margin-top:.25rem;}
+  @media(min-width:900px){.swipe-hint{display:none;}}
+
+  /* ---------- stat cards ---------- */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.25rem;}
+  .stat{background:var(--parchment);border:3px double var(--gold);padding:1.4rem 1rem;text-align:center;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .stat-num{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2.05rem;color:var(--oxblood);line-height:1.1;margin-bottom:.45rem;}
+  .stat-label{font-size:.95rem;color:var(--sepia);line-height:1.5;}
+  .fine{text-align:center;color:var(--sepia);font-style:italic;}
+
+  /* ---------- phase cards ---------- */
+  .phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.25rem;}
+  .phase{background:var(--parchment);border:3px double var(--gold);padding:1.4rem 1.2rem;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .phase-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.16em;font-weight:700;font-size:.92rem;color:var(--vellum);background:var(--oxblood);padding:.32rem .95rem;margin-bottom:.75rem;}
+  .phase p{color:var(--umber);}
+
+  /* ---------- notify ---------- */
+  #notify .card{text-align:center;}
+  #notify h2{
+    font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.25;color:var(--umber);
+    margin-bottom:1.75rem;
+  }
+  #notify-form{display:flex;flex-direction:column;gap:.9rem;max-width:26rem;margin:0 auto;}
+  #notify-email{
+    font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--umber);
+    background:var(--vellum);border:1px solid var(--gold);
+    padding:.85rem 1.1rem;width:100%;
+  }
+  #notify-email:focus{outline:2px solid var(--oxblood);outline-offset:2px;}
+  #form-note{min-height:1.6em;color:var(--sepia);font-style:italic;font-size:1rem;}
+
+  /* ---------- quest ---------- */
+  section#notify .quest-card{text-align:left;}
+  .quest-stand{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--sepia);margin-bottom:.7rem;}
+  .quest-stand strong{color:var(--oxblood);font-variant:small-caps;letter-spacing:.12em;}
+  .quest-progress{height:8px;background:rgba(74,59,40,.15);border:1px solid var(--gold);margin-bottom:1.5rem;}
+  .quest-progress span{display:block;height:100%;width:0;background:var(--oxblood);transition:width .4s;}
+  .quest-step{display:flex;align-items:center;gap:1rem;padding:1rem .25rem;border-top:1px solid rgba(168,137,74,.4);}
+  .quest-step:last-of-type{border-bottom:1px solid rgba(168,137,74,.4);margin-bottom:1.5rem;}
+  .quest-check{flex:none;width:30px;height:30px;background:transparent;border:2px solid var(--gold);cursor:pointer;position:relative;padding:0;}
+  .quest-check::after{content:"\2713";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--vellum);font-size:1.1rem;opacity:0;transform:scale(.6);transition:all .2s;}
+  .quest-step.done .quest-check{background:var(--oxblood);border-color:var(--oxblood);}
+  .quest-step.done .quest-check::after{opacity:1;transform:scale(1);}
+  .quest-step.done .quest-title{color:var(--sepia);text-decoration:line-through;text-decoration-color:rgba(110,50,50,.5);}
+  .quest-text{flex:1;}
+  .quest-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--umber);}
+  .quest-desc{font-size:.98rem;color:var(--sepia);}
+  .quest-go{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.1em;font-weight:700;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;}
+  .quest-go:hover{color:var(--umber);}
+  .soon{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-size:.85rem;color:var(--sepia);border:1px dashed var(--gold);padding:.3rem .8rem;opacity:.75;white-space:nowrap;}
+  .kin-card{text-align:center;background:var(--parchment);border:3px double var(--gold);padding:2rem 1.5rem;box-shadow:0 6px 20px rgba(46,36,25,.14);}
+  .kin-seal{width:64px;height:64px;margin:0 auto 1rem;}
+  .kin-line{font-style:italic;color:var(--sepia);margin:.6rem 0 1.4rem;}
+  .quest-mail{margin-top:1.5rem;}
+  .quest-mail > p{margin-bottom:1rem;color:var(--sepia);font-style:italic;}
+
+  /* ---------- footer ---------- */
+  footer{
+    margin:clamp(3rem,8vw,5rem) 0 0;
+    border-top:3px double var(--gold);
+    padding:2.25rem 0 3rem;
+    text-align:center;color:var(--sepia);font-size:.98rem;
+  }
+  footer p + p{margin-top:1em;}
+  footer .trustnav{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;}
+  footer .trustnav a{color:var(--sepia);text-decoration:none;}
+  footer .trustnav a:hover{color:var(--oxblood);}
+  .contract{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.82rem;color:var(--umber);background:rgba(220,207,175,.6);
+    border:1px solid var(--gold);padding:.55rem .8rem;
+    display:inline-block;max-width:100%;overflow-wrap:anywhere;
+  }
+  .seal-mark{color:var(--oxblood);font-size:1.3rem;display:block;margin-bottom:1rem;}
+  @media (max-width:520px){
+  }
+
+  /* ---------- slickness kit (no backend): motion, status, wallet ---------- */
+  [hidden]{display:none !important;}
+  .hero-inner > *{opacity:0;transform:translateY(22px);}
+  body.boot .hero-inner > *{animation:riseIn .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  body.boot .hero-inner > *:nth-child(1){animation-delay:.05s}
+  body.boot .hero-inner > *:nth-child(2){animation-delay:.16s}
+  body.boot .hero-inner > *:nth-child(3){animation-delay:.28s}
+  body.boot .hero-inner > *:nth-child(4){animation-delay:.40s}
+  @keyframes riseIn{to{opacity:1;transform:none;}}
+  .reveal{opacity:0;transform:translateY(34px) scale(.985);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .ticker{overflow:hidden;border-top:3px double var(--gold);border-bottom:3px double var(--gold);background:var(--parchment);white-space:nowrap;}
+  .ticker-track{display:inline-flex;width:max-content;animation:tick 38s linear infinite;padding:.7rem 0;}
+  .ticker-track span{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.24em;font-weight:600;color:var(--sepia);font-size:1rem;padding:0 1.6rem;}
+  .ticker-track b{color:var(--oxblood);font-weight:400;}
+  @keyframes tick{to{transform:translateX(-50%);}}
+  [data-tilt]{transform-style:preserve-3d;will-change:transform;transition:transform .18s ease-out;}
+  .tilt-glare{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(600px circle at var(--gx,50%) var(--gy,50%),rgba(255,250,235,.35),transparent 45%);}
+  [data-tilt]:hover .tilt-glare{opacity:1;}
+  .figure-sketch{position:relative;overflow:hidden;}
+  .status-board{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:0 0 1.4rem;}
+  .chip{display:inline-flex;align-items:center;gap:.55rem;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.92rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);padding:.45rem .95rem;}
+  .chip .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .dot.live{background:#5C6B3C;box-shadow:0 0 0 3px rgba(92,107,60,.18);animation:pulse 2.2s infinite;}
+  .dot.pending{background:var(--gold);box-shadow:0 0 0 3px rgba(168,137,74,.18);animation:pulse 2.2s infinite;}
+  .dot.locked{background:#8a7a5c;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .phase{position:relative;}
+  .phase .pdot{position:absolute;top:.9rem;right:.9rem;width:10px;height:10px;border-radius:50%;}
+  .btn{box-shadow:4px 4px 0 rgba(46,36,25,.9);transition:transform .12s,box-shadow .12s,background .25s,color .25s;}
+  .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(46,36,25,.9);}
+  .btn:active{transform:translate(4px,4px);box-shadow:0 0 0 rgba(46,36,25,.9);}
+  .contract-callout{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.8rem;margin:0 0 1rem;}
+  .contract-callout .contract{cursor:default;}
+  .copy-btn{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:var(--sepia);border:1px solid var(--sepia);padding:.5rem 1.1rem;cursor:pointer;box-shadow:3px 3px 0 rgba(46,36,25,.9);transition:transform .12s,box-shadow .12s;}
+  .copy-btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 rgba(46,36,25,.9);}
+  .plainly{list-style:none;margin:1.1rem 0 0;text-align:left;}
+  .plainly li{padding:.9rem 0;border-top:1px solid rgba(168,137,74,.4);}
+  .plainly li:last-child{border-bottom:1px solid rgba(168,137,74,.4);}
+  .plainly strong{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.1em;color:var(--oxblood);}
+  .den-card{margin-top:1.5rem;text-align:center;}
+  .den-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:center;margin-top:1rem;}
+  .den-addr{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;background:var(--vellum);border:1px solid var(--gold);padding:.5rem .8rem;}
+  .den-code{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.2em;font-weight:700;color:var(--oxblood);font-size:1.05rem;}
+  .den-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:#5C6B3C;padding:.35rem .9rem;}
+  .trail-banner{background:var(--umber);color:var(--vellum);text-align:center;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.18em;font-size:1rem;padding:.7rem 1rem;margin-bottom:clamp(2.5rem,7vw,4rem);}
+  .trail-banner b{color:var(--gold);}
+  @media (prefers-reduced-motion: reduce){
+    .hero-inner > *{opacity:1;transform:none;}
+    body.boot .hero-inner > *{animation:none;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .ticker-track{animation:none;}
+    .dot.live,.dot.pending{animation:none;}
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="#top">
+    <span class="brand-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></span>
+    <span class="brand-word">SpinWave</span>
+  </a>
+  <div class="nav-links">
+    <a href="#maze">The maze</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#reynard">Reynard</a>
+    <a href="#recognition">Recognition</a>
+  </div>
+</nav>
+<header class="hero" id="top">
+  <img class="hero-img-mobile" src="painting-hero-gate.jpg" alt="Reynard slipping through the tower gate with scrolls, pages drifting toward outstretched hands">
+  <div class="hero-inner">
+    <p class="eyebrow eyebrow-light">The Tale of Reynard</p>
+    <h1>The straight line.</h1>
+    <div class="lede-box">
+    <p class="hero-sub">Centuries before the tale of Reynard, an ancient mathematician named Archimedes formally wrote down an axiom: of all lines which have the same extremities, the straight line is the least. Fast-forward to medieval times: a lion king summons a fox named Reynard. But instead of pleading, he decided to upset the court. Today, that ember still burns brightly.</p>
+    </div>
+    <a class="btn" href="#notify">Run with Reynard</a>
+  </div>
+</header>
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker-track"></div></div>
+<div class="wrap">
+
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ THE MAZE ============ -->
+  <section id="maze">
+    <h2 class="section-title">The maze</h2>
+    <figure class="painting">
+      <img src="painting-maze.jpg" alt="The maze — scholars wandering torch-lit stone corridors of locked gates" width="1170" height="786">
+    </figure>
+    <div class="card">
+      <p>For decades, research has sat behind paywalls — written by scholars, locked by publishers. The tower built a maze and called it order. <strong>SPIN is the straight line through it.</strong></p>
+    </div>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ THE TIMELINE ============ -->
+  <section id="timeline">
+    <h2 class="section-title">The timeline</h2>
+    <div class="card">
+      <div class="era">
+        <p class="era-date">225 BCE — The axiom</p>
+        <p>Archimedes formalizes what every road-builder already knew: of all lines which have the same extremities, the straight line is the least. Common sense, written down.</p>
+      </div>
+      <div class="era">
+        <p class="era-date">c. 1175 — The tale</p>
+        <p>Across Europe, ordinary people tell stories of Reynard the Fox — small against kings and courts, who never petitions the powerful and simply does what should be done: he routes around them. The tales are satire, and that is the politics — among the first stories common people used to laugh at power. They loved him because he was obviously right.</p>
+      </div>
+      <div class="era">
+        <p class="era-date">Today — The token</p>
+        <p>Glenride is a think tank in the traditional structure — manuscripts, peer review, rigor, scholars named for their work. But ideologically separate: no tower decides what gets read or who gets honored. Independence needs a mechanism, because recognition can't run on goodwill. <strong>SPIN is that mechanism</strong> — and it is a promise: that those who truly move the world with research will be honored for it. Not by the court. By the commons. The straight line, drawn a third time.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ WHO IS REYNARD? ============ -->
+  <section id="reynard">
+    <h2 class="section-title">Who is Reynard?</h2>
+    <figure class="painting">
+      <img src="painting-reynard-court.jpg" alt="Reynard the fox standing before the lion king's court" width="1170" height="659">
+    </figure>
+    <div class="card">
+      <p class="dropcap">In the medieval tales, Reynard was the fox who outwitted kings — summoned to the lion&rsquo;s court, condemned by wolves, hunted by bears, and he talked his way out every single time. Not with force. With wit. The powerful built their courts and wrote their rules. Reynard built his exits. Eight hundred years later, the court is publishers and the walls are paywalls. The fox is back.</p>
+      <figure class="figure-sketch">
+        <img src="spinwave-fox-mark.jpg" alt="Reynard — the founder's fox sketch, the SpinWave mark" width="1170" height="1170">
+        <figcaption>The mark — drawn by the founder</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ THE LINE ============ -->
+  <section>
+    <h2 class="section-title">The line</h2>
+    <figure class="painting">
+      <img src="painting-straight-line.jpg" alt="A hand drawing one straight ink line through a maze on vellum" width="1170" height="659">
+    </figure>
+    <div class="card">
+      <p>SpinWave is a scholarly manuscript and data repository built on one conviction: knowledge belongs to everyone.</p>
+      <ul class="ticks">
+        <li>Scholars bring manuscripts and datasets out of the maze.</li>
+        <li>Readers come to learn — no gates, no paywalls.</li>
+        <li>Every contribution recognized. Every scholar named.</li>
+        <li>SPIN is how the clever recognize their own.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ PILLARS ============ -->
+  <section id="pillars">
+    <h2 class="section-title">The creed</h2>
+    <div class="pillar-track">
+      <div class="pillar"><span class="pillar-num">I</span><p>Wit over walls.</p></div>
+      <div class="pillar"><span class="pillar-num">II</span><p>Knowledge belongs to everyone.</p></div>
+      <div class="pillar"><span class="pillar-num">III</span><p>Honor the scholars.</p></div>
+      <div class="pillar"><span class="pillar-num">IV</span><p>No permission needed.</p></div>
+      <div class="pillar"><span class="pillar-num">V</span><p>Ideas set free.</p></div>
+    </div>
+    <p class="swipe-hint">swipe &rarr;</p>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ RECOGNITION ============ -->
+  <section id="recognition">
+    <h2 class="section-title">Recognition</h2>
+    <figure class="painting portrait">
+      <img src="painting-recognition.jpg" alt="A scholar receiving an honored manuscript wreathed in laurel" width="1170" height="1755">
+    </figure>
+    <div class="stat-grid">
+      <div class="stat"><span class="stat-num">25,000</span><span class="stat-label">SPIN · accepted manuscript</span></div>
+      <div class="stat"><span class="stat-num">40,000</span><span class="stat-label">SPIN · accepted dataset</span></div>
+      <div class="stat"><span class="stat-num">55,000</span><span class="stat-label">SPIN · dataset with worked example</span></div>
+      <div class="stat"><span class="stat-num">60%</span><span class="stat-label">of every reader license — straight to the scholar</span></div>
+    </div>
+    <p class="fine">Peer reviewers are honored for their part.</p>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ THE TIMELINE ============ -->
+  <section>
+    <h2 class="section-title">The build</h2>
+    <div class="phase-grid">
+      <div class="phase"><span class="phase-badge">Phase 0 · Now</span><p>The brand, the covenant, the foundation.</p></div>
+      <div class="phase"><span class="phase-badge">Phase 1 · Next</span><p>Scholar recognition opens.</p></div>
+      <div class="phase"><span class="phase-badge">Phase 2 · Then</span><p>Reader licensing opens.</p></div>
+    </div>
+    <p class="fine">We&rsquo;re building it in the open, and we&rsquo;re telling you exactly where it stands.</p>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ STANDING ============ -->
+  <section id="standing">
+    <h2 class="section-title">Where things stand</h2>
+    <div class="card">
+      <div class="status-board" id="status-board"></div>
+      <div class="contract-callout">
+        <span style="font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;">The only SPIN contract</span>
+        <code class="contract" id="spin-contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code>
+        <button class="copy-btn" id="copy-contract" type="button">Copy</button>
+      </div>
+      <p class="fine">Any other address is not SPIN. The token lives on Base — it has never lived anywhere else.</p>
+      <ul class="plainly">
+        <li><strong>Recognition is pending, not a balance.</strong> The amounts above are reserved for scholars when Phase 1 opens. They cannot be withdrawn, transferred, or spent until then.</li>
+        <li><strong>The token is live but not trading.</strong> SPIN exists on Base and the pool is deployed — but no market has formed yet. Until trading begins, there is no price.</li>
+        <li><strong>Nothing is promised but the work.</strong> SPIN honors scholarship; it is not an investment, and we make no promises about its value.</li>
+      </ul>
+      <p class="fine" style="margin-top:1rem;"><a href="trust.html" style="color:var(--oxblood);">Read the Trust Center →</a> capital flow, token status, and risks, in plain language.</p>
+    </div>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <!-- ============ QUEST ============ -->
+  <section id="notify">
+    <h2 class="section-title">Run with Reynard</h2>
+    <figure class="painting">
+      <img src="painting-fox-path.jpg" alt="The fox pausing on a moonlit path, looking back — follow me" width="1170" height="659">
+    </figure>
+    <div class="card quest-card">
+      <p class="quest-stand">Your standing: <strong id="quest-rank">Curious</strong></p>
+      <div class="quest-progress" aria-hidden="true"><span id="quest-bar"></span></div>
+      <div class="quest-steps">
+        <div class="quest-step" data-step="follow">
+          <button class="quest-check" aria-label="Mark Follow the fox as done" aria-pressed="false"></button>
+          <div class="quest-text">
+            <p class="quest-title">Follow the fox</p>
+            <p class="quest-desc">Follow SpinWave on X — that&apos;s where the tale gets told.</p>
+          </div>
+          <a class="quest-go" data-url="xProfile" href="#" target="_blank" rel="noopener">Follow &rarr;</a>
+        </div>
+        <div class="quest-step" data-step="spread">
+          <button class="quest-check" aria-label="Mark Spread the tale as done" aria-pressed="false"></button>
+          <div class="quest-text">
+            <p class="quest-title">Spread the tale</p>
+            <p class="quest-desc">Like and repost the launch post. Somebody out there needs the straight line.</p>
+          </div>
+          <a class="quest-go" data-url="launchPost" href="#" target="_blank" rel="noopener">Repost &rarr;</a>
+        </div>
+        <div class="quest-step" data-step="den">
+          <button class="quest-check" aria-label="Mark Join the den as done" aria-pressed="false"></button>
+          <div class="quest-text">
+            <p class="quest-title">Join the den</p>
+            <p class="quest-desc">Step into the Telegram — the coordination room for the work.</p>
+          </div>
+          <a class="quest-go" data-url="telegram" href="#" target="_blank" rel="noopener">Join &rarr;</a>
+        </div>
+        <div class="quest-step" data-step="tale">
+          <button class="quest-check" aria-label="Mark Learn the tale as done" aria-pressed="false"></button>
+          <div class="quest-text">
+            <p class="quest-title">Learn the tale</p>
+            <p class="quest-desc">Read the timeline above — axiom, tale, token — then mark it read.</p>
+          </div>
+          <a class="quest-go" href="#timeline">Read &uarr;</a>
+        </div>
+      </div>
+      <div class="kin-card" id="kin-card" hidden>
+        <div class="brand-seal kin-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></div>
+        <p class="eyebrow">Kin of the Fox</p>
+        <p class="kin-line">Four errands run. You didn&apos;t petition the court — you routed around it.</p>
+        <a class="btn" id="kin-share" href="#" target="_blank" rel="noopener">Share the run</a>
+      </div>
+    </div>
+    <div class="card den-card" id="den-card">
+      <p class="eyebrow" style="margin-bottom:.4rem;">Den standing</p>
+      <p class="fine">Connect your wallet — here, or in your wallet&rsquo;s dApp browser — and the den will know you.</p>
+      <div class="den-row">
+        <button class="btn" id="den-connect" type="button">Connect wallet</button>
+      </div>
+      <div class="den-row" id="den-result" hidden>
+        <span class="den-addr" id="den-addr"></span>
+        <span class="den-code" id="den-code"></span>
+        <span class="den-badge" id="den-badge" hidden>Holder ✓</span>
+      </div>
+      <p class="fine" id="den-note" style="margin-top:.8rem;"></p>
+    </div>
+    <div class="card quest-mail">
+      <p>Prefer the quiet path? Leave your email and we&apos;ll write when Phase 1 opens.</p>
+      <form id="notify-form" novalidate>
+        <label for="notify-email" class="eyebrow" style="margin-bottom:0;">Your email</label>
+        <input id="notify-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn" type="submit">Notify me at launch</button>
+        <p id="form-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <span class="seal-mark" aria-hidden="true">❦</span>
+    <p>SPIN is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
+    <p><code class="contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code></p>
+    <p>It is not an investment, and we make no promises about its value.</p>
+    <p class="trustnav"><a href="trust.html">Trust Center</a> · <a href="flow.html">Capital Flow</a> · <a href="trust.html#pending">What Pending Means</a> · <a href="token.html">Token Status</a> · <a href="trust.html#risks">Risks</a></p>
+  </footer>
+
+</div>
+
+<script>
+// Paste your Formspree/Basin endpoint here to connect the notification list.
+// Leave it as an empty string until then — the form degrades gracefully.
+const FORM_ENDPOINT = "";
+
+document.getElementById("notify-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  var note = document.getElementById("form-note");
+  var email = document.getElementById("notify-email").value.trim();
+
+  if (!email) {
+    note.textContent = "Please enter an email address.";
+    return;
+  }
+
+  if (!FORM_ENDPOINT) {
+    note.textContent = "The notification list isn\u2019t connected yet \u2014 check back soon.";
+    return;
+  }
+
+  try {
+    var res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ email: email })
+    });
+    if (res.ok) {
+      note.textContent = "You\u2019re on the list \u2014 we\u2019ll notify you at launch.";
+      this.reset();
+    } else {
+      note.textContent = "Something went wrong \u2014 please try again later.";
+    }
+  } catch (err) {
+    note.textContent = "Something went wrong \u2014 please try again later.";
+  }
+});
+</script>
+<script>
+// Quest wiring. Paste real URLs when ready — empty strings render as "soon".
+// No backend: progress is honor-system, stored in this browser only.
+var QUEST_URLS = {
+  xProfile: "",    // e.g. "https://x.com/spinwave"
+  launchPost: "",  // e.g. "https://x.com/spinwave/status/123..."
+  telegram: ""     // e.g. "https://t.me/spinwave"
+};
+(function(){
+  var KEY = "spinwave_quest_v1";
+  var RANKS = ["Curious", "Cub", "Runner", "Runner", "Kin of the Fox"];
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+  var steps = Array.prototype.slice.call(document.querySelectorAll(".quest-step"));
+  var rankEl = document.getElementById("quest-rank");
+  var barEl = document.getElementById("quest-bar");
+  var kinEl = document.getElementById("kin-card");
+
+  Array.prototype.forEach.call(document.querySelectorAll('.quest-go[data-url]'), function(a){
+    var url = QUEST_URLS[a.getAttribute("data-url")] || "";
+    if (url) { a.href = url; }
+    else {
+      var s = document.createElement("span");
+      s.className = "soon"; s.textContent = "soon";
+      a.replaceWith(s);
+    }
+  });
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+  function render(){
+    var done = 0;
+    steps.forEach(function(st){
+      var on = !!state[st.getAttribute("data-step")];
+      if (on) done++;
+      st.classList.toggle("done", on);
+      st.querySelector(".quest-check").setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    rankEl.textContent = RANKS[done];
+    barEl.style.width = (done / steps.length * 100) + "%";
+    var complete = done === steps.length;
+    kinEl.hidden = !complete;
+    if (complete) {
+      var text = "I ran with Reynard — Kin of the Fox. The straight line through the paywall maze: https://spinwave.pages.dev";
+      document.getElementById("kin-share").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text);
+    }
+  }
+  steps.forEach(function(st){
+    st.querySelector(".quest-check").addEventListener("click", function(){
+      var k = st.getAttribute("data-step");
+      state[k] = !state[k];
+      save(); render();
+    });
+  });
+  render();
+})();
+</script>
+<script src="status.js"></script>
+<script>
+/* ===== Slickness kit (no backend): status, motion, wallet ===== */
+(function(){
+  "use strict";
+  /* --- single source of truth for status (see status.js) --- */
+  var STATUS = window.SPIN_STATUS || [];
+  var board = document.getElementById("status-board");
+  if (board) board.innerHTML = STATUS.map(function(s){
+    return '<span class="chip"><span class="dot ' + s.state + '"></span>' + s.label + " · " + s.text + "</span>";
+  }).join("");
+  /* phase dots: Phase 0 live, Phase 1 pending, Phase 2 locked */
+  var phaseStates = ["live", "pending", "locked"];
+  Array.prototype.forEach.call(document.querySelectorAll(".phase"), function(p, i){
+    var d = document.createElement("span");
+    d.className = "pdot dot " + (phaseStates[i] || "locked");
+    p.appendChild(d);
+  });
+
+  /* --- motion --- */
+  document.body.classList.add("boot");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealEls = document.querySelectorAll("section, .card, .painting, .fleuron");
+  if (reduce || !("IntersectionObserver" in window)) {
+    Array.prototype.forEach.call(revealEls, function(el){ el.classList.add("in"); });
+  } else {
+    Array.prototype.forEach.call(revealEls, function(el){ el.classList.add("reveal"); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    Array.prototype.forEach.call(revealEls, function(el){ io.observe(el); });
+  }
+
+  /* --- ticker --- */
+  var tickItems = ["Wit over walls","Knowledge belongs to everyone","Honor the scholars","No permission needed","Ideas set free","SPIN is how the clever recognize their own"];
+  var half = tickItems.map(function(t){ return "<span>" + t + " <b>❦</b></span>"; }).join("");
+  var track = document.getElementById("ticker-track");
+  if (track) track.innerHTML = half + half;
+
+  /* --- 3D tilt on the founder's mark --- */
+  Array.prototype.forEach.call(document.querySelectorAll(".figure-sketch"), function(el){
+    el.setAttribute("data-tilt", "");
+    var glare = document.createElement("div");
+    glare.className = "tilt-glare";
+    el.appendChild(glare);
+    el.addEventListener("pointermove", tilt);
+    el.addEventListener("mousemove", tilt); /* fallback: some automation/synthetic input only fires mouse events */
+    function tilt(ev){
+      var r = el.getBoundingClientRect();
+      var px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
+      el.style.transform = "rotateX(" + ((0.5 - py) * 10).toFixed(2) + "deg) rotateY(" + ((px - 0.5) * 12).toFixed(2) + "deg)";
+      el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+      el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+    }
+    el.addEventListener("pointerleave", function(){ el.style.transform = ""; });
+  });
+
+  /* --- copy contract --- */
+  var copyBtn = document.getElementById("copy-contract");
+  if (copyBtn) copyBtn.addEventListener("click", function(){
+    var addr = document.getElementById("spin-contract").textContent.trim();
+    function done(ok){ copyBtn.textContent = ok ? "Copied ✓" : "Copy failed — long-press the address"; setTimeout(function(){ copyBtn.textContent = "Copy"; }, 2200); }
+    function fallback(){
+      try {
+        var t = document.createElement("textarea"); t.value = addr;
+        t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        var ok = document.execCommand("copy");
+        t.remove(); done(!!ok);
+      } catch(e){ done(false); }
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(addr).then(function(){ done(true); }, fallback);
+      else fallback();
+    } catch(e){ fallback(); }
+  });
+
+  /* --- trail-mark referrals --- */
+  function djb2(s){ var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h; }
+  function trailCode(addr){ return "RX-" + djb2(addr.toLowerCase()).toString(16).toUpperCase().padStart(8, "0").slice(0, 6); }
+  var via = new URLSearchParams(window.location.search).get("trail");
+  if (via) {
+    var banner = document.createElement("div");
+    banner.className = "trail-banner";
+    banner.innerHTML = "You followed <b>" + via.replace(/[<>&"]/g, "") + "</b>'s trail into the den.";
+    var wrap = document.querySelector(".wrap");
+    if (wrap) wrap.insertBefore(banner, wrap.firstChild);
+  }
+  /* carry the trail-mark on the share link (quest script sets href on completion) */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest("#kin-share");
+    if (a && window.__spinTrail && a.href.indexOf(window.__spinTrail) === -1) {
+      a.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent("I ran with Reynard — Kin of the Fox. The straight line through the paywall maze: https://spinwave.pages.dev?trail=" + window.__spinTrail);
+    }
+  }, true);
+
+  /* --- wallet connect + holder check (Base) --- */
+  var BASE_CHAIN = "0x2105";
+  var SPIN = "0x4c972afefa2e4552307b87cf944e53136c361ba3";
+  var RPC = "https://mainnet.base.org";
+  var btn = document.getElementById("den-connect");
+  var result = document.getElementById("den-result");
+  var addrEl = document.getElementById("den-addr");
+  var codeEl = document.getElementById("den-code");
+  var badgeEl = document.getElementById("den-badge");
+  var noteEl = document.getElementById("den-note");
+  function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
+  function balanceOf(addr){
+    var data = "0x70a08231" + addr.slice(2).toLowerCase().padStart(64, "0");
+    return fetch(RPC, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: SPIN, data: data }, "latest"] }) })
+      .then(function(res){ return res.json(); })
+      .then(function(j){ if (!j.result) throw new Error("rpc"); return BigInt(j.result); });
+  }
+  function fmt(b){
+    var s = b.toString().padStart(19, "0");
+    var ip = s.slice(0, -18), fp = s.slice(-18).replace(/0+$/, "");
+    return (ip === "" ? "0" : ip.replace(/^0+/, "") || "0") + (fp ? "." + fp.slice(0, 4) : "");
+  }
+  if (btn) btn.addEventListener("click", function(){
+    var eth = window.ethereum;
+    if (!eth) { noteEl.textContent = "No wallet found — open this page in your wallet's dApp browser (MetaMask, Coinbase Wallet, Rabby) and connect from there."; return; }
+    btn.disabled = true; btn.textContent = "Connecting…";
+    eth.request({ method: "eth_requestAccounts" }).then(function(accounts){
+      var addr = accounts[0];
+      return eth.request({ method: "eth_chainId" }).then(function(chainId){
+        if (chainId !== BASE_CHAIN) {
+          return eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: BASE_CHAIN }] })
+            .catch(function(){ throw new Error("switch"); });
+        }
+      }).then(function(){
+        window.__spinTrail = trailCode(addr);
+        addrEl.textContent = short(addr) + " · Base";
+        codeEl.textContent = "Trail-mark " + window.__spinTrail;
+        result.hidden = false;
+        btn.style.display = "none";
+        noteEl.textContent = "Checking your SPIN…";
+        return balanceOf(addr).then(function(bal){
+          if (bal > 0n) { badgeEl.hidden = false; noteEl.textContent = "Holding " + fmt(bal) + " SPIN. The den knows you."; }
+          else { badgeEl.hidden = true; noteEl.textContent = "No SPIN in this wallet yet — the trail-mark is yours all the same."; }
+        }).catch(function(){
+          badgeEl.hidden = true; noteEl.textContent = "Couldn't reach the Base network just now — your trail-mark still stands.";
+        });
+      });
+    }).catch(function(err){
+      noteEl.textContent = (err && err.message === "switch")
+        ? "Please switch your wallet to the Base network."
+        : "Connection declined — no harm done.";
+      btn.disabled = false; btn.textContent = "Connect wallet";
+    });
+  });
+})();
+</script>
+</body>
+</html>
