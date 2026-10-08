@@ -223,25 +223,15 @@
   #form-note{min-height:1.6em;color:var(--sepia);font-style:italic;font-size:1rem;}
 
   /* ---------- quest ---------- */
-  section#notify .quest-card{text-align:left;}
-  .quest-stand{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--sepia);margin-bottom:.7rem;}
-  .quest-stand strong{color:var(--oxblood);font-variant:small-caps;letter-spacing:.12em;}
-  .quest-progress{height:8px;background:rgba(74,59,40,.15);border:1px solid var(--gold);margin-bottom:1.5rem;}
-  .quest-progress span{display:block;height:100%;width:0;background:var(--oxblood);transition:width .4s;}
-  .quest-step{display:flex;align-items:center;gap:1rem;padding:1rem .25rem;border-top:1px solid rgba(168,137,74,.4);}
-  .quest-step:last-of-type{border-bottom:1px solid rgba(168,137,74,.4);margin-bottom:1.5rem;}
-  .quest-check{flex:none;width:30px;height:30px;background:transparent;border:2px solid var(--gold);cursor:pointer;position:relative;padding:0;}
-  .quest-check::after{content:"\2713";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--vellum);font-size:1.1rem;opacity:0;transform:scale(.6);transition:all .2s;}
-  .quest-step.done .quest-check{background:var(--oxblood);border-color:var(--oxblood);}
-  .quest-step.done .quest-check::after{opacity:1;transform:scale(1);}
-  .quest-step.done .quest-title{color:var(--sepia);text-decoration:line-through;text-decoration-color:rgba(110,50,50,.5);}
-  .quest-text{flex:1;}
+  section#notify .follow-card{text-align:left;}
+  .follow-row{display:flex;align-items:center;gap:1rem;padding:1rem .25rem;border-top:1px solid rgba(168,137,74,.4);}
+  .follow-row:last-of-type{border-bottom:1px solid rgba(168,137,74,.4);}
+  .follow-text{flex:1;}
   .quest-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--umber);}
   .quest-desc{font-size:.98rem;color:var(--sepia);}
   .quest-go{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.1em;font-weight:700;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;}
   .quest-go:hover{color:var(--umber);}
   .soon{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-size:.85rem;color:var(--sepia);border:1px dashed var(--gold);padding:.3rem .8rem;opacity:.75;white-space:nowrap;}
-  .kin-card{text-align:center;background:var(--parchment);border:3px double var(--gold);padding:2rem 1.5rem;box-shadow:0 6px 20px rgba(46,36,25,.14);}
   .kin-seal{width:64px;height:64px;margin:0 auto 1rem;}
   .kin-line{font-style:italic;color:var(--sepia);margin:.6rem 0 1.4rem;}
   .quest-mail{margin-top:1.5rem;}
@@ -311,10 +301,7 @@
   .den-card{margin-top:1.5rem;text-align:center;}
   .den-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:center;margin-top:1rem;}
   .den-addr{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;background:var(--vellum);border:1px solid var(--gold);padding:.5rem .8rem;}
-  .den-code{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.2em;font-weight:700;color:var(--oxblood);font-size:1.05rem;}
   .den-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:#5C6B3C;padding:.35rem .9rem;}
-  .trail-banner{background:var(--umber);color:var(--vellum);text-align:center;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.18em;font-size:1rem;padding:.7rem 1rem;margin-bottom:clamp(2.5rem,7vw,4rem);}
-  .trail-banner b{color:var(--gold);}
   @media (prefers-reduced-motion: reduce){
     .hero-inner > *{opacity:1;transform:none;}
     body.boot .hero-inner > *{animation:none;}
@@ -497,48 +484,30 @@
     <figure class="painting">
       <img src="painting-fox-path.jpg" alt="The fox pausing on a moonlit path, looking back — follow me" width="1170" height="659">
     </figure>
-    <div class="card quest-card">
-      <p class="quest-stand">Your standing: <strong id="quest-rank">Curious</strong></p>
-      <div class="quest-progress" aria-hidden="true"><span id="quest-bar"></span></div>
-      <div class="quest-steps">
-        <div class="quest-step" data-step="follow">
-          <button class="quest-check" aria-label="Mark Follow the fox as done" aria-pressed="false"></button>
-          <div class="quest-text">
-            <p class="quest-title">Follow the fox</p>
-            <p class="quest-desc">Follow SpinWave on X — that&apos;s where the tale gets told.</p>
+    <div class="card follow-card">
+      <p class="fine" style="margin-bottom:1.2rem;">SpinWave is told in the open — follow along wherever you already are. Nothing to unlock, no errands to run.</p>
+      <div class="follow-rows">
+        <div class="follow-row">
+          <div class="follow-text">
+            <p class="quest-title">The tale, as told</p>
+            <p class="quest-desc">SpinWave on X — announcements and the argument, in the order they happened.</p>
           </div>
-          <a class="quest-go" data-url="xProfile" href="#" target="_blank" rel="noopener">Follow &rarr;</a>
+          <a class="quest-go" data-url="xProfile" href="#" target="_blank" rel="noopener">X &rarr;</a>
         </div>
-        <div class="quest-step" data-step="spread">
-          <button class="quest-check" aria-label="Mark Spread the tale as done" aria-pressed="false"></button>
-          <div class="quest-text">
-            <p class="quest-title">Spread the tale</p>
-            <p class="quest-desc">Like and repost the launch post. Somebody out there needs the straight line.</p>
+        <div class="follow-row">
+          <div class="follow-text">
+            <p class="quest-title">The den</p>
+            <p class="quest-desc">The Telegram — the coordination room for the work.</p>
           </div>
-          <a class="quest-go" data-url="launchPost" href="#" target="_blank" rel="noopener">Repost &rarr;</a>
+          <a class="quest-go" data-url="telegram" href="#" target="_blank" rel="noopener">Telegram &rarr;</a>
         </div>
-        <div class="quest-step" data-step="den">
-          <button class="quest-check" aria-label="Mark Join the den as done" aria-pressed="false"></button>
-          <div class="quest-text">
-            <p class="quest-title">Join the den</p>
-            <p class="quest-desc">Step into the Telegram — the coordination room for the work.</p>
-          </div>
-          <a class="quest-go" data-url="telegram" href="#" target="_blank" rel="noopener">Join &rarr;</a>
-        </div>
-        <div class="quest-step" data-step="tale">
-          <button class="quest-check" aria-label="Mark Learn the tale as done" aria-pressed="false"></button>
-          <div class="quest-text">
-            <p class="quest-title">Learn the tale</p>
-            <p class="quest-desc">Read the timeline above — axiom, tale, token — then mark it read.</p>
+        <div class="follow-row">
+          <div class="follow-text">
+            <p class="quest-title">The record</p>
+            <p class="quest-desc">The timeline above — axiom, tale, token — the whole thing in one read.</p>
           </div>
           <a class="quest-go" href="#timeline">Read &uarr;</a>
         </div>
-      </div>
-      <div class="kin-card" id="kin-card" hidden>
-        <div class="brand-seal kin-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></div>
-        <p class="eyebrow">Kin of the Fox</p>
-        <p class="kin-line">Four errands run. You didn&apos;t petition the court — you routed around it.</p>
-        <a class="btn" id="kin-share" href="#" target="_blank" rel="noopener">Share the run</a>
       </div>
     </div>
     <div class="card den-card" id="den-card">
@@ -549,7 +518,6 @@
       </div>
       <div class="den-row" id="den-result" hidden>
         <span class="den-addr" id="den-addr"></span>
-        <span class="den-code" id="den-code"></span>
         <span class="den-badge" id="den-badge" hidden>Holder ✓</span>
       </div>
       <p class="fine" id="den-note" style="margin-top:.8rem;"></p>
@@ -617,58 +585,21 @@ document.getElementById("notify-form").addEventListener("submit", async function
 </script>
 <script>
 // Quest wiring. Paste real URLs when ready — empty strings render as "soon".
-// No backend: progress is honor-system, stored in this browser only.
-var QUEST_URLS = {
+// Paste your links here. Leave a value empty and its link quietly reads "soon".
+var FOLLOW_URLS = {
   xProfile: "",    // e.g. "https://x.com/spinwave"
-  launchPost: "",  // e.g. "https://x.com/spinwave/status/123..."
   telegram: ""     // e.g. "https://t.me/spinwave"
 };
 (function(){
-  var KEY = "spinwave_quest_v1";
-  var RANKS = ["Curious", "Cub", "Runner", "Runner", "Kin of the Fox"];
-  var state = {};
-  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
-  var steps = Array.prototype.slice.call(document.querySelectorAll(".quest-step"));
-  var rankEl = document.getElementById("quest-rank");
-  var barEl = document.getElementById("quest-bar");
-  var kinEl = document.getElementById("kin-card");
-
   Array.prototype.forEach.call(document.querySelectorAll('.quest-go[data-url]'), function(a){
-    var url = QUEST_URLS[a.getAttribute("data-url")] || "";
+    var url = FOLLOW_URLS[a.getAttribute("data-url")] || "";
     if (url) { a.href = url; }
     else {
-      var s = document.createElement("span");
-      s.className = "soon"; s.textContent = "soon";
-      a.replaceWith(s);
+      var sp = document.createElement("span");
+      sp.className = "soon"; sp.textContent = "soon";
+      a.replaceWith(sp);
     }
   });
-
-  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
-  function render(){
-    var done = 0;
-    steps.forEach(function(st){
-      var on = !!state[st.getAttribute("data-step")];
-      if (on) done++;
-      st.classList.toggle("done", on);
-      st.querySelector(".quest-check").setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    rankEl.textContent = RANKS[done];
-    barEl.style.width = (done / steps.length * 100) + "%";
-    var complete = done === steps.length;
-    kinEl.hidden = !complete;
-    if (complete) {
-      var text = "I ran with Reynard — Kin of the Fox. The straight line through the paywall maze: https://spinwave.pages.dev";
-      document.getElementById("kin-share").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text);
-    }
-  }
-  steps.forEach(function(st){
-    st.querySelector(".quest-check").addEventListener("click", function(){
-      var k = st.getAttribute("data-step");
-      state[k] = !state[k];
-      save(); render();
-    });
-  });
-  render();
 })();
 </script>
 <script src="status.js"></script>
@@ -748,24 +679,7 @@ var QUEST_URLS = {
     } catch(e){ fallback(); }
   });
 
-  /* --- trail-mark referrals --- */
-  function djb2(s){ var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h; }
-  function trailCode(addr){ return "RX-" + djb2(addr.toLowerCase()).toString(16).toUpperCase().padStart(8, "0").slice(0, 6); }
-  var via = new URLSearchParams(window.location.search).get("trail");
-  if (via) {
-    var banner = document.createElement("div");
-    banner.className = "trail-banner";
-    banner.innerHTML = "You followed <b>" + via.replace(/[<>&"]/g, "") + "</b>'s trail into the den.";
-    var wrap = document.querySelector(".wrap");
-    if (wrap) wrap.insertBefore(banner, wrap.firstChild);
-  }
-  /* carry the trail-mark on the share link (quest script sets href on completion) */
-  document.addEventListener("click", function(e){
-    var a = e.target.closest && e.target.closest("#kin-share");
-    if (a && window.__spinTrail && a.href.indexOf(window.__spinTrail) === -1) {
-      a.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent("I ran with Reynard — Kin of the Fox. The straight line through the paywall maze: https://spinwave.pages.dev?trail=" + window.__spinTrail);
-    }
-  }, true);
+
 
   /* --- wallet connect + holder check (Base) --- */
   var BASE_CHAIN = "0x2105";
@@ -774,7 +688,6 @@ var QUEST_URLS = {
   var btn = document.getElementById("den-connect");
   var result = document.getElementById("den-result");
   var addrEl = document.getElementById("den-addr");
-  var codeEl = document.getElementById("den-code");
   var badgeEl = document.getElementById("den-badge");
   var noteEl = document.getElementById("den-note");
   function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
@@ -802,17 +715,15 @@ var QUEST_URLS = {
             .catch(function(){ throw new Error("switch"); });
         }
       }).then(function(){
-        window.__spinTrail = trailCode(addr);
         addrEl.textContent = short(addr) + " · Base";
-        codeEl.textContent = "Trail-mark " + window.__spinTrail;
         result.hidden = false;
         btn.style.display = "none";
         noteEl.textContent = "Checking your SPIN…";
         return balanceOf(addr).then(function(bal){
           if (bal > 0n) { badgeEl.hidden = false; noteEl.textContent = "Holding " + fmt(bal) + " SPIN. The den knows you."; }
-          else { badgeEl.hidden = true; noteEl.textContent = "No SPIN in this wallet yet — the trail-mark is yours all the same."; }
+          else { badgeEl.hidden = true; noteEl.textContent = "No SPIN in this wallet yet."; }
         }).catch(function(){
-          badgeEl.hidden = true; noteEl.textContent = "Couldn't reach the Base network just now — your trail-mark still stands.";
+          badgeEl.hidden = true; noteEl.textContent = "Couldn't reach the Base network just now — try again shortly.";
         });
       });
     }).catch(function(err){
