@@ -36,6 +36,17 @@
   code.addr{font-family:ui-monospace,monospace;font-size:.82rem;background:rgba(46,36,25,.08);padding:.2rem .5rem;word-break:break-all;}
   .copy-btn{font-family:inherit;font-size:.85rem;letter-spacing:.08em;padding:.35rem .9rem;background:var(--umber);color:var(--vellum);border:none;cursor:pointer;margin-left:.6rem;}
   .copy-btn:hover{background:var(--oxblood);}
+  .secttl{font-size:1.7rem;font-weight:600;margin:2.6rem 0 .4rem;color:var(--umber);}
+  .secttl .rule{display:block;width:3.2rem;height:3px;background:var(--gold);margin-top:.45rem;}
+  .sectsub{font-style:italic;color:var(--sepia);font-size:1.05rem;margin-bottom:1rem;}
+  .steps{margin:1rem 0 1.4rem 1.4rem;color:var(--sepia);font-size:1.06rem;}
+  .steps li{margin:.55rem 0;}
+  .steps strong{color:var(--umber);}
+  .buy-grid{display:flex;gap:1.6rem;align-items:flex-start;flex-wrap:wrap;margin:1.2rem 0;}
+  .qr-card{background:rgba(255,255,255,.5);border:1px solid var(--gold);padding:1.1rem 1.2rem;text-align:center;flex:none;}
+  .qr-card img{width:180px;height:180px;display:block;}
+  .qr-card p{font-size:.88rem;color:var(--sepia);margin-top:.6rem;max-width:180px;}
+  .buy-cta{flex:1;min-width:16rem;}
   .warn{margin:1.6rem 0;padding:1.1rem 1.3rem;border:2px solid var(--oxblood);background:rgba(110,50,50,.07);}
   .warn strong{color:var(--oxblood);}
   .warn p{color:var(--sepia);margin-top:.3rem;}
@@ -86,6 +97,38 @@
     <strong>⚠ The address above is the only SPIN contract.</strong>
     <p>It is published here first. Treat any address you see anywhere else — in a DM, a comment, a “new official” post — as fake. When in doubt, come back to this page.</p>
     <p><strong>Watch the ticker:</strong> an unrelated token on Solana also calls itself “SPIN.” Different chain, different contract — not us. Ours lives on Base, at the address above.</p>
+  </div>
+
+  <h2 class="secttl">Said in plain words<span class="rule"></span></h2>
+  <p class="sectsub">Every term on this page, without the jargon.</p>
+  <div class="fields">
+    <div class="field"><span class="k">AI native</span><span class="v">SPIN was not hand-coded and deployed by a dev team. It was launched through <strong>Bankr, an AI agent</strong> — instructed in plain language, executed on-chain. The launch mechanics are the agent's standard, enforced by smart contracts.</span></div>
+    <div class="field"><span class="k">Bankr</span><span class="v">The AI launch platform behind SPIN (deployed September 27, 2026). Bankr routes launches through a Doppler airlock into a Uniswap V4 pool — that pipeline is why the supply, vesting, and pool shape are what they are.</span></div>
+    <div class="field"><span class="k">Liquidity pool</span><span class="v">85B SPIN sits in a Uniswap V4 pool, paired with Wrapped TAO. The pool is what makes SPIN swappable: traders put in one side and take out the other. No pool, no market.</span></div>
+    <div class="field"><span class="k">Wrapped TAO</span><span class="v">TAO is the token of the Bittensor network; “wrapped” means a version that works on Base. The pool pairs SPIN against it — so TAO's own price moves will move the pair.</span></div>
+    <div class="field"><span class="k">Vesting</span><span class="v">15B SPIN is locked in the token contract and unlocks on a schedule instead of all at once. Bankr's standard: 1 year, 30-day cliff — nothing moves for the first 30 days. It exists so the reserve can't flood the market on day one.</span></div>
+    <div class="field"><span class="k">Control</span><span class="v">The token was deployed and is administered through a Bankr ERC-4337 smart account — no seed phrase exists to lose or steal. Supply is fixed at 100B: no mint function, no more can ever be created.</span></div>
+    <div class="field"><span class="k">Utility mechanics</span><span class="v">What SPIN will actually do: scholars earn SPIN for manuscripts and datasets; readers pay SPIN to browse and license. That is the whole economy. Scholar recognition (Phase 1) and reader licensing (Phase 2) are not live yet.</span></div>
+  </div>
+
+  <h2 class="secttl">Get SPIN<span class="rule"></span></h2>
+  <p class="sectsub">If you're compelled in the moment — here's the whole path, honestly. The pool has seen zero trades and liquidity is thin. Only use funds you can walk away from.</p>
+  <ol class="steps">
+    <li><strong>A wallet that speaks Base</strong> — Coinbase Wallet, MetaMask, or Rainbow.</li>
+    <li><strong>ETH on Base</strong> — buy it there or bridge it over.</li>
+    <li><strong>Open the swap</strong> — the button below loads Uniswap with SPIN already filled in.</li>
+    <li><strong>Verify the contract</strong> — it must match <code class="addr">0x4c972afefa2e4552307b87cf944e53136c361ba3</code>. If it doesn't, stop.</li>
+    <li><strong>Swap.</strong> Start small — you're early, and early is thin.</li>
+  </ol>
+  <div class="buy-grid">
+    <div class="qr-card">
+      <img src="spin-contract-qr.png" alt="QR code for the SPIN contract address">
+      <p>Contract address — scan to copy it straight into your wallet.</p>
+    </div>
+    <div class="buy-cta">
+      <a class="btn" href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x4c972afefa2e4552307b87cf944e53136c361ba3" target="_blank" rel="noopener">OPEN IN UNISWAP →</a>
+      <p class="sectsub" style="margin-top:.8rem;">Loads the SPIN/ETH swap on Base with the verified contract prefilled. Nothing here is financial advice.</p>
+    </div>
   </div>
 </div>
 
