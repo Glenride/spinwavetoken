@@ -60,9 +60,12 @@
   .nav-links a.trust-link:hover{background:var(--gold);color:#fff;}
   .nav-drop{position:relative;}
   .nav-drop .drop-menu{
-    display:none;position:absolute;top:calc(100% + .45rem);right:0;min-width:230px;
+    display:none;position:absolute;top:100%;right:0;min-width:230px;
     background:var(--umber);border:1px solid var(--gold);border-radius:6px;
     padding:.5rem 0;box-shadow:0 10px 28px rgba(46,36,25,.3);z-index:100;
+  }
+  .nav-drop .drop-menu::before{
+    content:"";position:absolute;top:-.6rem;left:0;right:0;height:.6rem;
   }
   .nav-drop:hover .drop-menu{display:block;}
   .nav-drop .drop-menu a{
