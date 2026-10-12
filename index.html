@@ -52,6 +52,12 @@
   .nav-links{display:flex;gap:1.7rem;}
   .nav-links a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
   .nav-links a:hover{color:var(--oxblood);}
+  .nav-links a.trust-link{
+    color:var(--oxblood);font-weight:700;
+    border:1.5px solid var(--gold);border-radius:999px;
+    padding:.28rem 1rem;white-space:nowrap;
+  }
+  .nav-links a.trust-link:hover{background:var(--gold);color:#fff;}
   @media(max-width:760px){.nav-links{display:none;}}
   @media(max-width:760px){
     .hero{display:block;min-height:0;background:none;border-bottom:3px double var(--gold);}
@@ -330,7 +336,7 @@
     <a href="#timeline">Timeline</a>
     <a href="#reynard">Reynard</a>
     <a href="#recognition">Recognition</a>
-    <a href="trust.html">Trust Center</a>
+    <a href="trust.html" class="trust-link">Trust Center</a>
   </div>
 </nav>
 <header class="hero" id="top">
