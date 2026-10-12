@@ -238,23 +238,31 @@
   .quest-mail > p{margin-bottom:1rem;color:var(--sepia);font-style:italic;}
 
   /* ---------- footer ---------- */
-  footer{
-    margin:clamp(3rem,8vw,5rem) 0 0;
-    border-top:3px double var(--gold);
-    padding:2.25rem 0 3rem;
-    text-align:center;color:var(--sepia);font-size:.98rem;
+  .site-footer{
+    margin-top:clamp(4rem,10vw,6rem);
+    background:var(--umber);
+    color:var(--parchment);
+    border-top:4px solid var(--gold);
+    padding:3.5rem 0 2.75rem;
   }
-  footer p + p{margin-top:1em;}
-  footer .trustnav{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;}
-  footer .trustnav a{color:var(--sepia);text-decoration:none;}
-  footer .trustnav a:hover{color:var(--oxblood);}
-  .contract{
+  .site-footer .foot-inner{max-width:900px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem);}
+  .site-footer .seal-mark{color:var(--gold);font-size:1.6rem;display:block;text-align:center;margin-bottom:1.25rem;}
+  .site-footer .foot-tag{text-align:center;font-size:1.08rem;line-height:1.6;max-width:36rem;margin:0 auto 1.5rem;color:var(--parchment);}
+  .site-footer .foot-contract{text-align:center;margin:0 0 1.5rem;}
+  .site-footer .contract{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    font-size:.82rem;color:var(--umber);background:rgba(220,207,175,.6);
-    border:1px solid var(--gold);padding:.55rem .8rem;
+    font-size:.82rem;color:var(--umber);background:var(--parchment);
+    border:1px solid var(--gold);padding:.55rem .8rem;border-radius:3px;
     display:inline-block;max-width:100%;overflow-wrap:anywhere;
   }
-  .seal-mark{color:var(--oxblood);font-size:1.3rem;display:block;margin-bottom:1rem;}
+  .site-footer .foot-note{text-align:center;font-style:italic;color:var(--parchment);opacity:.85;margin:0 0 2rem;}
+  .site-footer .foot-nav{
+    text-align:center;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
+    padding-top:1.75rem;border-top:1px solid rgba(168,137,74,.4);margin-bottom:1.75rem;
+  }
+  .site-footer .foot-nav a{color:var(--parchment);text-decoration:none;opacity:.85;}
+  .site-footer .foot-nav a:hover{color:var(--gold);opacity:1;}
+  .site-footer .fineprint{text-align:center;font-size:.8rem;color:var(--parchment);opacity:.6;}
   @media (max-width:520px){
   }
 
@@ -322,6 +330,7 @@
     <a href="#timeline">Timeline</a>
     <a href="#reynard">Reynard</a>
     <a href="#recognition">Recognition</a>
+    <a href="trust.html">Trust Center</a>
   </div>
 </nav>
 <header class="hero" id="top">
@@ -535,16 +544,21 @@
 
 
 
-  <!-- ============ FOOTER ============ -->
-  <footer>
-    <span class="seal-mark" aria-hidden="true">❦</span>
-    <p>SPIN is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
-    <p><code class="contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code></p>
-    <p>It is not an investment, and we make no promises about its value.</p>
-    <p class="trustnav"><a href="trust.html">Trust Center</a> · <a href="flow.html">Capital Flow</a> · <a href="trust.html#pending">What Pending Means</a> · <a href="token.html">Token Status</a> · <a href="trust.html#risks">Risks</a></p>
-  </footer>
+</div><!-- /.wrap -->
 
-</div>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="foot-inner">
+    <span class="seal-mark" aria-hidden="true">❦</span>
+    <p class="foot-tag">SPIN is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
+    <p class="foot-contract"><code class="contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code></p>
+    <p class="foot-note">It is not an investment, and we make no promises about its value.</p>
+    <nav class="foot-nav">
+      <a href="trust.html">Trust Center</a> &nbsp;·&nbsp; <a href="flow.html">Capital Flow</a> &nbsp;·&nbsp; <a href="trust.html#pending">What Pending Means</a> &nbsp;·&nbsp; <a href="token.html">Token Status</a> &nbsp;·&nbsp; <a href="trust.html#risks">Risks</a>
+    </nav>
+    <p class="fineprint">© 2026 Glenride · Built in the open, everything verifiable on-chain.</p>
+  </div>
+</footer>
 
 <script>
 // Paste your Formspree/Basin endpoint here to connect the notification list.
