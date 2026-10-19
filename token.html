@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Token Status — SpinWave</title>
-<meta name="description" content="SPIN exactly as it stands: live on Base, pool deployed, no trades yet.">
+<meta name="description" content="STANZA exactly as it stands: live on Base, pool deployed, no trades yet.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -122,96 +122,126 @@
     <span class="brand-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></span>
     <span class="brand-word">SpinWave</span>
   </a>
-  <div class="nav-links">
+  <nav class="nav-links" aria-label="Primary">
     <a href="index.html#maze">The maze</a>
     <a href="index.html#timeline">Timeline</a>
     <a href="index.html#reynard">Reynard</a>
     <a href="index.html#recognition">Recognition</a>
     <div class="nav-drop">
       <a href="trust.html" class="trust-link">Trust Center &#9662;</a>
-      <div class="drop-menu">
+      <nav class="drop-menu" aria-label="Trust Center sections">
         <a href="trust.html" class="drop-home">Trust Center</a>
         <a href="how.html">How It Will Work</a>
         <a href="flow.html">Capital Flow</a>
         <a href="trust.html#pending">What Pending Means</a>
         <a href="token.html">Token Status</a>
         <a href="trust.html#risks">Risks</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </nav>
 </nav>
 
-<div class="wrap">
-  <div class="hero">
+<main class="wrap">
+  <p class="sectsub" style="text-align:center;margin-top:1.1rem;">Published: September 2026 &middot; Updated: October 19, 2026</p>
+  <header class="hero">
     <span class="banner">Live · Base</span>
     <h1>THE TOKEN IS LIVE.<br>Trading is not here yet.</h1>
-    <p class="sub">This page shows SPIN exactly as it stands — no more, no less.</p>
+    <p class="sub">This page shows the token exactly as it stands — no more, no less.</p>
+  </header>
+
+  <h2 class="secttl">Is STANZA trading yet?<span class="rule"></span></h2>
+  <p>No — not yet. The contract is live on Base and the pool is deployed, but no trade has ever executed, so there is no price. &ldquo;Live&rdquo; means the token exists on-chain; &ldquo;trading&rdquo; means a market has formed. We are at the first and not the second, and we will say so plainly until that changes.</p>
+  <p class="sectsub">Contract status as of <strong>October 19, 2026</strong> — verify on <a class="ext" href="https://basescan.org/address/0xf629f16ba91086e266accc417d10742f76207ba3" target="_blank" rel="noopener">Basescan</a>.</p>
+
+  <h2 class="secttl">STANZA vs $SPIN — which one do I use?<span class="rule"></span></h2>
+  <p><strong>STANZA.</strong> It is the current token — contract <code class="addr">0xf629f16ba91086e266accc417d10742f76207ba3</code>, on Base and only Base. $SPIN (<code class="addr">0x4c972afefa2e4552307b87cf944e53136c361ba3</code>) was the first deployment, launched September 27, 2026; its pool never saw a single trade, and it is superseded. We keep it on record below so the history stays verifiable — but for anything you do, verify, or hold, STANZA is the one.</p>
+
+  <div class="rebrand">
+    <span class="banner">&#8635; Rebrand · October 2026</span>
+    <h2 class="secttl">STANZA by SpinWave<span class="rule"></span></h2>
+    <p class="sectsub">SpinWave is the project. <strong>STANZA</strong> is the token. A name should mean something before it means money — the work has to live up to the name. <a href="letter.html" style="color:var(--oxblood);">Read the open letter →</a></p>
+    <div class="fields">
+      <div class="field"><span class="k">STANZA — current</span><span class="v"><code class="addr">0xf629f16ba91086e266accc417d10742f76207ba3</code><br><a class="ext" href="https://basescan.org/address/0xf629f16ba91086e266accc417d10742f76207ba3" target="_blank" rel="noopener">View on Basescan →</a><br>Launched October 17, 2026 via Bankr on Base. 100B supply — 85% LP, 15% creator vesting (1 year, 30-day cliff). This is the token going forward.</span></div>
+      <div class="field"><span class="k">$SPIN — superseded</span><span class="v"><code class="addr">0x4c972afefa2e4552307b87cf944e53136c361ba3</code><br><a class="ext" href="https://basescan.org/address/0x4c972afefa2e4552307b87cf944e53136c361ba3" target="_blank" rel="noopener">View on Basescan →</a><br>First deployment, September 27, 2026. The pool deployed but never saw a single trade. Superseded by STANZA — kept on record so the history stays verifiable.</span></div>
+    </div>
   </div>
 
+  <h2 class="secttl">STANZA — the current token<span class="rule"></span></h2>
   <div class="fields">
-    <div class="field"><span class="k">Status</span><span class="v"><strong>Live</strong> — deployed and on-chain</span></div>
-    <div class="field"><span class="k">Name / Symbol</span><span class="v">spinwave / <strong>SPIN</strong></span></div>
+    <div class="field"><span class="k">Status</span><span class="v"><strong>Live</strong> — deployed and on-chain, as of October 19, 2026</span></div>
+    <div class="field"><span class="k">Name / Symbol</span><span class="v"><strong>STANZA</strong></span></div>
     <div class="field"><span class="k">Network</span><span class="v"><strong>Base</strong> — and only Base</span></div>
-    <div class="field"><span class="k">Contract</span><span class="v"><code class="addr" id="token-contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code><button class="copy-btn" id="copy-token" type="button">Copy</button><br><a class="ext" href="https://basescan.org/address/0x4c972afefa2e4552307b87cf944e53136c361ba3" target="_blank" rel="noopener">View on Basescan →</a></span></div>
-    <div class="field"><span class="k">Supply</span><span class="v">100,000,000,000 SPIN · 18 decimals · minted once</span></div>
-    <div class="field"><span class="k">Launched</span><span class="v">September 27, 2026 · via Bankr → Doppler Airlock → Uniswap V4</span></div>
-    <div class="field"><span class="k">Pool</span><span class="v">85B SPIN in the Uniswap V4 PoolManager, paired with ForeverMoney Wrapped TAO</span></div>
-    <div class="field"><span class="k">Vesting reserve</span><span class="v">15B SPIN held by the token contract — Bankr standard is 1-year vesting with a 30-day cliff; exact release mechanics for this reserve not yet independently confirmed</span></div>
-    <div class="field"><span class="k">Creator share</span><span class="v">0.665% — Bankr standard</span></div>
-    <div class="field"><span class="k">Launch protections</span><span class="v">14-second anti-snipe, 5-minute 2% wallet cap — Bankr standard</span></div>
-    <div class="field"><span class="k">Control</span><span class="v">Deployed via Bankr; controlled by an ERC-4337 smart account — no seed phrase exists</span></div>
-    <div class="field"><span class="k">Trades to date</span><span class="v"><strong>None.</strong> The pool is deployed; no trade has ever executed.</span></div>
+    <div class="field"><span class="k">Contract</span><span class="v"><code class="addr" id="token-contract">0xf629f16ba91086e266accc417d10742f76207ba3</code><button class="copy-btn" id="copy-token" type="button">Copy</button><br><a class="ext" href="https://basescan.org/address/0xf629f16ba91086e266accc417d10742f76207ba3" target="_blank" rel="noopener">View on Basescan →</a></span></div>
+    <div class="field"><span class="k">Supply</span><span class="v">100,000,000,000 STANZA</span></div>
+    <div class="field"><span class="k">Launched</span><span class="v">October 17, 2026 · via Bankr on Base</span></div>
+    <div class="field"><span class="k">Pool</span><span class="v">85B STANZA in the liquidity pool, paired with Wrapped TAO</span></div>
+    <div class="field"><span class="k">Vesting</span><span class="v">15B STANZA under creator vesting — 1 year, 30-day cliff; nothing moves for the first 30 days</span></div>
+    <div class="field"><span class="k">Trades to date</span><span class="v"><strong>None.</strong> As of October 19, 2026, no trade has ever executed.</span></div>
   </div>
 
   <div class="warn">
-    <strong>⚠ The address above is the only SPIN contract.</strong>
+    <strong>⚠ The address above is the only STANZA contract.</strong>
     <p>It is published here first. Treat any address you see anywhere else — in a DM, a comment, a “new official” post — as fake. When in doubt, come back to this page.</p>
     <p><strong>Watch the ticker:</strong> an unrelated token on Solana also calls itself “SPIN.” Different chain, different contract — not us. Ours lives on Base, at the address above.</p>
+  </div>
+
+  <h2 class="secttl">$SPIN — superseded (history)<span class="rule"></span></h2>
+  <p class="sectsub">The first deployment, September 27, 2026. Superseded by STANZA — kept on record so the history stays verifiable.</p>
+  <div class="fields">
+    <div class="field"><span class="k">Name / Symbol</span><span class="v">spinwave / <strong>$SPIN</strong></span></div>
+    <div class="field"><span class="k">Contract</span><span class="v"><code class="addr">0x4c972afefa2e4552307b87cf944e53136c361ba3</code><br><a class="ext" href="https://basescan.org/address/0x4c972afefa2e4552307b87cf944e53136c361ba3" target="_blank" rel="noopener">View on Basescan →</a></span></div>
+    <div class="field"><span class="k">Launched</span><span class="v">September 27, 2026 · via Bankr → Doppler Airlock → Uniswap V4</span></div>
+    <div class="field"><span class="k">Supply</span><span class="v">100,000,000,000 $SPIN · 18 decimals · minted once</span></div>
+    <div class="field"><span class="k">Pool</span><span class="v">85B $SPIN in the Uniswap V4 PoolManager, paired with ForeverMoney Wrapped TAO — never saw a single trade</span></div>
+    <div class="field"><span class="k">Vesting reserve</span><span class="v">15B $SPIN held by the token contract — Bankr standard is 1-year vesting with a 30-day cliff; exact release mechanics for this reserve were never independently confirmed</span></div>
+    <div class="field"><span class="k">Creator share</span><span class="v">0.665% — Bankr standard</span></div>
+    <div class="field"><span class="k">Launch protections</span><span class="v">14-second anti-snipe, 5-minute 2% wallet cap — Bankr standard</span></div>
+    <div class="field"><span class="k">Control</span><span class="v">Deployed via Bankr; controlled by an ERC-4337 smart account — no seed phrase exists</span></div>
   </div>
 
   <h2 class="secttl">Said in plain words<span class="rule"></span></h2>
   <p class="sectsub">Every term on this page, without the jargon.</p>
   <div class="fields">
-    <div class="field"><span class="k">AI native</span><span class="v">SPIN was not hand-coded and deployed by a dev team. It was launched through <strong>Bankr, an AI agent</strong> — instructed in plain language, executed on-chain. The launch mechanics are the agent's standard, enforced by smart contracts.</span></div>
-    <div class="field"><span class="k">Bankr</span><span class="v">The AI launch platform behind SPIN (deployed September 27, 2026). Bankr routes launches through a Doppler airlock into a Uniswap V4 pool — that pipeline is why the supply, vesting, and pool shape are what they are.</span></div>
-    <div class="field"><span class="k">Liquidity pool</span><span class="v">85B SPIN sits in a Uniswap V4 pool, paired with Wrapped TAO. The pool is what makes SPIN swappable: traders put in one side and take out the other. No pool, no market.</span></div>
-    <div class="field"><span class="k">Wrapped TAO</span><span class="v">TAO is the token of the Bittensor network; “wrapped” means a version that works on Base. The pool pairs SPIN against it — so TAO's own price moves will move the pair.</span></div>
-    <div class="field"><span class="k">Vesting</span><span class="v">15B SPIN is locked in the token contract and unlocks on a schedule instead of all at once. Bankr's standard: 1 year, 30-day cliff — nothing moves for the first 30 days. It exists so the reserve can't flood the market on day one.</span></div>
-    <div class="field"><span class="k">Control</span><span class="v">The token was deployed and is administered through a Bankr ERC-4337 smart account — no seed phrase exists to lose or steal. Supply is fixed at 100B: no mint function, no more can ever be created.</span></div>
-    <div class="field"><span class="k">Utility mechanics</span><span class="v">What SPIN will actually do: scholars earn SPIN for manuscripts and datasets; readers pay SPIN to browse and license. That is the whole economy. Scholar recognition (Phase 1) and reader licensing (Phase 2) are not live yet.</span></div>
+    <div class="field"><span class="k">AI native</span><span class="v">STANZA was not hand-coded and deployed by a dev team. It was launched through <strong>Bankr, an AI agent</strong> — instructed in plain language, executed on-chain. The launch mechanics are the agent's standard, enforced by smart contracts.</span></div>
+    <div class="field"><span class="k">Bankr</span><span class="v">The AI launch platform behind both deployments — $SPIN (September 27, 2026) and STANZA (October 17, 2026). Bankr routes launches through a Doppler airlock into a Uniswap V4 pool — that pipeline is why the supply, vesting, and pool shape are what they are.</span></div>
+    <div class="field"><span class="k">Liquidity pool</span><span class="v">85B STANZA sits in the liquidity pool, paired with Wrapped TAO. The pool is what makes STANZA swappable: traders put in one side and take out the other. No pool, no market.</span></div>
+    <div class="field"><span class="k">Wrapped TAO</span><span class="v">TAO is the token of the Bittensor network; “wrapped” means a version that works on Base. The pool pairs STANZA against it — so TAO's own price moves will move the pair.</span></div>
+    <div class="field"><span class="k">Vesting</span><span class="v">15% of STANZA (15B) is reserved under creator vesting and unlocks on a schedule instead of all at once: 1 year, 30-day cliff — nothing moves for the first 30 days. It exists so the reserve can't flood the market on day one.</span></div>
+    <div class="field"><span class="k">Control</span><span class="v">STANZA was deployed through Bankr on October 17, 2026. The $SPIN deployment was administered through a Bankr ERC-4337 smart account — no seed phrase existed to lose or steal — and its supply was fixed at 100B: no mint function, no more could ever be created.</span></div>
+    <div class="field"><span class="k">Utility mechanics</span><span class="v">What STANZA will actually do: scholars earn STANZA for manuscripts and datasets; readers pay STANZA to browse and license. That is the whole economy. Scholar recognition (Phase 1) and reader licensing (Phase 2) are not live yet.</span></div>
   </div>
 
-  <h2 class="secttl">Get SPIN<span class="rule"></span></h2>
+  <h2 class="secttl">Get STANZA<span class="rule"></span></h2>
   <p>People like us see the world as a canvas — a slab of clay. We paint with our souls and minds that which we want to see. If we do not decide voluntarily to “do the work,” if we decide not to stand up, we allow bad actors to commandeer our good nature, our health, and our right to pursue happiness. Real change requires your gut, good intentions, and grit. Your support ensures the right ideas and people are elevated in society — not suppressed in a 100-year-old build of a 400-year-old institution. And it's to be expected, because it's a process. Those who join early get to see and affect the most positive change, because they believed in something greater than themselves. That takes real courage. That's your soul jumping out.</p>
   <p class="sectsub">Here's the whole path, honestly. The pool has seen zero trades and liquidity is thin. Only use funds you can walk away from.</p>
   <ol class="steps">
     <li><strong>A wallet that speaks Base</strong> — Coinbase Wallet, MetaMask, or Rainbow.</li>
     <li><strong>ETH on Base</strong> — buy it there or bridge it over.</li>
-    <li><strong>Open the swap</strong> — the button below loads Uniswap with SPIN already filled in.</li>
-    <li><strong>Verify the contract</strong> — it must match <code class="addr">0x4c972afefa2e4552307b87cf944e53136c361ba3</code>. If it doesn't, stop.</li>
+    <li><strong>Open the swap</strong> — the button below loads Uniswap with STANZA already filled in.</li>
+    <li><strong>Verify the contract</strong> — it must match <code class="addr">0xf629f16ba91086e266accc417d10742f76207ba3</code>. If it doesn't, stop.</li>
     <li><strong>Swap.</strong> Start small — you're early, and early is thin.</li>
   </ol>
   <div class="buy-grid">
     <div class="qr-card">
-      <img src="spin-contract-qr.png" alt="QR code for the SPIN contract address">
+      <img src="spin-contract-qr.png" alt="QR code for the STANZA contract address">
       <p>Contract address — scan to copy it straight into your wallet.</p>
     </div>
     <div class="buy-cta">
-      <a class="btn" href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x4c972afefa2e4552307b87cf944e53136c361ba3" target="_blank" rel="noopener">OPEN IN UNISWAP →</a>
-      <p class="sectsub" style="margin-top:.8rem;">Loads the SPIN/ETH swap on Base with the verified contract prefilled. Nothing here is financial advice.</p>
+      <a class="btn" href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0xf629f16ba91086e266accc417d10742f76207ba3" target="_blank" rel="noopener">OPEN IN UNISWAP →</a>
+      <p class="sectsub" style="margin-top:.8rem;">Loads the STANZA/ETH swap on Base with the verified contract prefilled. Nothing here is financial advice.</p>
     </div>
   </div>
-</div>
+</main>
 
 <footer class="site-footer">
   <div class="foot-inner">
     <span class="seal-mark" aria-hidden="true">&#10086;</span>
-    <p class="foot-tag">SPIN is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
-    <p class="foot-contract"><code class="contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code></p>
+    <p class="foot-tag">STANZA is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
+    <p class="foot-contract"><code class="contract">0xf629f16ba91086e266accc417d10742f76207ba3</code></p>
     <div class="foot-disclaimers">
       <p>It is not an investment, and we make no promises about its value. Nothing here is financial advice.</p>
       <p>Recognition is pending and locked until Phase 1. It is not a balance and cannot be withdrawn, transferred, or spent until then.</p>
-      <p>The token is live on Base and the pool is deployed, but no market has formed yet &mdash; the pool has seen no trades. Verify the contract above; any other address is not SPIN.</p>
+      <p>The token is live on Base and the pool is deployed, but no market has formed yet &mdash; the pool has seen no trades. Verify the contract above; any other address is not STANZA.</p>
     </div>
     <nav class="foot-nav">
       <a href="trust.html">Trust Center</a> &nbsp;&middot;&nbsp; <a href="flow.html">Capital Flow</a> &nbsp;&middot;&nbsp; <a href="trust.html#pending">What Pending Means</a> &nbsp;&middot;&nbsp; <a href="token.html">Token Status</a> &nbsp;&middot;&nbsp; <a href="trust.html#risks">Risks</a>

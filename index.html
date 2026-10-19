@@ -82,6 +82,8 @@
     .hero-inner{margin:0;max-width:none;padding:2.75rem clamp(1.25rem,6vw,2rem);}
     .lede-box{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:none;box-shadow:none;padding:0;margin:0 0 1.4rem;max-width:none;}
     .hero h1{color:var(--umber);text-shadow:none;}
+    .hero-q{color:var(--oxblood);text-shadow:none;}
+    .hero-a{color:var(--sepia);text-shadow:none;}
     .hero .hero-sub{color:var(--sepia);text-shadow:none;}
     .eyebrow-light{color:var(--oxblood);text-shadow:none;}
   }
@@ -113,6 +115,15 @@
   .lede-box .hero-sub{margin:0;}
   .hero .btn{font-size:.9rem;padding:.7rem 1.9rem;}
   .hero-img-mobile{display:none;}
+  .hero-q{
+    font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.24em;
+    font-weight:600;font-size:1.02rem;color:var(--gold);
+    margin:1.3rem 0 .55rem;text-shadow:0 1px 6px rgba(0,0,0,.65);
+  }
+  .hero-a{
+    color:#EDE4D0;font-size:1.02rem;line-height:1.7;max-width:36em;
+    text-shadow:0 1px 8px rgba(0,0,0,.65);margin:0 0 1.5rem;
+  }
 
   .eyebrow{
     font-family:'Cormorant Garamond',serif;
@@ -352,29 +363,31 @@
     <span class="brand-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></span>
     <span class="brand-word">SpinWave</span>
   </a>
-  <div class="nav-links">
+  <nav class="nav-links" aria-label="Primary">
     <a href="#maze">The maze</a>
     <a href="#timeline">Timeline</a>
     <a href="#reynard">Reynard</a>
     <a href="#recognition">Recognition</a>
     <div class="nav-drop">
       <a href="trust.html" class="trust-link">Trust Center &#9662;</a>
-      <div class="drop-menu">
+      <nav class="drop-menu" aria-label="Trust Center sections">
         <a href="trust.html" class="drop-home">Trust Center</a>
         <a href="how.html">How It Will Work</a>
         <a href="flow.html">Capital Flow</a>
         <a href="trust.html#pending">What Pending Means</a>
         <a href="token.html">Token Status</a>
         <a href="trust.html#risks">Risks</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </nav>
 </nav>
 <header class="hero" id="top">
   <img class="hero-img-mobile" src="painting-hero-gate.jpg" alt="Reynard slipping through the tower gate with scrolls, pages drifting toward outstretched hands">
   <div class="hero-inner">
     <p class="eyebrow eyebrow-light">The Tale of Reynard</p>
     <h1>The straight line.</h1>
+    <h2 class="hero-q">What is STANZA?</h2>
+    <p class="hero-a">STANZA is the token of SpinWave &mdash; a utility token on Base for recognizing scholars. Scholars earn it for manuscripts and datasets freed from paywalls; readers will use it to license that work directly. It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed. SpinWave is the project. STANZA is the token. The name comes first; the money, if it ever comes, comes later.</p>
     <div class="lede-box">
     <p class="hero-sub">Centuries before the tale of Reynard, an ancient mathematician named Archimedes formally wrote down an axiom: of all lines which have the same extremities, the straight line is the least. Fast-forward to medieval times: a lion king summons a fox named Reynard. But instead of pleading, he decided to upset the court. Today, that ember still burns brightly.</p>
     </div>
@@ -383,7 +396,8 @@
   </div>
 </header>
 <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker-track"></div></div>
-<div class="wrap">
+<main class="wrap">
+  <p class="fine" style="margin-top:1.15rem;">Published: 2026 &middot; Updated: October 19, 2026</p>
 
 
   <div class="fleuron" aria-hidden="true"><span>❦</span></div>
@@ -395,7 +409,7 @@
       <img src="painting-maze.jpg" alt="The maze — scholars wandering torch-lit stone corridors of locked gates" width="1170" height="786">
     </figure>
     <div class="card">
-      <p>For decades, research has sat behind paywalls — written by scholars, locked by publishers. The tower built a maze and called it order. <strong>SPIN is the straight line through it.</strong></p>
+      <p>For decades, research has sat behind paywalls — written by scholars, locked by publishers. The tower built a maze and called it order. <strong>STANZA is the straight line through it.</strong></p>
     </div>
   </section>
 
@@ -415,7 +429,7 @@
       </div>
       <div class="era">
         <p class="era-date">Today — The token</p>
-        <p>Glenride is a think tank in the traditional structure — manuscripts, peer review, rigor, scholars named for their work. But ideologically separate: no tower decides what gets read or who gets honored. Independence needs a mechanism, because recognition can't run on goodwill. <strong>SPIN is that mechanism</strong> — and it is a promise: that those who truly move the world with research will be honored for it. Not by the court. By the commons. The straight line, drawn a third time.</p>
+        <p>Glenride is a think tank in the traditional structure — manuscripts, peer review, rigor, scholars named for their work. But ideologically separate: no tower decides what gets read or who gets honored. Independence needs a mechanism, because recognition can't run on goodwill. <strong>STANZA is that mechanism</strong> — and it is a promise: that those who truly move the world with research will be honored for it. Not by the court. By the commons. The straight line, drawn a third time.</p>
       </div>
     </div>
   </section>
@@ -451,7 +465,7 @@
         <li>Scholars bring manuscripts and datasets out of the maze.</li>
         <li>Readers come to learn — no gates, no paywalls.</li>
         <li>Every contribution recognized. Every scholar named.</li>
-        <li>SPIN is how the clever recognize their own.</li>
+        <li>STANZA is how the clever recognize their own.</li>
       </ul>
     </div>
   </section>
@@ -480,9 +494,9 @@
       <img src="painting-recognition.jpg" alt="A scholar receiving an honored manuscript wreathed in laurel" width="1170" height="1755">
     </figure>
     <div class="stat-grid">
-      <div class="stat"><span class="stat-num">25,000</span><span class="stat-label">SPIN · accepted manuscript</span></div>
-      <div class="stat"><span class="stat-num">40,000</span><span class="stat-label">SPIN · accepted dataset</span></div>
-      <div class="stat"><span class="stat-num">55,000</span><span class="stat-label">SPIN · dataset with worked example</span></div>
+      <div class="stat"><span class="stat-num">25,000</span><span class="stat-label">STANZA · accepted manuscript</span></div>
+      <div class="stat"><span class="stat-num">40,000</span><span class="stat-label">STANZA · accepted dataset</span></div>
+      <div class="stat"><span class="stat-num">55,000</span><span class="stat-label">STANZA · dataset with worked example</span></div>
       <div class="stat"><span class="stat-num">60%</span><span class="stat-label">of every reader license — straight to the scholar</span></div>
     </div>
     <p class="fine">Peer reviewers are honored for their part. If you do the work, you get named for it. That’s the whole of it.</p>
@@ -495,7 +509,7 @@
     <h2 class="section-title">The build</h2>
     <div class="phase-grid">
       <div class="phase"><span class="phase-badge">Phase 0 · Now</span><p>The foundation: the repository, the review standard, the token mechanics — built in the open. Today you can read the covenant, verify the contract, and see exactly where it stands.</p></div>
-      <div class="phase"><span class="phase-badge">Phase 1 · Next</span><p>For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 SPIN for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.</p></div>
+      <div class="phase"><span class="phase-badge">Phase 1 · Next</span><p>For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 STANZA for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.</p></div>
       <div class="phase"><span class="phase-badge">Phase 2 · Then</span><p>For readers: license what you need, directly — no subscriptions, no gates. 60% of every license goes straight to the scholar who wrote it.</p></div>
     </div>
     <p class="fine">We&rsquo;re building it in the open, and we&rsquo;re telling you exactly where it stands.</p>
@@ -509,15 +523,15 @@
     <div class="card">
       <div class="status-board" id="status-board"></div>
       <div class="contract-callout">
-        <span style="font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;">The only SPIN contract</span>
-        <code class="contract" id="spin-contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code>
+        <span style="font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;">The STANZA contract — current</span>
+        <code class="contract" id="spin-contract">0xf629f16ba91086e266accc417d10742f76207ba3</code>
         <button class="copy-btn" id="copy-contract" type="button">Copy</button>
       </div>
-      <p class="fine">Any other address is not SPIN. The token lives on Base — it has never lived anywhere else.</p>
+      <p class="fine">Any other address is not STANZA. The token lives on Base — it has never lived anywhere else. The first $SPIN deployment (<code>0x4c972afefa2e4552307b87cf944e53136c361ba3</code>) is superseded — <a href="token.html" style="color:var(--oxblood);">full history on the token page →</a></p>
       <ul class="plainly">
         <li><strong>Recognition is pending, not a balance.</strong> The amounts above are reserved for scholars when Phase 1 opens. They cannot be withdrawn, transferred, or spent until then.</li>
-        <li><strong>The token is live but not trading.</strong> SPIN exists on Base and the pool is deployed — but no market has formed yet. Until trading begins, there is no price.</li>
-        <li><strong>Nothing is promised but the work.</strong> SPIN honors scholarship; it is not an investment, and we make no promises about its value.</li>
+        <li><strong>The token is live but not trading.</strong> STANZA exists on Base and the pool is deployed — but no market has formed yet. Until trading begins, there is no price.</li>
+        <li><strong>Nothing is promised but the work.</strong> STANZA honors scholarship; it is not an investment, and we make no promises about its value.</li>
       </ul>
       <p class="fine" style="margin-top:1rem;"><a href="trust.html" style="color:var(--oxblood);">Read the Trust Center →</a> capital flow, token status, and risks, in plain language.</p>
     </div>
@@ -582,18 +596,18 @@
 
 
 
-</div><!-- /.wrap -->
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="foot-inner">
     <span class="seal-mark" aria-hidden="true">❦</span>
-    <p class="foot-tag">SPIN is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
-    <p class="foot-contract"><code class="contract">0x4c972afefa2e4552307b87cf944e53136c361ba3</code></p>
+    <p class="foot-tag">STANZA is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
+    <p class="foot-contract"><code class="contract">0xf629f16ba91086e266accc417d10742f76207ba3</code></p>
     <div class="foot-disclaimers">
       <p>It is not an investment, and we make no promises about its value. Nothing here is financial advice.</p>
       <p>Recognition is pending and locked until Phase 1. It is not a balance and cannot be withdrawn, transferred, or spent until then.</p>
-      <p>The token is live on Base and the pool is deployed, but no market has formed yet &mdash; the pool has seen no trades. Verify the contract above; any other address is not SPIN.</p>
+      <p>The token is live on Base and the pool is deployed, but no market has formed yet &mdash; the pool has seen no trades. Verify the contract above; any other address is not STANZA.</p>
     </div>
     <nav class="foot-nav">
       <a href="trust.html">Trust Center</a> &nbsp;&middot;&nbsp; <a href="flow.html">Capital Flow</a> &nbsp;&middot;&nbsp; <a href="trust.html#pending">What Pending Means</a> &nbsp;&middot;&nbsp; <a href="token.html">Token Status</a> &nbsp;&middot;&nbsp; <a href="trust.html#risks">Risks</a>
@@ -695,7 +709,7 @@ var FOLLOW_URLS = {
   }
 
   /* --- ticker --- */
-  var tickItems = ["Wit over walls","Knowledge belongs to everyone","Honor the scholars","No permission needed","Ideas set free","SPIN is how the clever recognize their own"];
+  var tickItems = ["Wit over walls","Knowledge belongs to everyone","Honor the scholars","No permission needed","Ideas set free","STANZA is how the clever recognize their own"];
   var half = tickItems.map(function(t){ return "<span>" + t + " <b>❦</b></span>"; }).join("");
   var track = document.getElementById("ticker-track");
   if (track) track.innerHTML = half + half;
@@ -742,7 +756,7 @@ var FOLLOW_URLS = {
 
   /* --- wallet connect + holder check (Base) --- */
   var BASE_CHAIN = "0x2105";
-  var SPIN = "0x4c972afefa2e4552307b87cf944e53136c361ba3";
+  var STANZA = "0xf629f16ba91086e266accc417d10742f76207ba3";
   var RPC = "https://mainnet.base.org";
   var btn = document.getElementById("den-connect");
   var result = document.getElementById("den-result");
@@ -753,7 +767,7 @@ var FOLLOW_URLS = {
   function balanceOf(addr){
     var data = "0x70a08231" + addr.slice(2).toLowerCase().padStart(64, "0");
     return fetch(RPC, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: SPIN, data: data }, "latest"] }) })
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: STANZA, data: data }, "latest"] }) })
       .then(function(res){ return res.json(); })
       .then(function(j){ if (!j.result) throw new Error("rpc"); return BigInt(j.result); });
   }
@@ -779,8 +793,8 @@ var FOLLOW_URLS = {
         btn.style.display = "none";
         noteEl.textContent = "Checking your SPIN…";
         return balanceOf(addr).then(function(bal){
-          if (bal > 0n) { badgeEl.hidden = false; noteEl.textContent = "Holding " + fmt(bal) + " SPIN. The den knows you."; }
-          else { badgeEl.hidden = true; noteEl.textContent = "No SPIN in this wallet yet."; }
+          if (bal > 0n) { badgeEl.hidden = false; noteEl.textContent = "Holding " + fmt(bal) + " STANZA. The den knows you."; }
+          else { badgeEl.hidden = true; noteEl.textContent = "No STANZA in this wallet yet."; }
         }).catch(function(){
           badgeEl.hidden = true; noteEl.textContent = "Couldn't reach the Base network just now — try again shortly.";
         });

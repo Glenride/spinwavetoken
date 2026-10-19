@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Open Letter on the Rebrand — SpinWave</title>
+<meta name="description" content="$SPIN is now STANZA. SpinWave is the project, STANZA is the token — both contracts, plainly stated.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vellum:#EDE4D0; --parchment:#DCCFAF; --umber:#2E2419; --sepia:#4A3B28;
+    --oxblood:#6E3232; --olive:#6B6B4A; --gold:#A8894A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'EB Garamond',Georgia,serif;background:var(--vellum);color:var(--umber);line-height:1.65;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 1.4rem;}
+  .nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.65rem clamp(1.25rem,5vw,2.5rem);
+    background:rgba(237,228,208,.97);
+    border-bottom:3px double var(--gold);
+  }
+  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:none;}
+  .brand-seal{width:38px;height:38px;border:2px double var(--gold);border-radius:50%;overflow:hidden;background:var(--parchment);flex:none;}
+  .brand-seal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:sepia(.45) contrast(.92) brightness(1.03);}
+  .brand-word{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.28em;text-indent:.28em;font-weight:700;font-size:1.12rem;color:var(--umber);}
+  .nav-links{display:flex;gap:1.7rem;align-items:center;}
+  .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
+  .nav-links > a:hover{color:var(--oxblood);}
+  .nav-links a.trust-link{
+    color:var(--oxblood);font-weight:700;
+    border:1.5px solid var(--gold);border-radius:999px;
+    padding:.28rem 1rem;white-space:nowrap;
+  }
+  .nav-links a.trust-link:hover{background:var(--gold);color:#fff;}
+  .nav-drop{position:relative;}
+  .nav-drop .drop-menu{
+    display:none;position:absolute;top:100%;right:0;min-width:230px;
+    background:var(--umber);border:1px solid var(--gold);border-radius:6px;
+    padding:.5rem 0;box-shadow:0 10px 28px rgba(46,36,25,.3);z-index:100;
+  }
+  .nav-drop .drop-menu::before{content:"";position:absolute;top:-.6rem;left:0;right:0;height:.6rem;}
+  .nav-drop:hover .drop-menu{display:block;}
+  .nav-drop .drop-menu a{
+    display:block;padding:.55rem 1.25rem;color:var(--parchment);text-decoration:none;
+    font-size:.95rem;letter-spacing:.03em;white-space:nowrap;
+  }
+  .nav-drop .drop-menu a:hover{color:var(--gold);background:rgba(168,137,74,.14);}
+  .nav-drop .drop-menu a.drop-home{border-bottom:1px solid rgba(168,137,74,.35);margin-bottom:.35rem;padding-bottom:.7rem;font-weight:700;}
+  @media(max-width:760px){.nav-links{display:none;}}
+  .letter{padding:3.5rem 0 2rem;}
+  .letter .dateline{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.22em;color:var(--olive);font-size:.95rem;margin-bottom:1.5rem;}
+  .letter h1{font-size:2.5rem;font-weight:600;letter-spacing:.03em;line-height:1.25;margin-bottom:2rem;}
+  .letter p{font-size:1.15rem;margin-bottom:1.4rem;max-width:38rem;}
+  .letter p.lead{font-size:1.35rem;font-style:italic;color:var(--sepia);}
+  .letter .contracts{
+    border:2px solid var(--gold);border-radius:6px;background:var(--parchment);
+    padding:1.4rem 1.6rem;margin:2.2rem 0;max-width:42rem;
+  }
+  .letter .contracts h2{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-size:1.05rem;color:var(--oxblood);margin-bottom:1rem;}
+  .letter .contracts .row{margin-bottom:1.1rem;}
+  .letter .contracts .row:last-child{margin-bottom:0;}
+  .letter .contracts code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;
+    background:var(--vellum);border:1px solid var(--gold);border-radius:3px;
+    padding:.4rem .6rem;display:inline-block;max-width:100%;overflow-wrap:anywhere;
+  }
+  .letter .contracts .lbl{font-weight:700;display:block;margin-bottom:.3rem;}
+  .letter .contracts .note{font-size:.98rem;color:var(--sepia);}
+  .letter .sign{margin-top:2.5rem;font-size:1.25rem;}
+  .site-footer{
+    margin-top:clamp(4rem,10vw,6rem);
+    background:var(--umber);color:var(--parchment);
+    border-top:4px solid var(--gold);padding:3.5rem 0 2.75rem;
+  }
+  .site-footer .foot-inner{max-width:900px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem);}
+  .site-footer .seal-mark{color:var(--gold);font-size:1.6rem;display:block;text-align:center;margin-bottom:1.25rem;}
+  .site-footer .foot-tag{text-align:center;font-size:1.08rem;line-height:1.6;max-width:36rem;margin:0 auto 1.5rem;color:var(--parchment);}
+  .site-footer .foot-contract{text-align:center;margin:0 0 1.5rem;}
+  .site-footer .contract{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;
+    color:var(--umber);background:var(--parchment);border:1px solid var(--gold);
+    padding:.55rem .8rem;border-radius:3px;display:inline-block;max-width:100%;overflow-wrap:anywhere;
+  }
+  .site-footer .foot-nav{text-align:center;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;padding-top:1.75rem;border-top:1px solid rgba(168,137,74,.4);margin-bottom:1rem;}
+  .site-footer .foot-nav a{color:var(--parchment);text-decoration:none;opacity:.85;}
+  .site-footer .foot-nav a:hover{color:var(--gold);opacity:1;}
+  .site-footer .foot-legal{text-align:center;font-size:.82rem;margin-bottom:1.75rem;}
+  .site-footer .foot-legal a{color:var(--parchment);text-decoration:none;opacity:.7;}
+  .site-footer .foot-legal a:hover{color:var(--gold);opacity:1;}
+  .site-footer .fineprint{text-align:center;font-size:.8rem;color:var(--parchment);opacity:.6;}
+  @media(max-width:640px){.letter h1{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html#top">
+    <span class="brand-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></span>
+    <span class="brand-word">SpinWave</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html#maze">The maze</a>
+    <a href="index.html#timeline">Timeline</a>
+    <a href="index.html#reynard">Reynard</a>
+    <a href="index.html#recognition">Recognition</a>
+    <div class="nav-drop">
+      <a href="trust.html" class="trust-link">Trust Center &#9662;</a>
+      <nav class="drop-menu" aria-label="Trust Center sections">
+        <a href="trust.html" class="drop-home">Trust Center</a>
+        <a href="how.html">How It Will Work</a>
+        <a href="flow.html">Capital Flow</a>
+        <a href="trust.html#pending">What Pending Means</a>
+        <a href="token.html">Token Status</a>
+        <a href="trust.html#risks">Risks</a>
+      </nav>
+    </div>
+  </nav>
+</nav>
+
+<main class="wrap">
+  <article class="letter">
+    <p class="dateline">An open letter &middot; October 18, 2026</p>
+    <h1>$SPIN is now STANZA.</h1>
+    <p class="lead">A name should mean something before it means money. The work has to live up to the name.</p>
+    <p>That's why the token is now <strong>STANZA</strong>, by <strong>SpinWave</strong>. SpinWave is the project — the repository where scholars publish as stanzas and earn directly from reader licenses. STANZA is the token that powers it. One name for the work, one name for the money, and the straight line between them.</p>
+    <div class="contracts">
+      <h2>What changed, plainly</h2>
+      <div class="row">
+        <span class="lbl">STANZA — the token going forward</span>
+        <code>0xf629f16ba91086e266accc417d10742f76207ba3</code>
+        <p class="note">Launched October 17, 2026, on Base. 100 billion supply: 85% in the liquidity pool, 15% in creator vesting (one year, 30-day cliff — nothing claimable before mid-November).</p>
+      </div>
+      <div class="row">
+        <span class="lbl">$SPIN — superseded, not erased</span>
+        <code>0x4c972afefa2e4552307b87cf944e53136c361ba3</code>
+        <p class="note">The first deployment, September 27, 2026. The pool went up and never saw a single trade. It stays on the record — on-chain and on our token page — because history you can verify is worth more than history you hide.</p>
+      </div>
+    </div>
+    <p>Nothing about the mission moved. Scholars do the work; publishers take the cut — paywalls for readers, pennies for researchers. STANZA is the on-chain repository where that ends: scholars publish as stanzas, readers license directly, everything verifiable on-chain.</p>
+    <p><strong>What's next:</strong> the build. A working repository, live on spinwave.tech, where the earn-and-license loop runs for real. We're building it in the open and telling you exactly where it stands — that's the whole covenant.</p>
+    <p>Verify everything yourself. The contracts are on Basescan, the history is on the token page, and any address you see anywhere else should be treated as fake until it matches what's published there.</p>
+    <p>Nothing here is financial advice. We're early, and early is thin. But the name means something now — and the work is going to live up to it.</p>
+    <p class="sign">&mdash; D'Vaughn</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <span class="seal-mark" aria-hidden="true">&#10086;</span>
+    <p class="foot-tag">STANZA is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
+    <p class="foot-contract"><code class="contract">0xf629f16ba91086e266accc417d10742f76207ba3</code></p>
+    <nav class="foot-nav">
+      <a href="trust.html">Trust Center</a> &nbsp;&middot;&nbsp; <a href="flow.html">Capital Flow</a> &nbsp;&middot;&nbsp; <a href="trust.html#pending">What Pending Means</a> &nbsp;&middot;&nbsp; <a href="token.html">Token Status</a> &nbsp;&middot;&nbsp; <a href="trust.html#risks">Risks</a>
+    </nav>
+    <nav class="foot-legal">
+      <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a>
+    </nav>
+    <p class="fineprint">&copy; 2026 Glenride &middot; Built in the open, everything verifiable on-chain.</p>
+  </div>
+</footer>
+</body>
+</html>

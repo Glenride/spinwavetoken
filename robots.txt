@@ -1,0 +1,7 @@
+User-agent: meta-webindexer
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://spinwave.tech/sitemap.xml
