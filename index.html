@@ -791,7 +791,7 @@ var FOLLOW_URLS = {
         addrEl.textContent = short(addr) + " · Base";
         result.hidden = false;
         btn.style.display = "none";
-        noteEl.textContent = "Checking your SPIN…";
+        noteEl.textContent = "Checking your STANZA…";
         return balanceOf(addr).then(function(bal){
           if (bal > 0n) { badgeEl.hidden = false; noteEl.textContent = "Holding " + fmt(bal) + " STANZA. The den knows you."; }
           else { badgeEl.hidden = true; noteEl.textContent = "No STANZA in this wallet yet."; }
