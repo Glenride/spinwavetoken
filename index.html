@@ -15,7 +15,7 @@
     --umber:#2E2419;
     --sepia:#4A3B28;
     --oxblood:#6E3232;
-    --olive:#6B6B4A;
+    --olive:#5E5E3B;
     --gold:#A8894A;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -27,8 +27,7 @@
     background-image:
       radial-gradient(ellipse at 18% 8%, rgba(168,137,74,.07), transparent 55%),
       radial-gradient(ellipse at 85% 92%, rgba(74,59,40,.06), transparent 50%),
-      radial-gradient(ellipse at 70% 30%, rgba(110,50,50,.03), transparent 45%),
-      repeating-linear-gradient(0deg, transparent 0 3px, rgba(46,36,25,.010) 3px 4px);
+      radial-gradient(ellipse at 70% 30%, rgba(110,50,50,.03), transparent 45%);
     line-height:1.75;
     font-size:clamp(1.02rem, 1.6vw, 1.15rem);
     -webkit-font-smoothing:antialiased;
@@ -50,14 +49,14 @@
   .brand-seal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:sepia(.45) contrast(.92) brightness(1.03);}
   .brand-word{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.28em;text-indent:.28em;font-weight:700;font-size:1.12rem;color:var(--umber);}
   .nav-links{display:flex;gap:1.7rem;align-items:center;}
-  .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
+  .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
   .nav-links > a:hover{color:var(--oxblood);}
   .nav-links a.trust-link{
     color:var(--oxblood);font-weight:700;
     border:1.5px solid var(--gold);border-radius:999px;
     padding:.28rem 1rem;white-space:nowrap;
   }
-  .nav-links a.trust-link:hover{background:var(--gold);color:#fff;}
+  .nav-links a.trust-link:hover{background:#83662A;color:#fff;}
   .nav-drop{position:relative;}
   .nav-drop .drop-menu{
     display:none;position:absolute;top:100%;right:0;min-width:230px;
@@ -75,6 +74,7 @@
   .nav-drop .drop-menu a:hover{color:var(--gold);background:rgba(168,137,74,.14);}
   .nav-drop .drop-menu a.drop-home{border-bottom:1px solid rgba(168,137,74,.35);margin-bottom:.35rem;padding-bottom:.7rem;font-weight:700;}
   @media(max-width:760px){.nav-links{display:none;}}
+  @media(max-width:560px){.card{padding:1.75rem 1.25rem}}
   @media(max-width:760px){
     .hero{display:block;min-height:0;background:none;border-bottom:3px double var(--gold);}
     .hero::before{display:none;}
@@ -180,7 +180,7 @@
   .card{
     background:var(--parchment);
     border:3px double var(--gold);
-    padding:clamp(1.75rem,5vw,2.75rem);
+    padding:2.5rem;
     box-shadow:0 6px 24px rgba(46,36,25,.10);
   }
   .card p + p{margin-top:1.1em;}
@@ -227,7 +227,7 @@
   .pillar{scroll-snap-align:start;background:var(--parchment);border:3px double var(--gold);padding:1.7rem 1.3rem;text-align:center;box-shadow:0 6px 20px rgba(46,36,25,.12);}
   .pillar-num{display:block;font-family:'Cormorant Garamond',serif;color:var(--oxblood);font-size:1.7rem;font-weight:700;margin-bottom:.6rem;}
   .pillar p{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;color:var(--umber);line-height:1.4;}
-  .swipe-hint{text-align:center;color:var(--sepia);opacity:.6;font-size:.88rem;letter-spacing:.12em;margin-top:.25rem;}
+  .swipe-hint{text-align:center;color:var(--sepia);opacity:.85;font-size:.88rem;letter-spacing:.12em;margin-top:.25rem;}
   @media(min-width:900px){.swipe-hint{display:none;}}
 
   /* ---------- stat cards ---------- */
@@ -261,14 +261,14 @@
 
   /* ---------- quest ---------- */
   section#notify .follow-card{text-align:left;}
-  .follow-row{display:flex;align-items:center;gap:1rem;padding:1rem .25rem;border-top:1px solid rgba(168,137,74,.4);}
+  .follow-row{display:flex;align-items:center;gap:1rem;padding:1rem;border-top:1px solid rgba(168,137,74,.4);}
   .follow-row:last-of-type{border-bottom:1px solid rgba(168,137,74,.4);}
   .follow-text{flex:1;}
   .quest-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--umber);}
   .quest-desc{font-size:.98rem;color:var(--sepia);}
-  .quest-go{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.1em;font-weight:700;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;}
+  .quest-go{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.05em;font-weight:700;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;}
   .quest-go:hover{color:var(--umber);}
-  .soon{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-size:.85rem;color:var(--sepia);border:1px dashed var(--gold);padding:.3rem .8rem;opacity:.75;white-space:nowrap;}
+  .soon{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-size:.85rem;color:var(--sepia);border:1px dashed var(--gold);padding:.3rem 1rem;opacity:.75;white-space:nowrap;}
   .kin-seal{width:64px;height:64px;margin:0 auto 1rem;}
   .kin-line{font-style:italic;color:var(--sepia);margin:.6rem 0 1.4rem;}
   .quest-mail{margin-top:1.5rem;}
@@ -289,10 +289,10 @@
   .site-footer .contract{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:.82rem;color:var(--umber);background:var(--parchment);
-    border:1px solid var(--gold);padding:.55rem .8rem;border-radius:3px;
+    border:1px solid var(--gold);padding:.55rem 1rem;border-radius:3px;
     display:inline-block;max-width:100%;overflow-wrap:anywhere;
   }
-  .site-footer .foot-note{text-align:center;font-style:italic;color:var(--parchment);opacity:.85;margin:0 0 2rem;}
+  .site-footer .foot-note{text-align:center;font-style:italic;color:#C2B598;margin:0 0 2rem;}
   .site-footer .foot-disclaimers{max-width:42rem;margin:0 auto 2rem;text-align:center;font-size:.92rem;line-height:1.7;color:var(--parchment);opacity:.88;}
   .site-footer .foot-disclaimers p{margin-bottom:.65rem;}
   .site-footer .foot-nav{
@@ -329,7 +329,7 @@
   [data-tilt]:hover .tilt-glare{opacity:1;}
   .figure-sketch{position:relative;overflow:hidden;}
   .status-board{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:0 0 1.4rem;}
-  .chip{display:inline-flex;align-items:center;gap:.55rem;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.92rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);padding:.45rem .95rem;}
+  .chip{display:inline-flex;align-items:center;gap:.55rem;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.92rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);padding:.45rem 1rem;}
   .chip .dot{width:9px;height:9px;border-radius:50%;flex:none;}
   .dot.live{background:#5C6B3C;box-shadow:0 0 0 3px rgba(92,107,60,.18);animation:pulse 2.2s infinite;}
   .dot.pending{background:var(--gold);box-shadow:0 0 0 3px rgba(168,137,74,.18);animation:pulse 2.2s infinite;}
@@ -347,17 +347,17 @@
   .plainly{list-style:none;margin:1.1rem 0 0;text-align:left;}
   .plainly li{padding:.9rem 0;border-top:1px solid rgba(168,137,74,.4);}
   .plainly li:last-child{border-bottom:1px solid rgba(168,137,74,.4);}
-  .plainly strong{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.1em;color:var(--oxblood);}
+  .plainly strong{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.05em;color:var(--oxblood);}
   .den-card{margin-top:1.5rem;text-align:center;}
   .den-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:center;margin-top:1rem;}
-  .den-addr{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;background:var(--vellum);border:1px solid var(--gold);padding:.5rem .8rem;}
+  .den-addr{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;background:var(--vellum);border:1px solid var(--gold);padding:.5rem 1rem;}
   .den-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:#5C6B3C;padding:.35rem .9rem;}
   @media (prefers-reduced-motion: reduce){
     .hero-inner > *{opacity:1;transform:none;}
     body.boot .hero-inner > *{animation:none;}
     .reveal{opacity:1;transform:none;transition:none;}
-    .ticker-track{animation:none;}
     .dot.live,.dot.pending{animation:none;}
+    .ticker-track{animation:none;}
   }
 </style>
 </head>
@@ -528,7 +528,7 @@
     <div class="card">
       <div class="status-board" id="status-board"></div>
       <div class="contract-callout">
-        <span style="font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;">The STANZA contract — current</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.05em;font-weight:700;">The STANZA contract — current</span>
         <code class="contract" id="spin-contract">0xf629f16ba91086e266accc417d10742f76207ba3</code>
         <button class="copy-btn" id="copy-contract" type="button">Copy</button>
       </div>

@@ -11,7 +11,7 @@
 <style>
   :root{
     --vellum:#EDE4D0; --parchment:#DCCFAF; --umber:#2E2419; --sepia:#4A3B28;
-    --oxblood:#6E3232; --olive:#6B6B4A; --gold:#A8894A;
+    --oxblood:#6E3232; --olive:#5E5E3B; --gold:#A8894A;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -30,14 +30,14 @@
   .brand-seal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:sepia(.45) contrast(.92) brightness(1.03);}
   .brand-word{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.28em;text-indent:.28em;font-weight:700;font-size:1.12rem;color:var(--umber);}
   .nav-links{display:flex;gap:1.7rem;align-items:center;}
-  .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
+  .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
   .nav-links > a:hover{color:var(--oxblood);}
   .nav-links a.trust-link{
     color:var(--oxblood);font-weight:700;
     border:1.5px solid var(--gold);border-radius:999px;
     padding:.28rem 1rem;white-space:nowrap;
   }
-  .nav-links a.trust-link:hover{background:var(--gold);color:#fff;}
+  .nav-links a.trust-link:hover{background:#83662A;color:#fff;}
   .nav-drop{position:relative;}
   .nav-drop .drop-menu{
     display:none;position:absolute;top:100%;right:0;min-width:230px;
@@ -56,13 +56,13 @@
   .nav-drop .drop-menu a.drop-home{border-bottom:1px solid rgba(168,137,74,.35);margin-bottom:.35rem;padding-bottom:.7rem;font-weight:700;}
   @media(max-width:760px){.nav-links{display:none;}}
   .hero{padding:3.2rem 0 1.6rem;text-align:center;}
-  .kicker{letter-spacing:.28em;text-transform:uppercase;font-size:.8rem;color:var(--oxblood);margin-bottom:.9rem;}
+  .kicker{letter-spacing:.28em;text-transform:uppercase;font-size:.8rem;color:var(--oxblood);margin:.1rem 0 .8rem;}
   h1{font-size:2.6rem;font-weight:600;letter-spacing:.04em;margin-bottom:.7rem;}
   .sub{font-style:italic;color:var(--sepia);font-size:1.12rem;max-width:34rem;margin:0 auto;}
   .onpage{margin:1.8rem 0 0;padding:1rem 1.2rem;border:1px solid var(--gold);background:rgba(255,255,255,.4);}
   .onpage h2{font-size:.85rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sepia);margin-bottom:.6rem;}
-  .onpage a{display:inline-block;margin:.22rem .5rem .22rem 0;padding:.28rem .8rem;border:1px solid var(--gold);border-radius:999px;font-size:.92rem;color:var(--umber);text-decoration:none;background:rgba(255,255,255,.35);}
-  .onpage a:hover{background:var(--gold);color:#fff;}
+  .onpage a{display:inline-block;margin:.22rem .5rem .22rem 0;padding:.28rem 1rem;border:1px solid var(--gold);border-radius:999px;font-size:.92rem;color:var(--umber);text-decoration:none;background:rgba(255,255,255,.35);}
+  .onpage a:hover{background:#83662A;color:#fff;}
   section.block{margin:2.6rem 0;scroll-margin-top:5.5rem;}
   section.block h2{font-size:1.7rem;font-weight:600;margin-bottom:.4rem;color:var(--umber);}
   section.block h2 .rule{display:block;width:3.2rem;height:3px;background:var(--gold);margin-top:.45rem;}
@@ -73,8 +73,8 @@
   .live-list li{display:flex;gap:.7rem;align-items:baseline;padding:.5rem 0;border-bottom:1px dotted rgba(168,137,74,.6);}
   .chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.95rem;}
   .dot{width:.6rem;height:.6rem;border-radius:50%;flex:none;}
-  .dot.live{background:var(--olive);box-shadow:0 0 6px rgba(107,107,74,.8);}
-  .dot.pending{background:#C9973F;box-shadow:0 0 6px rgba(201,151,63,.8);}
+  .dot.live{background:var(--olive);box-shadow:0 0 0 3px rgba(94,94,59,.18);}
+  .dot.pending{background:#C9973F;box-shadow:0 0 0 3px rgba(201,151,63,.18);}
   .dot.locked{background:var(--oxblood);}
   .lbl{font-weight:600;}
   .risk-list{list-style:none;margin:.8rem 0;}
@@ -98,7 +98,7 @@
   .site-footer .contract{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:.82rem;color:var(--umber);background:var(--parchment);
-    border:1px solid var(--gold);padding:.55rem .8rem;border-radius:3px;
+    border:1px solid var(--gold);padding:.55rem 1rem;border-radius:3px;
     display:inline-block;max-width:100%;overflow-wrap:anywhere;
   }
   .site-footer .foot-disclaimers{max-width:42rem;margin:0 auto 2rem;text-align:center;font-size:.92rem;line-height:1.7;color:var(--parchment);opacity:.88;}
@@ -143,8 +143,8 @@
 
 <div class="wrap">
   <div class="hero">
-    <div class="kicker">Read it in five minutes</div>
     <h1>TERMS OF SERVICE</h1>
+    <div class="kicker">Read it in five minutes</div>
     <p class="sub">The whole arrangement, without the legalese fog.</p>
   </div>
 
