@@ -51,6 +51,10 @@
   .nav-links{display:flex;gap:1.7rem;align-items:center;}
   .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
   .nav-links > a:hover{color:var(--oxblood);}
+  .nav-links .auth-signed{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);}
+  .nav-links .auth-signed a{color:var(--sepia);text-decoration:none;}
+  .nav-links .auth-signed a:hover{color:var(--oxblood);}
+  .auth-error{text-align:center;color:var(--oxblood);font-size:.95rem;padding:.5rem 1rem 0;}
   .nav-links a.trust-link{
     color:var(--oxblood);font-weight:700;
     border:1.5px solid var(--gold);border-radius:999px;
@@ -383,8 +387,11 @@
         <a href="trust.html#risks">Risks</a>
       </nav>
     </div>
+    <a href="/auth/login" id="authLogin">Sign in</a>
+    <span id="authSigned" class="auth-signed" hidden>Signed in · <a href="/auth/logout">Sign out</a></span>
   </nav>
 </nav>
+<p id="authError" class="auth-error" hidden></p>
 <header class="hero" id="top">
   <img class="hero-img-mobile" src="painting-hero-gate.jpg" alt="Reynard slipping through the tower gate with scrolls, pages drifting toward outstretched hands">
   <div class="hero-inner">
@@ -812,6 +819,34 @@ var FOLLOW_URLS = {
       btn.disabled = false; btn.textContent = "Connect wallet";
     });
   });
+})();
+</script>
+<script>
+/* ===== Sign-in state (WorkOS, live 2026-10-28): shows Signed in + Sign out when a session exists ===== */
+(function(){
+  "use strict";
+  var TEXT = {
+    workos_rejected: "The sign-in was declined. Try again.",
+    invalid_state: "The sign-in expired before it finished. Try again.",
+    not_owner: "That account isn't on the owner list. Sign in with dvaughnhouse@gmail.com.",
+    workos_unreachable: "The sign-in service couldn't be reached. Try again.",
+    not_configured: "Sign-in isn't configured right now. Try again in a bit."
+  };
+  var login = document.getElementById("authLogin");
+  var signed = document.getElementById("authSigned");
+  var err = document.getElementById("authError");
+  var m = window.location.hash.match(/^#auth_error=([^&]+)/);
+  if (m) {
+    var msg = TEXT[decodeURIComponent(m[1])];
+    if (msg && err) { err.textContent = msg; err.hidden = false; }
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (d && d.email && login && signed) {
+      login.hidden = true;
+      signed.hidden = false;
+    }
+  }).catch(function(){});
 })();
 </script>
 </body>
