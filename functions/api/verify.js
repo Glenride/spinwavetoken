@@ -111,7 +111,7 @@ export async function onRequestGet({ request, env }) {
         certificate_id: row.certificate_id,
       },
       basescan_url: `https://basescan.org/tx/${row.anchor_tx}`,
-      record_url: `/records.html?id=${encodeURIComponent(row.id)}`,
+      record_url: `/records?id=${encodeURIComponent(row.id)}`,
     },
     200,
   );
