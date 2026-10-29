@@ -334,7 +334,9 @@
   body.signed-in .ticker,
   body.signed-in main.wrap,
   body.signed-in .site-footer,
-  body.signed-in .nav-links > a[href^="#"]{display:none !important;}
+  body.signed-in .nav-links > a[href^="#"]:not(.dash-nav){display:none !important;}
+  .dash-nav{display:none !important;}
+  body.signed-in .dash-nav{display:inline !important;}
   .hero-inner > *{opacity:0;transform:translateY(22px);}
   body.boot .hero-inner > *{animation:riseIn .9s cubic-bezier(.2,.7,.2,1) forwards;}
   body.boot .hero-inner > *:nth-child(1){animation-delay:.05s}
@@ -405,6 +407,61 @@
     #ember-canvas{display:none;}
     .nav-drop .drop-menu{transition:none;}
   }
+
+  /* ---------- dashboard: Operate mode (2026-10-29 impeccable pass) ----------
+     SpinWave world only: vellum, parchment, umber, oxblood, gold.
+     No eyebrow labels, no identical card grid, no hard offset shadows,
+     no purple, no gradient text. Dashboard appears at once — no
+     entrance fade — because this is a tool, not a landing moment. */
+  #dashboard{max-width:1120px;margin:0 auto;padding:2.5rem clamp(1.25rem,5vw,2.5rem) 4rem;text-align:left;}
+  #dashboard.reveal,#dashboard .reveal{opacity:1;transform:none;transition:none;}
+  .dash-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,4vw,2.9rem);line-height:1.1;color:var(--umber);margin:1.5rem 0 .75rem;}
+  .dash-lede{max-width:70ch;font-size:1.08rem;line-height:1.65;color:var(--sepia);margin:0 0 .5rem;}
+  .dash-email{color:var(--sepia);font-size:.98rem;margin:0 0 1.5rem;}
+  .dash-summary{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;border-top:3px double var(--gold);border-bottom:1px solid rgba(168,137,74,.5);padding:1rem 0;margin:0 0 2rem;}
+  .dash-summary > span{font-size:1.02rem;color:var(--umber);}
+  .dash-label{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.12em;font-weight:700;color:var(--oxblood);margin-right:.5rem;}
+  .dash-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:2rem 2.5rem;align-items:start;}
+  .dash-section{border-top:3px double var(--gold);padding:1.5rem 0 2rem;}
+  .dash-section h3{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:700;font-size:1.45rem;color:var(--oxblood);margin:1rem 0 .75rem;}
+  .dash-section p,.dash-panel p{font-size:1.02rem;line-height:1.65;color:var(--umber);margin:0 0 .85rem;max-width:70ch;}
+  .dash-note{color:var(--sepia) !important;font-size:.98rem !important;}
+  .dash-list{list-style:none;margin:0 0 1rem;}
+  .dash-list li{padding:.9rem 0;border-top:1px solid rgba(168,137,74,.4);line-height:1.6;}
+  .dash-list li:last-child{border-bottom:1px solid rgba(168,137,74,.4);}
+  .dash-list strong{font-family:'Cormorant Garamond',serif;font-size:1.18rem;}
+  .state-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:700;font-size:.85rem;line-height:1;padding:.3rem .7rem;border-radius:999px;background:#E7DCC0;color:var(--umber);border:1px solid rgba(168,137,74,.6);white-space:nowrap;}
+  .state-badge.state-certified{background:var(--oxblood);color:var(--vellum);border-color:var(--oxblood);}
+  .state-badge.state-cancelled{background:#D8CFC0;color:var(--sepia);border-color:rgba(74,59,40,.4);}
+  .state-badge.state-payment-failed{background:#E3C9C0;color:var(--oxblood);border-color:rgba(110,50,50,.5);}
+  .dash-panel{background:var(--parchment);border-radius:12px;box-shadow:0 2px 14px rgba(46,36,25,.12);padding:1.5rem;margin:0 0 1.5rem;}
+  .dash-panel h3{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:700;font-size:1.3rem;color:var(--oxblood);margin:0 0 .75rem;}
+  .dash-panel p{font-size:1rem;}
+  .dash-join{border-top:1px solid rgba(168,137,74,.4);padding-top:1rem;margin-top:1rem;}
+  #dashboard .btn{box-shadow:0 2px 10px rgba(46,36,25,.18);border-radius:8px;letter-spacing:.12em;text-indent:0;}
+  .dash-join .btn{display:block;width:100%;margin:0 0 .6rem;white-space:nowrap;}
+  body.signed-in #verify .btn{box-shadow:0 2px 10px rgba(46,36,25,.18);border-radius:8px;letter-spacing:.12em;text-indent:0;}
+  body.signed-in #verify .btn:hover{transform:none;box-shadow:0 2px 14px rgba(46,36,25,.22);}
+  #dashboard .btn:hover{transform:none;box-shadow:0 2px 14px rgba(46,36,25,.22);}
+  #dashboard .btn:active{transform:translateY(1px);box-shadow:0 1px 6px rgba(46,36,25,.18);}
+  #dashboard input[type="text"],#dashboard input[type="number"],#dashboard select,#dashboard textarea{font-family:'EB Garamond',serif;font-size:1.02rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);border-radius:6px;padding:.6rem .8rem;width:100%;box-sizing:border-box;}
+  #dashboard select{width:auto;min-width:12rem;}
+  #dashboard textarea{min-height:6rem;resize:vertical;}
+  #dashboard input:focus,#dashboard select:focus,#dashboard textarea:focus{outline:2px solid var(--oxblood);outline-offset:2px;border-color:var(--oxblood);}
+  #dashboard label{font-size:1rem;color:var(--umber);}
+  .dash-checks label{display:inline-block;margin:0 .9rem .5rem 0;}
+  #dashboard a{color:var(--oxblood);text-underline-offset:3px;}
+  #dashboard a:focus-visible,#dashboard button:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+  body.signed-in #verify{max-width:1120px;margin:0 auto;padding:1rem clamp(1.25rem,5vw,2.5rem) 4rem;text-align:left;}
+  body.signed-in #verify.reveal{opacity:1;transform:none;transition:none;}
+  body.signed-in #verify .section-title{text-align:left;text-indent:0;}
+  body.signed-in #verify p{max-width:70ch;}
+  body.signed-in #verify input{font-family:'EB Garamond',serif;font-size:1.02rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);border-radius:6px;padding:.6rem .8rem;}
+  @media(max-width:900px){
+    .dash-layout{grid-template-columns:1fr;}
+    .dash-summary{gap:.75rem 1.5rem;}
+    #dashboard{padding-top:1.5rem;}
+  }
 </style>
 </head>
 <body>
@@ -430,6 +487,11 @@
         <a href="trust.html#risks">Risks</a>
       </nav>
     </div>
+    <a href="#dash-works" class="dash-nav">Works</a>
+    <a href="#dash-wallet" class="dash-nav">Wallet</a>
+    <a href="#dash-reasons" class="dash-nav">Verdicts</a>
+    <a href="#dash-review" class="dash-nav">Review</a>
+    <a href="#dash-pipeline" class="dash-nav">Pipeline</a>
     <a href="/auth/login" id="authLogin">Sign in</a>
     <span id="authSigned" class="auth-signed" hidden>Signed in · <a href="/auth/logout">Sign out</a></span>
   </nav>
@@ -447,79 +509,92 @@
   </div>
 </header>
 <section id="dashboard" hidden>
-  <h2 class="section-title">Inside SpinWave</h2>
-  <p class="fine" style="text-align:center;">SpinWave does not accept submissions. Drafts are submitted in ThinkTank OS — this page is for viewing your pipeline, your verdicts, your verified wallet, and your certificates.</p>
-  <div class="card">
-    <p class="eyebrow">Learn &middot; the loop</p>
-    <p class="fine">Scholars upload a manuscript or dataset freed from paywalls, and are recognized in STANZA - 25,000 for an accepted manuscript, 40,000 for a dataset, 55,000 for a dataset with a worked example. The SpinWave databases exist to disseminate that knowledge to the people who need it most. STANZA is not reserved for the Elite; it is reserved for the most intelligent.</p>
-    <p class="fine">Token: live on Base. Trading: not yet - pool deployed, no trades, no price. Scholar recognition: locked until Phase 1. Reader licensing: locked until Phase 2.</p>
+  <div class="dash-head">
+    <h2>Inside SpinWave</h2>
+    <p class="dash-lede">SpinWave does not accept submissions. Drafts are submitted in ThinkTank OS — this page is for viewing your pipeline, your verdicts, your verified wallet, and your certificates.</p>
+    <p class="dash-email" id="dash-email"></p>
   </div>
-  <div class="card">
-    <p class="eyebrow">Join &middot; the waitlist</p>
-    <p class="fine">Pick a track. One tap - you are already signed in.</p>
-    <button class="btn" type="button" id="join-scholar">Join as a scholar</button>
-    <button class="btn" type="button" id="join-supporter">Join as a supporter</button>
-    <p class="fine" id="join-note" role="status" aria-live="polite"></p>
+  <div class="dash-summary" role="status" aria-live="polite">
+    <span><span class="dash-label">Works</span> <span id="dash-sum-works">Loading…</span></span>
+    <span><span class="dash-label">Verdicts</span> <span id="dash-sum-verdicts">Loading…</span></span>
+    <span><span class="dash-label">Wallet</span> <span id="dash-sum-wallet">Checking…</span></span>
   </div>
-  <div class="card">
-    <p class="eyebrow">Track &middot; your place</p>
-    <p class="fine" id="track-line">Not on the waitlist yet - pick a track above.</p>
-    <p class="fine" id="track-wallet" hidden></p>
-    <button class="btn" type="button" id="link-wallet" hidden>Link this wallet</button>
-    <p class="fine" id="wallet-note" role="status" aria-live="polite"></p>
-  </div>
-  <div class="card">
-    <p class="eyebrow">Works &middot; your pipeline</p>
-    <p class="fine" id="works-line">Loading your works&hellip;</p>
-    <ul class="fine" id="works-list"></ul>
-    <p class="fine">Works arrive here from the pipeline only. No work, payment, record, or certificate is created from this page. Drafts are submitted in ThinkTank OS.</p>
-  </div>
-  <div class="card">
-    <p class="eyebrow">Wallet &middot; verified</p>
-    <p class="fine" id="verified-wallet-line">Checking your verified wallet&hellip;</p>
-    <button class="btn" type="button" id="verify-wallet" hidden>Verify this wallet</button>
-    <p class="fine" id="verified-wallet-note" role="status" aria-live="polite"></p>
-    <p class="fine">Only a signature-verified wallet is ever used for a payment. The waitlist wallet above is unverified and is not used for payment. Payment is not live yet — verifying now does not move funds.</p>
-  </div>
-  <div class="card">
-    <p class="eyebrow">Reasons &middot; verdicts in writing</p>
-    <p class="fine" id="reasons-line">Loading your verdicts&hellip;</p>
-    <ul class="fine" id="reasons-list"></ul>
-    <p class="fine">When a work is judged, its reasons appear here. A CANCEL names what failed and what to fix; a Human verifies the verdict if necessary, or if you object to it.</p>
-  </div>
-  <div class="card">
-    <p class="eyebrow">Review queue &middot; Phase A, Human finds every verdict</p>
-    <p class="fine" id="review-line">Checking the reviewer roster&hellip;</p>
-    <ul class="fine" id="review-list"></ul>
-    <form id="review-form" hidden>
-      <p class="fine">Record a verdict (roster reviewers only — one verdict per work):</p>
-      <p><label class="fine">Work <select id="review-work" aria-label="Work to judge"></select></label></p>
-      <p><label class="fine">Verdict <select id="review-verdict" aria-label="Verdict"><option value="PAY">PAY</option><option value="CANCEL">CANCEL</option><option value="INCONCLUSIVE">INCONCLUSIVE</option></select></label></p>
-      <p><label class="fine">Reasons (required, in writing)<br><textarea id="review-reasons" rows="4" style="width:100%;padding:.5rem;" aria-label="Verdict reasons"></textarea></label></p>
-      <p class="fine">Check packet — every box must be answered, and conflict-free must be true:</p>
-      <p class="fine"><label><input type="checkbox" id="check-original"> Original</label> &nbsp; <label><input type="checkbox" id="check-complete"> Complete</label> &nbsp; <label><input type="checkbox" id="check-declared"> Declared</label> &nbsp; <label><input type="checkbox" id="check-duplicate_checked"> Duplicate-checked</label> &nbsp; <label><input type="checkbox" id="check-conflict_free"> Conflict-free</label></p>
-      <p><button class="btn" type="button" id="review-submit">Record verdict</button></p>
-    </form>
-    <p class="fine">Reviewers are designated Glenride staff and scholars in good standing referred by designated staff. A verdict needs written reasons and a complete check packet (original, complete, declared, duplicate-checked, conflict-free). Inconclusive never pays, and a PAY verdict moves no money on its own — payment is proposed here, signed by a Human in the allocation Safe app, and only then recorded.</p>
-    <p class="fine" id="review-note" role="status" aria-live="polite"></p>
-  </div>
-  <div class="card">
-    <p class="eyebrow">Pipeline &middot; payment, upload, anchor, certificate</p>
-    <p class="fine" id="pipeline-line">Checking operator access&hellip;</p>
-    <ul class="fine" id="pipeline-list"></ul>
-    <form id="pipeline-form" hidden>
-      <p class="fine">Record a pipeline step (operators only — the server never signs or moves STANZA):</p>
-      <p><label class="fine">Work <select id="pipeline-work" aria-label="Work"></select></label></p>
-      <p><label class="fine">Action <select id="pipeline-action" aria-label="Pipeline action"><option value="propose_payment">Propose payment</option><option value="confirm_payment">Confirm payment (Safe-signed tx)</option><option value="record_upload">Transfer TTOS draft → SpinWave record</option><option value="request_anchor">Request anchor (Pearls)</option><option value="confirm_anchor">Confirm anchor (12+ confirmations)</option></select></label></p>
-      <p><label class="fine">Transaction hash (confirm steps)<br><input id="pipeline-tx" type="text" style="width:100%;padding:.5rem;" aria-label="Transaction hash"></label></p>
-      <p><label class="fine">Document fingerprint (transfer)<br><input id="pipeline-fingerprint" type="text" style="width:100%;padding:.5rem;" aria-label="Document fingerprint"></label></p>
-      <p><label class="fine">Storage pointer (transfer)<br><input id="pipeline-pointer" type="text" style="width:100%;padding:.5rem;" aria-label="Storage pointer"></label></p>
-      <p><label class="fine">Anchor request ID (request anchor)<br><input id="pipeline-request" type="text" style="width:100%;padding:.5rem;" aria-label="Anchor request ID"></label></p>
-      <p><label class="fine">Confirmations (confirm anchor)<br><input id="pipeline-confirmations" type="number" min="12" value="12" style="padding:.5rem;" aria-label="Confirmations"></label></p>
-      <p><button class="btn" type="button" id="pipeline-submit">Record step</button></p>
-    </form>
-    <p class="fine">Order is enforced: PAY verdict → payment proposed → payment confirmed on Base → validated TTOS draft transferred to SpinWave → anchor requested → anchor confirmed (12+) → record created and work certified. A failed or missing Base transaction advances nothing. This transfer is an operator step, not a submission — scholars submit in ThinkTank OS only.</p>
-    <p class="fine" id="pipeline-note" role="status" aria-live="polite"></p>
+  <div class="dash-layout">
+    <div class="dash-main">
+      <div class="dash-section" id="dash-works">
+        <h3>Your works</h3>
+        <p id="works-line">Loading your works…</p>
+        <ul class="dash-list" id="works-list"></ul>
+        <p class="dash-note">Works arrive here from the pipeline only. No work, payment, record, or certificate is created from this page. Drafts are submitted in ThinkTank OS.</p>
+      </div>
+      <div class="dash-section" id="dash-reasons">
+        <h3>Verdicts, in writing</h3>
+        <p id="reasons-line">Loading your verdicts…</p>
+        <ul class="dash-list" id="reasons-list"></ul>
+        <p class="dash-note">When a work is judged, its reasons appear here. A CANCEL names what failed and what to fix; a Human verifies the verdict if necessary, or if you object to it.</p>
+      </div>
+      <div class="dash-section" id="dash-review">
+        <h3>Review queue</h3>
+        <p id="review-line">Checking the reviewer roster…</p>
+        <ul class="dash-list" id="review-list"></ul>
+        <form id="review-form" hidden>
+          <p>Record a verdict (roster reviewers only — one verdict per work):</p>
+          <p><label>Work <select id="review-work" aria-label="Work to judge"></select></label></p>
+          <p><label>Verdict <select id="review-verdict" aria-label="Verdict"><option value="PAY">PAY</option><option value="CANCEL">CANCEL</option><option value="INCONCLUSIVE">INCONCLUSIVE</option></select></label></p>
+          <p><label>Reasons (required, in writing)<br><textarea id="review-reasons" rows="4" aria-label="Verdict reasons"></textarea></label></p>
+          <p>Check packet — every box must be answered, and conflict-free must be true:</p>
+          <p class="dash-checks"><label><input type="checkbox" id="check-original"> Original</label> <label><input type="checkbox" id="check-complete"> Complete</label> <label><input type="checkbox" id="check-declared"> Declared</label> <label><input type="checkbox" id="check-duplicate_checked"> Duplicate-checked</label> <label><input type="checkbox" id="check-conflict_free"> Conflict-free</label></p>
+          <p><button class="btn" type="button" id="review-submit">Record verdict</button></p>
+        </form>
+        <p class="dash-note">Reviewers are designated Glenride staff and scholars in good standing referred by designated staff. A verdict needs written reasons and a complete check packet. Inconclusive never pays, and a PAY verdict moves no money on its own — payment is proposed here, signed by a Human in the allocation Safe app, and only then recorded.</p>
+        <p id="review-note" role="status" aria-live="polite"></p>
+      </div>
+      <div class="dash-section" id="dash-pipeline">
+        <h3>Pipeline</h3>
+        <p id="pipeline-line">Checking operator access…</p>
+        <ul class="dash-list" id="pipeline-list"></ul>
+        <form id="pipeline-form" hidden>
+          <p>Record a pipeline step (operators only — the server never signs or moves STANZA):</p>
+          <p><label>Work <select id="pipeline-work" aria-label="Work"></select></label></p>
+          <p><label>Action <select id="pipeline-action" aria-label="Pipeline action"><option value="propose_payment">Propose payment</option><option value="confirm_payment">Confirm payment (Safe-signed tx)</option><option value="record_upload">Transfer TTOS draft → SpinWave record</option><option value="request_anchor">Request anchor (Pearls)</option><option value="confirm_anchor">Confirm anchor (12+ confirmations)</option></select></label></p>
+          <p><label>Transaction hash (confirm steps)<br><input id="pipeline-tx" type="text" aria-label="Transaction hash"></label></p>
+          <p><label>Document fingerprint (transfer)<br><input id="pipeline-fingerprint" type="text" aria-label="Document fingerprint"></label></p>
+          <p><label>Storage pointer (transfer)<br><input id="pipeline-pointer" type="text" aria-label="Storage pointer"></label></p>
+          <p><label>Anchor request ID (request anchor)<br><input id="pipeline-request" type="text" aria-label="Anchor request ID"></label></p>
+          <p><label>Confirmations (confirm anchor)<br><input id="pipeline-confirmations" type="number" min="12" value="12" aria-label="Confirmations"></label></p>
+          <p><button class="btn" type="button" id="pipeline-submit">Record step</button></p>
+        </form>
+        <p class="dash-note">Order is enforced: PAY verdict → payment proposed → payment confirmed on Base → validated TTOS draft transferred to SpinWave → anchor requested → anchor confirmed (12+) → record created and work certified. A failed or missing Base transaction advances nothing. This transfer is an operator step, not a submission — scholars submit in ThinkTank OS only.</p>
+        <p id="pipeline-note" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="dash-side">
+      <div class="dash-panel" id="dash-wallet">
+        <h3>Verified wallet</h3>
+        <p id="verified-wallet-line">Checking your verified wallet…</p>
+        <button class="btn" type="button" id="verify-wallet" hidden>Verify this wallet</button>
+        <p id="verified-wallet-note" role="status" aria-live="polite"></p>
+        <p class="dash-note">Only a signature-verified wallet is ever used for a payment. The waitlist wallet below is unverified and is not used for payment. Verifying now does not move funds.</p>
+      </div>
+      <div class="dash-panel" id="dash-track">
+        <h3>Waitlist</h3>
+        <p id="track-line">Not on the waitlist yet - pick a track below.</p>
+        <p id="track-wallet" hidden></p>
+        <button class="btn" type="button" id="link-wallet" hidden>Link this wallet</button>
+        <p id="wallet-note" role="status" aria-live="polite"></p>
+        <div class="dash-join" id="dash-join">
+          <p>Pick a track. One tap - you are already signed in.</p>
+          <button class="btn" type="button" id="join-scholar">Join as a scholar</button>
+          <button class="btn" type="button" id="join-supporter">Join as a supporter</button>
+          <p id="join-note" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="dash-panel" id="dash-learn">
+        <h3>How recognition works</h3>
+        <p>Scholars bring a manuscript or dataset freed from paywalls, and are recognized in STANZA — 25,000 for an accepted manuscript, 40,000 for a dataset, 55,000 for a dataset with a worked example. STANZA is not reserved for the Elite; it is reserved for the most intelligent.</p>
+        <p>Token: live on Base. Trading: not yet — pool deployed, no trades, no price. Reader licensing: locked until a later phase.</p>
+      </div>
+    </div>
   </div>
 </section>
 <section id="verify" class="wrap">
@@ -1071,6 +1146,7 @@ var FOLLOW_URLS = {
         return;
       }
       line.textContent = "Your works, in pipeline state:";
+      var sw = document.getElementById("dash-sum-works"); if (sw) sw.textContent = d.works.length ? d.works.length + " in the pipeline" : "No works yet";
       list.innerHTML = d.works.map(function(w){
         var extra = "";
         if (w.payment_ref) extra += " Payment: " + esc(w.payment_ref) + ".";
@@ -1082,7 +1158,8 @@ var FOLLOW_URLS = {
             return esc(c.email) + " " + esc(c.share_percent) + "% (" + (c.share_status === "held" ? "share held until verified" : "payable") + ")";
           }).join(", ") + ".";
         }
-        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") — " + esc(w.state || "") + ". " + esc(STATE_TEXT[w.state] || "") + extra + "</li>";
+        var slug = (w.state || "").replace(/ /g, "-");
+        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") <span class=\"state-badge state-" + slug + "\">" + esc(w.state || "") + "</span> " + esc(STATE_TEXT[w.state] || "") + extra + "</li>";
       }).join("");
     }).catch(function(){ line.textContent = "Could not load your works right now."; });
   }
@@ -1093,6 +1170,7 @@ var FOLLOW_URLS = {
       if (!d || !d.verdicts) { line.textContent = "Could not load your verdicts right now."; return; }
       if (!d.verdicts.length) { line.textContent = "No verdicts yet. When a work is judged, its reasons will appear here in writing."; return; }
       line.textContent = "Your verdicts:";
+      var sv = document.getElementById("dash-sum-verdicts"); if (sv) sv.textContent = d.verdicts.length ? d.verdicts.length + " recorded" : "No verdicts yet";
       list.innerHTML = d.verdicts.map(function(v){
         return "<li><strong>" + esc(v.title || v.work_id) + "</strong> — " + esc(v.verdict) + ": " + esc(v.reasons || "(no reasons recorded — that is a pipeline defect, not a verdict)") + "</li>";
       }).join("");
@@ -1104,9 +1182,11 @@ var FOLLOW_URLS = {
     fetch("/api/wallet-link").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
       if (d && d.verified && d.address) {
         line.textContent = "Verified wallet: " + short(d.address) + ". STANZA payments for your works go to this wallet once payment opens.";
+        var sw2 = document.getElementById("dash-sum-wallet"); if (sw2) sw2.textContent = "Verified " + short(d.address);
         if (btn) btn.hidden = true;
       } else {
         line.textContent = "No verified wallet yet. Verify the wallet you control, and that wallet is the one payments will go to once payment opens.";
+        var sw3 = document.getElementById("dash-sum-wallet"); if (sw3) sw3.textContent = "Not verified yet";
         if (btn) btn.hidden = false;
       }
     }).catch(function(){ line.textContent = "Could not check your verified wallet right now."; });
@@ -1384,7 +1464,7 @@ var FOLLOW_URLS = {
 (function(){
   "use strict";
   fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-    if (d && d.email) document.body.classList.add("signed-in");
+    if (d && d.email) { document.body.classList.add("signed-in"); var de = document.getElementById("dash-email"); if (de) de.textContent = "Signed in as " + d.email; }
   }).catch(function(){});
 })();
 </script>
