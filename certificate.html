@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate — SpinWave</title>
+<meta name="description" content="A SpinWave certificate, rendered from its canonical JSON. If this page and the JSON disagree, the JSON, the record, and the Base anchor win.">
+<style>
+  body{font-family:Georgia,serif;color:#2E2419;background:#EDE4D0;margin:0;padding:2rem;line-height:1.7;}
+  .wrap{max-width:720px;margin:0 auto;background:#DCCFAF;border:3px double #A8894A;padding:2.5rem;}
+  h1{font-variant:small-caps;letter-spacing:.2em;color:#6E3232;text-align:center;}
+  .field{margin:.8rem 0;} .field b{font-variant:small-caps;letter-spacing:.08em;color:#6E3232;}
+  code{word-break:break-all;font-size:.85rem;}
+  .btn{font-variant:small-caps;letter-spacing:.15em;background:#6E3232;color:#EDE4D0;border:1px solid #6E3232;padding:.7rem 1.5rem;cursor:pointer;}
+  @media print{ body{background:#fff;padding:0;} .noprint{display:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SpinWave Certificate</h1>
+  <p id="status">Loading certificate&hellip;</p>
+  <div id="cert" hidden></div>
+  <p class="noprint"><button class="btn" type="button" onclick="window.print()">Print / save as PDF</button> &nbsp; <a id="json-link" href="#">Canonical JSON</a> &nbsp; <a id="verify-link" href="#">Verify</a></p>
+  <p><small>This page renders the canonical certificate JSON. If this page and the JSON disagree, the JSON, the SpinWave record, and the Base anchor win. A certificate verifies only with a confirmed anchor (12+ Base confirmations).</small></p>
+</div>
+<script>
+(function(){
+  var q = new URLSearchParams(window.location.search).get('id') || '';
+  var st = document.getElementById('status'), cert = document.getElementById('cert');
+  if (!q) { st.textContent = 'No certificate ID given. Open this page with ?id=<certificate id>.'; return; }
+  document.getElementById('json-link').href = '/api/certificate?id=' + encodeURIComponent(q);
+  fetch('/api/certificate?id=' + encodeURIComponent(q)).then(function(r){ return r.json(); }).then(function(d){
+    if (d.status === 'not_found') { st.textContent = 'NOT FOUND — no certificate matches that ID.'; return; }
+    if (d.status === 'not_certified') { st.textContent = 'NOT CERTIFIED — this record is not certified with a confirmed anchor yet.'; return; }
+    st.textContent = 'CERTIFIED';
+    document.getElementById('verify-link').href = '/api/verify?id=' + encodeURIComponent(d.record_id);
+    function f(label, v){ return '<div class="field"><b>' + label + ':</b> ' + (v == null ? '—' : v) + '</div>'; }
+    cert.innerHTML =
+      f('Certificate ID', '<code>' + d.certificate_id + '</code>') +
+      f('Record ID', '<code>' + d.record_id + '</code>') +
+      f('Title', d.title) +
+      f('Version', d.version) +
+      f('Scholar', d.scholar) +
+      f('Scholar wallet', '<code>' + (d.scholar_wallet || '') + '</code>') +
+      f('Verdict', d.verdict) +
+      f('Payment transaction', '<code>' + (d.payment_transaction || '') + '</code>') +
+      f('Base anchor transaction', '<a href="' + d.basescan_url + '"><code>' + d.anchor_transaction + '</code></a>') +
+      f('Anchor confirmations', d.anchor_confirmations + ' (required: 12)') +
+      f('Document fingerprint', '<code>' + (d.document_fingerprint || '') + '</code>');
+    cert.hidden = false;
+  }).catch(function(){ st.textContent = 'Could not load the certificate right now.'; });
+})();
+</script>
+</body>
+</html>
