@@ -84,5 +84,27 @@ export async function onRequestGet({ request, env }) {
     )
     .bind(email)
     .all();
-  return json({ works: rows.results || [] }, 200);
+  // D17 co-author splits (v1 data model, read-only here): shares are
+  // declared at submission in ThinkTank OS / the operator pipeline,
+  // never by a browser POST. A share for an unverified co-author is
+  // HELD and released on verification, never redirected.
+  await db
+    .prepare(
+      'CREATE TABLE IF NOT EXISTS work_coauthors (work_id TEXT, email TEXT, share_percent REAL, verified INTEGER, created_at INTEGER, PRIMARY KEY (work_id, email))',
+    )
+    .run();
+  const works = rows.results || [];
+  for (const w of works) {
+    const co = await db
+      .prepare('SELECT email, share_percent, verified FROM work_coauthors WHERE work_id = ? ORDER BY share_percent DESC')
+      .bind(w.id)
+      .all();
+    w.coauthors = (co.results || []).map((c) => ({
+      email: c.email,
+      share_percent: c.share_percent,
+      verified: !!c.verified,
+      share_status: c.verified ? 'payable' : 'held',
+    }));
+  }
+  return json({ works }, 200);
 }

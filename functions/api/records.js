@@ -29,11 +29,16 @@ export async function onRequestGet({ request, env }) {
       'CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, title TEXT, authors TEXT, version TEXT, scholar_wallet TEXT, state TEXT, anchor_tx TEXT, anchored_at INTEGER, certificate_id TEXT, created_at INTEGER)',
     )
     .run();
+  for (const col of ['document_fingerprint TEXT', 'anchor_confirmations INTEGER', 'anchor_status TEXT']) {
+    try {
+      await db.prepare(`ALTER TABLE records ADD COLUMN ${col}`).run();
+    } catch {}
+  }
   let row = null;
   if (id) {
     row = await db
       .prepare(
-        'SELECT id, title, authors, version, scholar_wallet, state, anchor_tx, anchored_at, certificate_id, created_at FROM records WHERE id = ?',
+        'SELECT id, title, authors, version, scholar_wallet, state, anchor_tx, anchored_at, certificate_id, created_at, document_fingerprint, anchor_confirmations, anchor_status FROM records WHERE id = ?',
       )
       .bind(id)
       .first();
@@ -41,7 +46,7 @@ export async function onRequestGet({ request, env }) {
   if (!row && cert) {
     row = await db
       .prepare(
-        'SELECT id, title, authors, version, scholar_wallet, state, anchor_tx, anchored_at, certificate_id, created_at FROM records WHERE certificate_id = ?',
+        'SELECT id, title, authors, version, scholar_wallet, state, anchor_tx, anchored_at, certificate_id, created_at, document_fingerprint, anchor_confirmations, anchor_status FROM records WHERE certificate_id = ?',
       )
       .bind(cert)
       .first();

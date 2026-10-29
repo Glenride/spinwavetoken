@@ -486,6 +486,22 @@
     <ul class="fine" id="reasons-list"></ul>
     <p class="fine">When a work is judged, its reasons appear here. A CANCEL names what failed and what to fix; a Human verifies the verdict if necessary, or if you object to it.</p>
   </div>
+  <div class="card">
+    <p class="eyebrow">Review queue &middot; Phase A, Human finds every verdict</p>
+    <p class="fine" id="review-line">Checking the reviewer roster&hellip;</p>
+    <ul class="fine" id="review-list"></ul>
+    <form id="review-form" hidden>
+      <p class="fine">Record a verdict (roster reviewers only — one verdict per work):</p>
+      <p><label class="fine">Work <select id="review-work" aria-label="Work to judge"></select></label></p>
+      <p><label class="fine">Verdict <select id="review-verdict" aria-label="Verdict"><option value="PAY">PAY</option><option value="CANCEL">CANCEL</option><option value="INCONCLUSIVE">INCONCLUSIVE</option></select></label></p>
+      <p><label class="fine">Reasons (required, in writing)<br><textarea id="review-reasons" rows="4" style="width:100%;padding:.5rem;" aria-label="Verdict reasons"></textarea></label></p>
+      <p class="fine">Check packet — every box must be answered, and conflict-free must be true:</p>
+      <p class="fine"><label><input type="checkbox" id="check-original"> Original</label> &nbsp; <label><input type="checkbox" id="check-complete"> Complete</label> &nbsp; <label><input type="checkbox" id="check-declared"> Declared</label> &nbsp; <label><input type="checkbox" id="check-duplicate_checked"> Duplicate-checked</label> &nbsp; <label><input type="checkbox" id="check-conflict_free"> Conflict-free</label></p>
+      <p><button class="btn" type="button" id="review-submit">Record verdict</button></p>
+    </form>
+    <p class="fine">Reviewers are designated Glenride staff and scholars in good standing referred by designated staff. A verdict needs written reasons and a complete check packet (original, complete, declared, duplicate-checked, conflict-free). Inconclusive never pays, and a PAY verdict moves no money in this build — payment is blocked until D3 is decided and D11 is frozen.</p>
+    <p class="fine" id="review-note" role="status" aria-live="polite"></p>
+  </div>
 </section>
 <section id="verify" class="wrap">
   <h2 class="section-title">Verify a certificate</h2>
@@ -1042,6 +1058,11 @@ var FOLLOW_URLS = {
         if (w.record_id) extra += " Record: " + esc(w.record_id) + ".";
         if (w.anchor_tx) extra += " Anchor: " + esc(w.anchor_tx) + ".";
         if (w.certificate_id) extra += " Certificate: " + esc(w.certificate_id) + ".";
+        if (w.coauthors && w.coauthors.length) {
+          extra += " Co-authors: " + w.coauthors.map(function(c){
+            return esc(c.email) + " " + esc(c.share_percent) + "% (" + (c.share_status === "held" ? "share held until verified" : "payable") + ")";
+          }).join(", ") + ".";
+        }
         return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") — " + esc(w.state || "") + ". " + esc(STATE_TEXT[w.state] || "") + extra + "</li>";
       }).join("");
     }).catch(function(){ line.textContent = "Could not load your works right now."; });
@@ -1117,6 +1138,55 @@ var FOLLOW_URLS = {
   });
   fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if (d && d.email) { loadWorks(); loadReasons(); loadVerifiedWallet(); }
+  }).catch(function(){});
+})();
+</script>
+<script>
+/* ===== Review queue (MVP Phase A, 2026-10-29): roster-gated verdict form.
+   The server enforces roster, conflict, one-verdict-per-work, reasons,
+   and the full check packet — the form only collects them. No payment,
+   record, anchor, or certificate is created from this page. */
+(function(){
+  "use strict";
+  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  var line = document.getElementById("review-line"), list = document.getElementById("review-list");
+  var form = document.getElementById("review-form"), sel = document.getElementById("review-work");
+  var note = document.getElementById("review-note");
+  if (!line || !list) return;
+  var submit = document.getElementById("review-submit");
+  if (submit) submit.addEventListener("click", function(){
+    var workId = sel ? sel.value : "";
+    var verdict = document.getElementById("review-verdict").value;
+    var reasons = document.getElementById("review-reasons").value.trim();
+    var checklist = {
+      original: document.getElementById("check-original").checked,
+      complete: document.getElementById("check-complete").checked,
+      declared: document.getElementById("check-declared").checked,
+      duplicate_checked: document.getElementById("check-duplicate_checked").checked,
+      conflict_free: document.getElementById("check-conflict_free").checked
+    };
+    if (!workId || !reasons || !checklist.conflict_free) { note.textContent = "Pick a work, write the reasons, and confirm conflict-free before recording."; return; }
+    fetch("/api/review-queue", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ work_id: workId, verdict: verdict, reasons: reasons, checklist: checklist }) })
+      .then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
+      .then(function(res){
+        if (res.status === 200) { note.textContent = "Verdict recorded: " + res.body.verdict + ". Payment moved: no. Record created: no. Certificate created: no."; }
+        else { note.textContent = "Could not record: " + (res.body.message || res.body.error || "try again."); }
+      }).catch(function(){ note.textContent = "Could not record right now."; });
+  });
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (!d || !d.email) return;
+    fetch("/api/review-queue").then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); }).then(function(res){
+      if (res.status === 403) { line.textContent = "You are not on the reviewer roster."; if (form) form.hidden = true; return; }
+      if (!res.body || !res.body.queue) { line.textContent = "Could not load the review queue right now."; return; }
+      if (form) form.hidden = false;
+      if (!res.body.queue.length) { line.textContent = "No works awaiting validity right now."; return; }
+      line.textContent = "Works awaiting validity (21-day review window):";
+      list.innerHTML = res.body.queue.map(function(w){
+        var by = w.review_by ? " Review by " + new Date(w.review_by).toLocaleDateString() + "." : "";
+        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") — owner " + esc(w.owner_email || "") + "." + by + "</li>";
+      }).join("");
+      if (sel) sel.innerHTML = res.body.queue.map(function(w){ return "<option value=\"" + esc(w.id) + "\">" + esc(w.title || w.id) + "</option>"; }).join("");
+    }).catch(function(){ line.textContent = "Could not load the review queue right now."; });
   }).catch(function(){});
 })();
 </script>
