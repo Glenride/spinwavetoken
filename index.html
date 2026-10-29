@@ -456,6 +456,31 @@
     <button class="btn" type="button" id="link-wallet" hidden>Link this wallet</button>
     <p class="fine" id="wallet-note" role="status" aria-live="polite"></p>
   </div>
+  <div class="card">
+    <p class="eyebrow">Works &middot; your pipeline</p>
+    <p class="fine" id="works-line">Loading your works&hellip;</p>
+    <ul class="fine" id="works-list"></ul>
+    <p class="fine">Works arrive here from the pipeline only. No work, payment, record, or certificate is created from this page. Drafts are submitted in ThinkTank OS.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Wallet &middot; verified</p>
+    <p class="fine" id="verified-wallet-line">Checking your verified wallet&hellip;</p>
+    <button class="btn" type="button" id="verify-wallet" hidden>Verify this wallet</button>
+    <p class="fine" id="verified-wallet-note" role="status" aria-live="polite"></p>
+    <p class="fine">Only a signature-verified wallet is ever used for a payment. The waitlist wallet above is unverified and is not used for payment. Payment is not live yet — verifying now does not move funds.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Reasons &middot; verdicts in writing</p>
+    <p class="fine" id="reasons-line">Loading your verdicts&hellip;</p>
+    <ul class="fine" id="reasons-list"></ul>
+    <p class="fine">When a work is judged, its reasons appear here. A CANCEL names what failed and what to fix; a Human verifies the verdict if necessary, or if you object to it.</p>
+  </div>
+</section>
+<section id="verify" class="wrap">
+  <h2 class="section-title">Verify a certificate</h2>
+  <p class="fine">Anyone can check a SpinWave certificate here, with no sign-in. Enter a record ID, a certificate ID, or a Base transaction hash.</p>
+  <p><input type="text" id="verify-input" placeholder="Record ID, certificate ID, or Base hash" style="width:min(34rem,90%);padding:.5rem;" aria-label="Record ID, certificate ID, or Base hash"> <button class="btn" type="button" id="verify-btn">Verify</button></p>
+  <p class="fine" id="verify-result" role="status" aria-live="polite"></p>
 </section>
 <section class="manifesto">
   <p>It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed. SpinWave is the project. STANZA is the token. The name comes first; the money, if it ever comes, comes later.</p>
@@ -926,7 +951,7 @@ var FOLLOW_URLS = {
       return;
     }
     trackLine.textContent = "You are #" + st.position + " in line on the " + st.track + " track.";
-    if (st.wallet) { trackWallet.textContent = "Linked wallet: " + short(st.wallet); trackWallet.hidden = false; }
+    if (st.wallet) { trackWallet.textContent = "Waitlist wallet (unverified — not used for payment): " + short(st.wallet); trackWallet.hidden = false; }
     else { trackWallet.hidden = true; }
   }
   function load(){
@@ -969,6 +994,118 @@ var FOLLOW_URLS = {
   });
   fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if (d && d.email && dash) { dash.hidden = false; if (linkBtn) linkBtn.hidden = false; load(); }
+  }).catch(function(){});
+})();
+</script>
+<script>
+/* ===== SpinWave MVP logged-in state (2026-10-29): My Works, verified wallet, reasons, public verifier =====
+   No money moves in this block. Wallet verification signs a message only;
+   payment, upload, anchoring, and certification are pipeline stages, not browser actions. */
+(function(){
+  "use strict";
+  function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
+  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  var STATE_TEXT = {
+    "awaiting validity": "Awaiting validity — judged, with reasons, before anything else happens.",
+    "payment failed": "Payment failed — no document uploaded, no certificate. The reason is shown to you and to the operator.",
+    "payment complete": "Payment complete — upload is next.",
+    "upload pending": "Payment complete, upload pending.",
+    "anchoring pending": "Anchoring pending — no certificate until the anchor confirms on Base.",
+    "anchored": "Anchored — certificate is next.",
+    "certified": "Certified — the certificate below verifies on Base.",
+    "cancelled": "Cancelled — see Reasons for what failed and what to fix. No payment, no record, no certificate."
+  };
+  function loadWorks(){
+    var line = document.getElementById("works-line"), list = document.getElementById("works-list");
+    if (!line || !list) return;
+    fetch("/api/my-works").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (!d || !d.works) { line.textContent = "Could not load your works right now."; return; }
+      if (!d.works.length) {
+        line.textContent = "No works in the pipeline yet. Drafts are submitted in ThinkTank OS — your works will appear here as they move through validity, payment, upload, anchoring, and certification.";
+        return;
+      }
+      line.textContent = "Your works, in pipeline state:";
+      list.innerHTML = d.works.map(function(w){
+        var extra = "";
+        if (w.payment_ref) extra += " Payment: " + esc(w.payment_ref) + ".";
+        if (w.record_id) extra += " Record: " + esc(w.record_id) + ".";
+        if (w.anchor_tx) extra += " Anchor: " + esc(w.anchor_tx) + ".";
+        if (w.certificate_id) extra += " Certificate: " + esc(w.certificate_id) + ".";
+        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") — " + esc(w.state || "") + ". " + esc(STATE_TEXT[w.state] || "") + extra + "</li>";
+      }).join("");
+    }).catch(function(){ line.textContent = "Could not load your works right now."; });
+  }
+  function loadReasons(){
+    var line = document.getElementById("reasons-line"), list = document.getElementById("reasons-list");
+    if (!line || !list) return;
+    fetch("/api/my-reasons").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (!d || !d.verdicts) { line.textContent = "Could not load your verdicts right now."; return; }
+      if (!d.verdicts.length) { line.textContent = "No verdicts yet. When a work is judged, its reasons will appear here in writing."; return; }
+      line.textContent = "Your verdicts:";
+      list.innerHTML = d.verdicts.map(function(v){
+        return "<li><strong>" + esc(v.title || v.work_id) + "</strong> — " + esc(v.verdict) + ": " + esc(v.reasons || "(no reasons recorded — that is a pipeline defect, not a verdict)") + "</li>";
+      }).join("");
+    }).catch(function(){ line.textContent = "Could not load your verdicts right now."; });
+  }
+  function loadVerifiedWallet(){
+    var line = document.getElementById("verified-wallet-line"), btn = document.getElementById("verify-wallet");
+    if (!line) return;
+    fetch("/api/wallet-link").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (d && d.verified && d.address) {
+        line.textContent = "Verified wallet: " + short(d.address) + ". STANZA payments for your works go to this wallet once payment opens.";
+        if (btn) btn.hidden = true;
+      } else {
+        line.textContent = "No verified wallet yet. Verify the wallet you control, and that wallet is the one payments will go to once payment opens.";
+        if (btn) btn.hidden = false;
+      }
+    }).catch(function(){ line.textContent = "Could not check your verified wallet right now."; });
+  }
+  var vb = document.getElementById("verify-wallet");
+  if (vb) vb.addEventListener("click", function(){
+    var note = document.getElementById("verified-wallet-note");
+    var eth = window.ethereum;
+    if (!eth) { note.textContent = "No wallet found — open this page in your wallet's dApp browser and connect from there."; return; }
+    eth.request({ method: "eth_requestAccounts" }).then(function(accounts){
+      var addr = accounts[0];
+      return fetch("/api/wallet-nonce?address=" + encodeURIComponent(addr)).then(function(r){
+        if (!r.ok) throw new Error("nonce");
+        return r.json();
+      }).then(function(n){
+        return eth.request({ method: "personal_sign", params: [n.message, addr] }).then(function(sig){
+          return fetch("/api/wallet-link", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ address: addr, signature: sig }) });
+        });
+      }).then(function(r){
+        if (!r.ok) throw new Error("link");
+        return r.json();
+      }).then(function(d){
+        if (d && d.verified) { loadVerifiedWallet(); note.textContent = "Wallet verified. It does not move funds."; }
+        else note.textContent = "Verification did not complete — try again.";
+      });
+    }).catch(function(){ note.textContent = "Verification declined or failed — no harm done, and no wallet was linked."; });
+  });
+  var vf = document.getElementById("verify-btn");
+  if (vf) vf.addEventListener("click", function(){
+    var inp = document.getElementById("verify-input"), out = document.getElementById("verify-result");
+    var q = (inp.value || "").trim();
+    if (!q) { out.textContent = "Enter a record ID, certificate ID, or Base hash first."; return; }
+    var isHash = /^0x[0-9a-fA-F]{64}$/.test(q);
+    var url = isHash ? "/api/verify?hash=" + encodeURIComponent(q) : "/api/verify?id=" + encodeURIComponent(q);
+    fetch(url).then(function(r){ return r.json(); }).then(function(d){
+      if (d.status === "verified") {
+        out.innerHTML = "VERIFIED — " + esc(d.record.title) + ". Anchor: <a href=\"" + esc(d.basescan_url) + "\">" + esc(d.record.anchor_tx) + "</a>. Record: <a href=\"" + esc(d.record.record_url) + "\">" + esc(d.record.id) + "</a>.";
+      } else if (d.status === "invalid") {
+        out.textContent = "INVALID — " + (d.message || "") + (d.failed_check ? " (failed check: " + d.failed_check + ")" : "");
+      } else if (d.status === "not_certified") {
+        out.textContent = "NOT CERTIFIED — " + (d.message || "");
+      } else if (d.status === "not_found") {
+        out.textContent = "NOT FOUND — " + (d.message || "");
+      } else {
+        out.textContent = "Could not verify right now.";
+      }
+    }).catch(function(){ out.textContent = "Could not verify right now."; });
+  });
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (d && d.email) { loadWorks(); loadReasons(); loadVerifiedWallet(); }
   }).catch(function(){});
 })();
 </script>
