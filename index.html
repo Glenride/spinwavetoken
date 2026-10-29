@@ -63,14 +63,16 @@
   .nav-links a.trust-link:hover{background:#83662A;color:#fff;}
   .nav-drop{position:relative;}
   .nav-drop .drop-menu{
-    display:none;position:absolute;top:100%;right:0;min-width:230px;
+    display:block;position:absolute;top:100%;right:0;min-width:230px;
     background:var(--umber);border:1px solid var(--gold);border-radius:6px;
     padding:.5rem 0;box-shadow:0 10px 28px rgba(46,36,25,.3);z-index:100;
+    opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;
+    transition:opacity .17s ease,transform .17s cubic-bezier(.2,.7,.2,1),visibility 0s linear .17s;
   }
+  .nav-drop:hover .drop-menu,.nav-drop:focus-within .drop-menu{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.7,.2,1),visibility 0s;}
   .nav-drop .drop-menu::before{
     content:"";position:absolute;top:-.6rem;left:0;right:0;height:.6rem;
   }
-  .nav-drop:hover .drop-menu{display:block;}
   .nav-drop .drop-menu a{
     display:block;padding:.55rem 1.25rem;color:var(--parchment);text-decoration:none;
     font-size:.95rem;letter-spacing:.03em;white-space:nowrap;
@@ -82,7 +84,7 @@
   @media(max-width:760px){
     .nav-toggle{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);background:none;border:1px solid var(--gold);padding:.4rem .9rem;cursor:pointer;flex:none;}
     .nav-links.open{display:flex;flex-direction:column;align-items:flex-start;gap:.9rem;position:absolute;top:100%;left:0;right:0;background:rgba(237,228,208,.99);border-bottom:3px double var(--gold);padding:1rem clamp(1.25rem,5vw,2.5rem);z-index:50;}
-    .nav-links.open .nav-drop .drop-menu{display:block;position:static;min-width:0;box-shadow:none;border:0;padding:0;}
+    .nav-links.open .nav-drop .drop-menu{display:block;position:static;min-width:0;box-shadow:none;border:0;padding:0;opacity:1;visibility:visible;transform:none;transition:none;pointer-events:auto;}
     .nav-links.open .nav-drop .drop-menu::before{display:none;}
     .nav-links.open .nav-drop .drop-menu a{display:block;padding:.35rem 0;}
   }
@@ -364,12 +366,33 @@
   .den-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:center;margin-top:1rem;}
   .den-addr{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;background:var(--vellum);border:1px solid var(--gold);padding:.5rem 1rem;}
   .den-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:#5C6B3C;padding:.35rem .9rem;}
+  /* ---------- motion additions (2026-10-28): ember drift, stat count-up, child stagger ---------- */
+  /* Ember canvas: flat gold/pale dots over the hero painting, below the text.
+     Mechanism inspired by Subframe's "meteors" (small lights crossing a field),
+     re-voiced as embers rising — SpinWave's own image ("that ember still burns").
+     No gradients, no new colors: gold + pale parchment tones only. */
+  #ember-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  @media(max-width:760px){#ember-canvas{display:none;}}
+  /* Stat numbers: tabular figures so digits don't jitter mid-count (Subframe text-and-numbers guidance). */
+  .stat-num{font-variant-numeric:tabular-nums;}
+  /* Child stagger: pillars, phases and stats rise in sequence once their section reveals.
+     Scoped under .reveal so no-JS still shows everything. 60ms steps, whole sequence under ~500ms of stagger. */
+  .reveal .pillar,.reveal .phase,.reveal .stat{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in .pillar,.reveal.in .phase,.reveal.in .stat{opacity:1;transform:none;}
+  .reveal.in .pillar:nth-child(2),.reveal.in .phase:nth-child(2),.reveal.in .stat:nth-child(2){transition-delay:.06s;}
+  .reveal.in .pillar:nth-child(3),.reveal.in .phase:nth-child(3),.reveal.in .stat:nth-child(3){transition-delay:.12s;}
+  .reveal.in .pillar:nth-child(4),.reveal.in .stat:nth-child(4){transition-delay:.18s;}
+  .reveal.in .pillar:nth-child(5){transition-delay:.24s;}
+  .pillar-track{overflow-y:hidden;}
   @media (prefers-reduced-motion: reduce){
     .hero-inner > *{opacity:1;transform:none;}
     body.boot .hero-inner > *{animation:none;}
     .reveal{opacity:1;transform:none;transition:none;}
+    .reveal .pillar,.reveal .phase,.reveal .stat{opacity:1;transform:none;transition:none;}
     .dot.live,.dot.pending{animation:none;}
     .ticker-track{animation:none;}
+    #ember-canvas{display:none;}
+    .nav-drop .drop-menu{transition:none;}
   }
 </style>
 </head>
@@ -402,6 +425,7 @@
 </nav>
 <p id="authError" class="auth-error" hidden></p>
 <header class="hero" id="top">
+  <canvas id="ember-canvas" aria-hidden="true"></canvas>
   <img class="hero-img-mobile" src="painting-hero-gate.jpg" alt="Reynard slipping through the tower gate with scrolls, pages drifting toward outstretched hands">
   <div class="hero-inner">
     <p class="eyebrow eyebrow-light">The Tale of Reynard</p>
@@ -959,6 +983,115 @@ var FOLLOW_URLS = {
     t.setAttribute("aria-expanded", open ? "true" : "false");
     t.textContent = open ? "Close" : "Menu";
   });
+})();
+</script>
+<script>
+/* ===== Motion additions (2026-10-28): ember drift + stat count-up =====
+   Taste source: Subframe motion guidance (timing, ambient, text-and-numbers),
+   fetched via the motion MCP endpoint; the ember mechanism is inspired by
+   Subframe's "meteors" example, re-voiced as embers rising over the hero
+   painting. Vanilla, dependency-free. Reduced motion: nothing starts —
+   the canvas stays empty and stat numbers keep their final markup values. */
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+
+  /* --- ember drift over the hero painting --- */
+  var hero = document.getElementById("top");
+  var canvas = document.getElementById("ember-canvas");
+  if (hero && canvas && "requestAnimationFrame" in window) {
+    var ctx = canvas.getContext("2d");
+    var embers = [], raf = null, visible = true, W = 0, H = 0, dpr = 1;
+    function size(){
+      var w = hero.clientWidth, h = hero.clientHeight;
+      if (!w || !h || (w === W && h === H)) return;
+      W = w; H = h; dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      var n = Math.max(10, Math.min(22, Math.round(w * h / 45000)));
+      embers = [];
+      for (var i = 0; i < n; i++) embers.push(spawn(true));
+    }
+    function spawn(anywhere){
+      return {
+        x: Math.random() * W,
+        y: anywhere ? Math.random() * H : H + 4,
+        r: 0.8 + Math.random() * 2.0,
+        vy: 6 + Math.random() * 8,
+        sway: 4 + Math.random() * 8,
+        phase: Math.random() * Math.PI * 2,
+        tw: 0.5 + Math.random() * 0.9,
+        gold: Math.random() < 0.7
+      };
+    }
+    function frame(t){
+      raf = null;
+      if (!visible || document.hidden) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save(); ctx.scale(dpr, dpr);
+      var dt = 1 / 60;
+      for (var i = 0; i < embers.length; i++) {
+        var e = embers[i];
+        e.y -= e.vy * dt;
+        if (e.y < -6) embers[i] = spawn(false);
+        var tw = 0.14 + 0.30 * (0.5 + 0.5 * Math.sin(t / 1000 * e.tw + e.phase));
+        var x = e.x + Math.sin(t / 1000 * 0.4 + e.phase) * e.sway;
+        ctx.beginPath();
+        ctx.arc(x, e.y, e.r, 0, Math.PI * 2);
+        ctx.fillStyle = e.gold ? "rgba(168,137,74," + tw.toFixed(3) + ")"
+                               : "rgba(207,201,187," + tw.toFixed(3) + ")";
+        ctx.fill();
+      }
+      ctx.restore();
+      raf = requestAnimationFrame(frame);
+    }
+    function kick(){
+      if (getComputedStyle(canvas).display === "none") return;
+      size();
+      if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame);
+    }
+    function stop(){ if (raf) { cancelAnimationFrame(raf); raf = null; } }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function(es){
+        visible = es[0].isIntersecting;
+        if (visible) kick(); else stop();
+      }, { threshold: 0 }).observe(hero);
+    }
+    document.addEventListener("visibilitychange", function(){
+      if (document.hidden) stop(); else kick();
+    });
+    window.addEventListener("resize", kick);
+    kick();
+  }
+
+  /* --- stat count-up: 0 -> final value in ~900ms, ease-out, tabular figures --- */
+  var nums = document.querySelectorAll(".stat-num");
+  function countUp(el){
+    var raw = el.textContent.trim();
+    var target = parseFloat(raw.replace(/,/g, ""));
+    if (isNaN(target)) return;
+    var suffix = raw.indexOf("%") !== -1 ? "%" : "";
+    var start = null;
+    function step(ts){
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / 900, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toLocaleString("en-US") + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if (nums.length && "IntersectionObserver" in window && "requestAnimationFrame" in window) {
+    var grid = document.querySelector(".stat-grid");
+    if (grid) {
+      var sio = new IntersectionObserver(function(es){
+        if (!es[0].isIntersecting) return;
+        sio.disconnect();
+        Array.prototype.forEach.call(nums, countUp);
+      }, { threshold: 0.3 });
+      sio.observe(grid);
+    }
+  }
 })();
 </script>
 </body>
