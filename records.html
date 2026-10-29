@@ -56,7 +56,9 @@
       ["Scholar wallet", rec.scholar_wallet ? "<code>" + esc(rec.scholar_wallet) + "</code>" : "—"],
       ["State", esc(rec.state)],
       ["Anchor (Base hash)", rec.anchor_tx ? "<a href=\"https://basescan.org/tx/" + esc(rec.anchor_tx) + "\"><code>" + esc(rec.anchor_tx) + "</code></a>" : "Pending — no confirmed anchor yet."],
-      ["Certificate", rec.certificate_id ? "<code>" + esc(rec.certificate_id) + "</code>" : "Not issued yet — a certificate is issued only after the anchor confirms."]
+      ["Anchor confirmations", rec.anchor_confirmations != null ? esc(rec.anchor_confirmations) + " (required: 12)" : "Not recorded yet."],
+      ["Document fingerprint", rec.document_fingerprint ? "<code>" + esc(rec.document_fingerprint) + "</code>" : "Not recorded yet."],
+      ["Certificate", rec.certificate_id ? "<a href=\"/certificate?id=" + encodeURIComponent(rec.certificate_id) + "\"><code>" + esc(rec.certificate_id) + "</code></a>" : "Not issued yet — a certificate is issued only after the anchor confirms."]
     ];
     fields.innerHTML = rows.map(function(r){ return "<div class=\"field\"><span class=\"k\">" + r[0] + "</span><span class=\"v\">" + r[1] + "</span></div>"; }).join("");
     fields.hidden = false;

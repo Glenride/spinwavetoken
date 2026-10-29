@@ -448,6 +448,7 @@
 </header>
 <section id="dashboard" hidden>
   <h2 class="section-title">Inside SpinWave</h2>
+  <p class="fine" style="text-align:center;">SpinWave does not accept submissions. Drafts are submitted in ThinkTank OS — this page is for viewing your pipeline, your verdicts, your verified wallet, and your certificates.</p>
   <div class="card">
     <p class="eyebrow">Learn &middot; the loop</p>
     <p class="fine">Scholars upload a manuscript or dataset freed from paywalls, and are recognized in STANZA - 25,000 for an accepted manuscript, 40,000 for a dataset, 55,000 for a dataset with a worked example. The SpinWave databases exist to disseminate that knowledge to the people who need it most. STANZA is not reserved for the Elite; it is reserved for the most intelligent.</p>
@@ -509,15 +510,15 @@
     <form id="pipeline-form" hidden>
       <p class="fine">Record a pipeline step (operators only — the server never signs or moves STANZA):</p>
       <p><label class="fine">Work <select id="pipeline-work" aria-label="Work"></select></label></p>
-      <p><label class="fine">Action <select id="pipeline-action" aria-label="Pipeline action"><option value="propose_payment">Propose payment</option><option value="confirm_payment">Confirm payment (Safe-signed tx)</option><option value="record_upload">Record upload</option><option value="request_anchor">Request anchor (Pearls)</option><option value="confirm_anchor">Confirm anchor (12+ confirmations)</option></select></label></p>
+      <p><label class="fine">Action <select id="pipeline-action" aria-label="Pipeline action"><option value="propose_payment">Propose payment</option><option value="confirm_payment">Confirm payment (Safe-signed tx)</option><option value="record_upload">Transfer TTOS draft → SpinWave record</option><option value="request_anchor">Request anchor (Pearls)</option><option value="confirm_anchor">Confirm anchor (12+ confirmations)</option></select></label></p>
       <p><label class="fine">Transaction hash (confirm steps)<br><input id="pipeline-tx" type="text" style="width:100%;padding:.5rem;" aria-label="Transaction hash"></label></p>
-      <p><label class="fine">Document fingerprint (upload)<br><input id="pipeline-fingerprint" type="text" style="width:100%;padding:.5rem;" aria-label="Document fingerprint"></label></p>
-      <p><label class="fine">Storage pointer (upload)<br><input id="pipeline-pointer" type="text" style="width:100%;padding:.5rem;" aria-label="Storage pointer"></label></p>
+      <p><label class="fine">Document fingerprint (transfer)<br><input id="pipeline-fingerprint" type="text" style="width:100%;padding:.5rem;" aria-label="Document fingerprint"></label></p>
+      <p><label class="fine">Storage pointer (transfer)<br><input id="pipeline-pointer" type="text" style="width:100%;padding:.5rem;" aria-label="Storage pointer"></label></p>
       <p><label class="fine">Anchor request ID (request anchor)<br><input id="pipeline-request" type="text" style="width:100%;padding:.5rem;" aria-label="Anchor request ID"></label></p>
       <p><label class="fine">Confirmations (confirm anchor)<br><input id="pipeline-confirmations" type="number" min="12" value="12" style="padding:.5rem;" aria-label="Confirmations"></label></p>
       <p><button class="btn" type="button" id="pipeline-submit">Record step</button></p>
     </form>
-    <p class="fine">Order is enforced: PAY verdict → payment proposed → payment confirmed on Base → upload recorded → anchor requested → anchor confirmed (12+) → record created and work certified. A failed or missing Base transaction advances nothing.</p>
+    <p class="fine">Order is enforced: PAY verdict → payment proposed → payment confirmed on Base → validated TTOS draft transferred to SpinWave → anchor requested → anchor confirmed (12+) → record created and work certified. A failed or missing Base transaction advances nothing. This transfer is an operator step, not a submission — scholars submit in ThinkTank OS only.</p>
     <p class="fine" id="pipeline-note" role="status" aria-live="polite"></p>
   </div>
 </section>
@@ -1142,7 +1143,7 @@ var FOLLOW_URLS = {
     var url = isHash ? "/api/verify?hash=" + encodeURIComponent(q) : "/api/verify?id=" + encodeURIComponent(q);
     fetch(url).then(function(r){ return r.json(); }).then(function(d){
       if (d.status === "verified") {
-        out.innerHTML = "VERIFIED — " + esc(d.record.title) + ". Anchor: <a href=\"" + esc(d.basescan_url) + "\">" + esc(d.record.anchor_tx) + "</a>. Record: <a href=\"" + esc(d.record.record_url) + "\">" + esc(d.record.id) + "</a>.";
+        out.innerHTML = "VERIFIED — " + esc(d.record.title) + ". Anchor: <a href=\"" + esc(d.basescan_url) + "\">" + esc(d.record.anchor_tx) + "</a> (" + esc(d.record.anchor_confirmations) + " confirmations, required: 12). Fingerprint: " + esc(d.record.document_fingerprint || "—") + ". Record: <a href=\"" + esc(d.record.record_url) + "\">" + esc(d.record.id) + "</a>. Certificate: <a href=\"/certificate?id=" + encodeURIComponent(d.record.certificate_id || "") + "\">" + esc(d.record.certificate_id || "") + "</a>.";
       } else if (d.status === "invalid") {
         out.textContent = "INVALID — " + (d.message || "") + (d.failed_check ? " (failed check: " + d.failed_check + ")" : "");
       } else if (d.status === "not_certified") {

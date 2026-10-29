@@ -19,9 +19,12 @@
  *   signs (Human decides), then checks that hash on Base.
  * - create a record, anchor, or certificate before its stage gates
  *   pass: PAY verdict -> proposal -> confirmed payment (receipt
- *   success on Base) -> upload recorded -> anchor requested ->
- *   anchor confirmed (>= 12 confirmations, receipt success) ->
- *   record created + work certified.
+ *   success on Base) -> validated TTOS draft transferred to the
+ *   SpinWave database (the 'record_upload' action is this operator
+ *   transfer, NOT a scholar upload — SpinWave accepts no direct
+ *   submissions; scholars submit in ThinkTank OS only) ->
+ *   anchor requested -> anchor confirmed (>= 12 confirmations,
+ *   receipt success) -> record created + work certified.
  * - pay an unverified wallet, a held co-author share, or an amount
  *   other than the schedule for the work type.
  *
