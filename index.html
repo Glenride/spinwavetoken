@@ -78,6 +78,14 @@
   .nav-drop .drop-menu a:hover{color:var(--gold);background:rgba(168,137,74,.14);}
   .nav-drop .drop-menu a.drop-home{border-bottom:1px solid rgba(168,137,74,.35);margin-bottom:.35rem;padding-bottom:.7rem;font-weight:700;}
   @media(max-width:760px){.nav-links{display:none;}}
+  .nav-toggle{display:none;}
+  @media(max-width:760px){
+    .nav-toggle{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);background:none;border:1px solid var(--gold);padding:.4rem .9rem;cursor:pointer;flex:none;}
+    .nav-links.open{display:flex;flex-direction:column;align-items:flex-start;gap:.9rem;position:absolute;top:100%;left:0;right:0;background:rgba(237,228,208,.99);border-bottom:3px double var(--gold);padding:1rem clamp(1.25rem,5vw,2.5rem);z-index:50;}
+    .nav-links.open .nav-drop .drop-menu{display:block;position:static;min-width:0;box-shadow:none;border:0;padding:0;}
+    .nav-links.open .nav-drop .drop-menu::before{display:none;}
+    .nav-links.open .nav-drop .drop-menu a{display:block;padding:.35rem 0;}
+  }
   @media(max-width:560px){.card{padding:1.75rem 1.25rem}}
   @media(max-width:760px){
     .hero{display:block;min-height:0;background:none;border-bottom:3px double var(--gold);}
@@ -371,7 +379,8 @@
     <span class="brand-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></span>
     <span class="brand-word">SpinWave</span>
   </a>
-  <nav class="nav-links" aria-label="Primary">
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+  <nav class="nav-links" id="nav-links" aria-label="Primary">
     <a href="#maze">The maze</a>
     <a href="#timeline">Timeline</a>
     <a href="#reynard">Reynard</a>
@@ -937,6 +946,19 @@ var FOLLOW_URLS = {
   fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if (d && d.email && dash) { dash.hidden = false; if (linkBtn) linkBtn.hidden = false; load(); }
   }).catch(function(){});
+})();
+</script>
+<script>
+/* ===== Mobile nav toggle (2026-10-28): links hide under 760px, so Menu opens them ===== */
+(function(){
+  "use strict";
+  var t = document.getElementById("nav-toggle");
+  var l = document.getElementById("nav-links");
+  if (t && l) t.addEventListener("click", function(){
+    var open = l.classList.toggle("open");
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+    t.textContent = open ? "Close" : "Menu";
+  });
 })();
 </script>
 </body>
