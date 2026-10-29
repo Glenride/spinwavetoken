@@ -324,6 +324,17 @@
 
   /* ---------- slickness kit (no backend): motion, status, wallet ---------- */
   [hidden]{display:none !important;}
+  /* ---------- logged-in state (2026-10-29): landing page content is removed
+     for signed-in visitors. The public landing page is untouched for signed-out
+     visitors; this only applies once /api/me confirms a session, via the
+     body.signed-in class set by the script at the end of the page. The
+     dashboard (#dashboard) and the public verifier (#verify) stay visible. */
+  body.signed-in .hero,
+  body.signed-in .manifesto,
+  body.signed-in .ticker,
+  body.signed-in main.wrap,
+  body.signed-in .site-footer,
+  body.signed-in .nav-links > a[href^="#"]{display:none !important;}
   .hero-inner > *{opacity:0;transform:translateY(22px);}
   body.boot .hero-inner > *{animation:riseIn .9s cubic-bezier(.2,.7,.2,1) forwards;}
   body.boot .hero-inner > *:nth-child(1){animation-delay:.05s}
@@ -1229,6 +1240,22 @@ var FOLLOW_URLS = {
       sio.observe(grid);
     }
   }
+})();
+</script>
+<script>
+/* ===== Logged-in state hides landing page content (2026-10-29) =====
+   Signed-in visitors see only the dashboard (#dashboard) and the verifier
+   (#verify). The landing hero, manifesto, ticker, main sections, footer, and
+   landing-anchor nav links are hidden by body.signed-in CSS above.
+   Signed-out visitors are unaffected: no class is added, so the full public
+   landing page renders as before. A brief flash of landing content before
+   /api/me answers is inherent to a static page (no server-side render) and
+   is not a leak — the landing content is public anyway. */
+(function(){
+  "use strict";
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (d && d.email) document.body.classList.add("signed-in");
+  }).catch(function(){});
 })();
 </script>
 </body>
