@@ -415,6 +415,29 @@
   <div class="fleuron" aria-hidden="true"><span>❦</span></div>
 
   <!-- ============ THE MAZE ============ -->
+<section id="dashboard" hidden>
+  <h2 class="section-title">Inside SpinWave</h2>
+  <div class="card">
+    <p class="eyebrow">Learn &middot; the loop</p>
+    <p class="fine">Scholars upload a manuscript or dataset freed from paywalls, and are recognized in STANZA - 25,000 for an accepted manuscript, 40,000 for a dataset, 55,000 for a dataset with a worked example. The SpinWave databases exist to disseminate that knowledge to the people who need it most. STANZA is not reserved for the Elite; it is reserved for the most intelligent.</p>
+    <p class="fine">Token: live on Base. Trading: not yet - pool deployed, no trades, no price. Scholar recognition: locked until Phase 1. Reader licensing: locked until Phase 2.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Join &middot; the waitlist</p>
+    <p class="fine">Pick a track. One tap - you are already signed in.</p>
+    <button class="btn" type="button" id="join-scholar">Join as a scholar</button>
+    <button class="btn" type="button" id="join-supporter">Join as a supporter</button>
+    <p class="fine" id="join-note" role="status" aria-live="polite"></p>
+  </div>
+  <div class="card">
+    <p class="eyebrow">Track &middot; your place</p>
+    <p class="fine" id="track-line">Not on the waitlist yet - pick a track above.</p>
+    <p class="fine" id="track-wallet" hidden></p>
+    <button class="btn" type="button" id="link-wallet" hidden>Link this wallet</button>
+    <p class="fine" id="wallet-note" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
   <section id="maze">
     <h2 class="section-title">The maze</h2>
     <figure class="painting">
@@ -642,15 +665,18 @@ document.getElementById("notify-form").addEventListener("submit", async function
   var note = document.getElementById("form-note");
   var email = document.getElementById("notify-email").value.trim();
 
-  if (!email) {
-    note.textContent = "Please enter an email address.";
-    return;
-  }
 
-  if (!FORM_ENDPOINT) {
-    note.textContent = "The notification list isn\u2019t connected yet \u2014 check back soon.";
-    return;
-  }
+  // The waitlist lives behind sign-in now: signed-in visitors join with one
+  // tap (supporter track by default - switch tracks in the dashboard above).
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (d && d.email) {
+      return fetch("/api/waitlist", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ track: "supporter" }) }).then(function(res){
+        note.textContent = res.ok ? "You are on the waitlist (supporter track) - switch tracks in your dashboard above." : "Something went wrong - please try again later.";
+      }).catch(function(){ note.textContent = "Something went wrong - please try again later."; });
+    }
+    note.innerHTML = 'Sign in to join the waitlist - <a href="/auth/login">Sign in</a>.';
+  }).catch(function(){ note.textContent = "Something went wrong - please try again later."; });
+  return;
 
   try {
     var res = await fetch(FORM_ENDPOINT, {
@@ -846,6 +872,70 @@ var FOLLOW_URLS = {
       login.hidden = true;
       signed.hidden = false;
     }
+  }).catch(function(){});
+})();
+</script>
+<script>
+/* ===== SpinWave dashboard (logged-in state, live 2026-10-28) ===== */
+(function(){
+  "use strict";
+  var dash = document.getElementById("dashboard");
+  var joinNote = document.getElementById("join-note");
+  var trackLine = document.getElementById("track-line");
+  var trackWallet = document.getElementById("track-wallet");
+  var linkBtn = document.getElementById("link-wallet");
+  var walletNote = document.getElementById("wallet-note");
+  function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
+  function render(st){
+    if (!st.joined) {
+      trackLine.textContent = "Not on the waitlist yet - pick a track above.";
+      trackWallet.hidden = true;
+      return;
+    }
+    trackLine.textContent = "You are #" + st.position + " in line on the " + st.track + " track.";
+    if (st.wallet) { trackWallet.textContent = "Linked wallet: " + short(st.wallet); trackWallet.hidden = false; }
+    else { trackWallet.hidden = true; }
+  }
+  function load(){
+    fetch("/api/waitlist").then(function(r){ return r.ok ? r.json() : null; }).then(function(st){
+      if (st) render(st);
+    }).catch(function(){});
+  }
+  function join(track){
+    fetch("/api/waitlist", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ track: track }) })
+      .then(function(r){ return r.ok ? r.json() : null; }).then(function(st){
+        if (st) { render(st); joinNote.textContent = "You are on the " + st.track + " track - switch anytime."; }
+        else { joinNote.textContent = "Something went wrong - please try again later."; }
+      }).catch(function(){ joinNote.textContent = "Something went wrong - please try again later."; });
+  }
+  var js = document.getElementById("join-scholar");
+  var jp = document.getElementById("join-supporter");
+  if (js) js.addEventListener("click", function(){ join("scholar"); });
+  if (jp) jp.addEventListener("click", function(){ join("supporter"); });
+  if (linkBtn) linkBtn.addEventListener("click", function(){
+    var eth = window.ethereum;
+    if (!eth) { walletNote.textContent = "No wallet found - open this page in your wallet's dApp browser and connect from there."; return; }
+    eth.request({ method: "eth_requestAccounts" }).then(function(accounts){
+      var addr = accounts[0];
+      return eth.request({ method: "eth_chainId" }).then(function(chainId){
+        if (chainId !== "0x2105") {
+          return eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: "0x2105" }] }).catch(function(){ throw new Error("switch"); });
+        }
+      }).then(function(){
+        return fetch("/api/waitlist", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ wallet: addr }) });
+      }).then(function(r){
+        if (r.status === 409) { walletNote.textContent = "Join the waitlist first, then link a wallet."; return null; }
+        if (!r.ok) { walletNote.textContent = "Something went wrong - please try again later."; return null; }
+        return r.json();
+      }).then(function(st){
+        if (st) { render(st); walletNote.textContent = "Wallet linked."; }
+      });
+    }).catch(function(err){
+      walletNote.textContent = (err && err.message === "switch") ? "Please switch your wallet to the Base network." : "Connection declined - no harm done.";
+    });
+  });
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (d && d.email && dash) { dash.hidden = false; if (linkBtn) linkBtn.hidden = false; load(); }
   }).catch(function(){});
 })();
 </script>

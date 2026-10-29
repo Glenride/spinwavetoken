@@ -1,8 +1,9 @@
 /**
  * GET /auth/callback — spinwave sign-in return (live 2026-10-28, WorkOS).
- * Validates the state, trades the code for the visitor's identity, checks
- * the owner list, and sets the spinwave session cookie. Failures land on
- * the home page with #auth_error=<code> instead of erroring.
+ * Validates the state, trades the code for the visitor's identity, and
+ * sets the spinwave session cookie. Open to any visitor (no owner list —
+ * SpinWave's scholar track is open to anyone). Failures land on the home
+ * page with #auth_error=<code> instead of erroring.
  */
 
 const enc = new TextEncoder();
@@ -80,11 +81,8 @@ export async function onRequestGet({ request, env }) {
   }
   const email = ((data && data.user && data.user.email) || '').toLowerCase();
   if (!email) return fail('workos_rejected');
-  const owners = (env.WORKOS_OWNER_EMAILS || 'dvaughn@dvaughnhouse.com,dvaughnhouse@gmail.com')
-    .split(',')
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean);
-  if (!owners.includes(email)) return fail('not_owner');
+  // Open sign-in: any WorkOS identity gets a session (no owner list).
+  // The waitlist and dashboard are for anyone; the gate is "signed in".
   const expiry = Math.floor(Date.now() / 1000) + 2592000;
   const sig = await hmacHex(env.WORKOS_API_KEY, `${email}.${expiry}`);
   const session = b64urlEncode(`${email}.${expiry}.${sig}`);
