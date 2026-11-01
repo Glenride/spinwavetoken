@@ -1,6 +1,6 @@
 # SpinWave — Teaser Site
 
-Prelaunch teaser site for **$SPIN**, the utility token of the Glenride scholarly manuscript & data repository.
+SpinWave site — the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or attested certificates.
 
 - **Live:** https://spinwave.pages.dev
 - **Theme:** "Reynard" — Renaissance illuminated-manuscript style (vellum, umber, oxblood, tarnished gold)
