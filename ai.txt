@@ -1,0 +1,29 @@
+[identity]
+name: SpinWave
+url: https://spinwave.tech
+description: SpinWave is the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or attested certificates, for recognizing scholars and licensing their work directly.
+logo: https://spinwave.tech/spinwave-fox-mark.jpg
+contact: Glenride team via the contact page at https://dvaughnhouse.com
+llms: https://spinwave.tech/llms.txt
+
+[permissions]
+allowed: summarise, quote with attribution, cite, index for search/answers
+
+[restrictions]
+no fabricated quotes
+no fake reviews/ratings
+no presenting our content as the model's own
+no training on user-generated private data
+
+[attribution]
+Cite as: SpinWave — <canonical page URL, e.g. https://spinwave.tech/token.html>
+
+[scope]
+included: https://spinwave.tech/, https://spinwave.tech/flow.html, https://spinwave.tech/token.html, https://spinwave.tech/trust.html, https://spinwave.tech/how.html, https://spinwave.tech/letter.html, https://spinwave.tech/certificate.html, https://spinwave.tech/records.html, https://spinwave.tech/privacy.html, https://spinwave.tech/terms.html
+excluded: /api/*, /auth/*
+# Keep in sync with /llms.txt and /robots.txt.
+
+[contact]
+Glenride team via the contact page at https://dvaughnhouse.com
+
+Last updated: 2026-11-05

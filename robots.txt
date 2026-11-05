@@ -1,7 +1,18 @@
+# AI answer engines may read and cite this site's public pages.
+# Training crawlers: not newly allowed or blocked here — they were already
+# covered by the pre-existing "User-agent: *" Allow: / rule. Blocking them
+# needs an explicit decision; see the implementation summary.
+# Keep in sync with /llms.txt and /ai.txt.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
 User-agent: meta-webindexer
-Allow: /
-
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /auth/
 
 Sitemap: https://spinwave.tech/sitemap.xml

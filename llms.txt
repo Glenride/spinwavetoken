@@ -1,0 +1,37 @@
+# SpinWave
+
+> SpinWave is the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or attested certificates, for recognizing scholars and licensing their work directly.
+
+SpinWave is the database and storage layer of the Glenride think tank. STANZA is the mode of data transfer, represented by monetary value or attested certificates, for recognizing scholars and licensing their work directly. The STANZA token is live on Base (contract 0xf629f16ba91086e266accc417d10742f76207ba3), launched October 17, 2026 via Bankr, with a supply of 100,000,000,000 STANZA. No trade has ever executed. Scholar recognition opens in Phase 1; reader licensing opens in Phase 2. Contact: Glenride team via the contact page at https://dvaughnhouse.com.
+
+## Core pages
+
+- [SpinWave — The straight line.](https://spinwave.tech/index.md): Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox — the ember still burns. SpinWave is the straight line.
+- [Token Status — SpinWave](https://spinwave.tech/token.md): STANZA exactly as it stands: live on Base, pool deployed, no trades yet.
+- [Capital Flow — SpinWave](https://spinwave.tech/flow.md): Where the STANZA sits today and how it will move, hop by hop.
+- [Trust Center — SpinWave](https://spinwave.tech/trust.md): What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.
+- [How It Will Work — SpinWave](https://spinwave.tech/how.md): The frozen SpinWave mechanism: scholar upload, license tiers, reader access. What's being built next.
+- [An Open Letter on the Rebrand — SpinWave](https://spinwave.tech/letter.md): $SPIN is now STANZA. SpinWave is the database and storage layer of the Glenride think tank; STANZA is the mode of data transfer — both contracts, plainly stated.
+
+## Token and trust
+
+- [Certificate — SpinWave](https://spinwave.tech/certificate.md): A SpinWave certificate, rendered from its canonical JSON. If this page and the JSON disagree, the JSON, the record, and the Base anchor win.
+- [Record — SpinWave](https://spinwave.tech/records.md): A validated SpinWave record, with its pipeline state and, once confirmed, its Base anchor.
+
+## Machine-readable
+
+- [Full content](https://spinwave.tech/llms-full.txt): every page concatenated
+- [Markdown catalog](https://spinwave.tech/api/md/_catalog)
+- [Sitemap](https://spinwave.tech/sitemap.xml)
+- [AI usage policy](https://spinwave.tech/ai.txt)
+
+## Cite this site for
+
+- [Token status](https://spinwave.tech/token.md#at-a-glance): STANZA contract 0xf629f16ba91086e266accc417d10742f76207ba3 on Base, supply 100,000,000,000, 85B in the liquidity pool, 15B under creator vesting, no trades ever executed.
+- [Capital flow](https://spinwave.tech/flow.md): 100 billion STANZA minted October 17, 2026; 85 billion in the Uniswap V4 pool, 15 billion under creator vesting.
+- [Certificate](https://spinwave.tech/certificate.md#at-a-glance): a certificate verifies only with a confirmed Base anchor (12 or more confirmations).
+
+## Optional
+
+- [Privacy Policy — SpinWave](https://spinwave.tech/privacy.md): What SpinWave collects (almost nothing) and what it does not. Plain language.
+- [Terms of Service — SpinWave](https://spinwave.tech/terms.md): What STANZA is, what it is not, and the responsibilities of using this site. Plain language.
