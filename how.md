@@ -3,7 +3,7 @@
 > The frozen SpinWave mechanism: scholar upload, license tiers, reader access. What's being built next.
 
 Canonical: https://spinwave.tech/how.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 Frozen spec · Not live yet
 ## HOW IT WILL WORK

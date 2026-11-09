@@ -13,7 +13,7 @@ Generated: 2026-11-09
 > Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox — the ember still burns. SpinWave is the straight line.
 
 Canonical: https://spinwave.tech/
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 The Tale of Reynard
 ## The straight line.
@@ -93,7 +93,7 @@ Ideas set free.
 > STANZA exactly as it stands: live on Base, pool deployed, no trades yet.
 
 Canonical: https://spinwave.tech/token.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 ## At a glance
 
@@ -181,7 +181,7 @@ Loads the STANZA/ETH swap on Base with the verified contract prefilled. Nothing 
 > Where the STANZA sits today and how it will move, hop by hop.
 
 Canonical: https://spinwave.tech/flow.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 Live · On-chain
 ## CAPITAL FLOW
@@ -240,7 +240,7 @@ The on-chain figures above are read from Base. The planned flows are not live �
 > What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.
 
 Canonical: https://spinwave.tech/trust.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 Published: 2026 · Updated: October 19, 2026
 ## TRUST CENTER
@@ -301,7 +301,7 @@ Said plainly, because the fox respects a reader who reads:
 > The frozen SpinWave mechanism: scholar upload, license tiers, reader access. What's being built next.
 
 Canonical: https://spinwave.tech/how.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 Frozen spec · Not live yet
 ## HOW IT WILL WORK
@@ -374,7 +374,7 @@ We’re building it in the open, and we’re telling you exactly where it stands
 > $SPIN is now STANZA. SpinWave is the database and storage layer of the Glenride think tank; STANZA is the mode of data transfer — both contracts, plainly stated.
 
 Canonical: https://spinwave.tech/letter.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 An open letter · October 18, 2026
 ## $SPIN is now STANZA.
@@ -476,7 +476,7 @@ A record is certified only when its anchor has confirmed on Base. An anchor show
 > What SpinWave collects (almost nothing) and what it does not. Plain language.
 
 Canonical: https://spinwave.tech/privacy.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 ## PRIVACY POLICY
 No accounts, no trackers
@@ -527,7 +527,7 @@ Last updated: October 19, 2026.
 > What STANZA is, what it is not, and the responsibilities of using this site. Plain language.
 
 Canonical: https://spinwave.tech/terms.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 ## TERMS OF SERVICE
 Read it in five minutes

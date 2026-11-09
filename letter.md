@@ -3,7 +3,7 @@
 > $SPIN is now STANZA. SpinWave is the database and storage layer of the Glenride think tank; STANZA is the mode of data transfer — both contracts, plainly stated.
 
 Canonical: https://spinwave.tech/letter.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 An open letter · October 18, 2026
 ## $SPIN is now STANZA.

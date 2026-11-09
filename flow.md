@@ -3,7 +3,7 @@
 > Where the STANZA sits today and how it will move, hop by hop.
 
 Canonical: https://spinwave.tech/flow.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 Live · On-chain
 ## CAPITAL FLOW

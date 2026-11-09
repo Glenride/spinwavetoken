@@ -3,7 +3,7 @@
 > Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox — the ember still burns. SpinWave is the straight line.
 
 Canonical: https://spinwave.tech/
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 The Tale of Reynard
 ## The straight line.

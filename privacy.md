@@ -3,7 +3,7 @@
 > What SpinWave collects (almost nothing) and what it does not. Plain language.
 
 Canonical: https://spinwave.tech/privacy.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 ## PRIVACY POLICY
 No accounts, no trackers

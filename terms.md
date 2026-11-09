@@ -3,7 +3,7 @@
 > What STANZA is, what it is not, and the responsibilities of using this site. Plain language.
 
 Canonical: https://spinwave.tech/terms.html
-Last updated: 2026-11-05
+Last updated: 2026-11-09
 
 ## TERMS OF SERVICE
 Read it in five minutes
