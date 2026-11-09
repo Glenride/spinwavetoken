@@ -89,6 +89,33 @@
   .note strong{color:var(--umber);}
   .btn{display:inline-block;margin-top:.8rem;padding:.6rem 1.4rem;background:var(--umber);color:var(--vellum);text-decoration:none;letter-spacing:.1em;font-size:.95rem;border:2px solid var(--umber);}
   .btn:hover{background:var(--oxblood);border-color:var(--oxblood);}
+
+  .painting{
+    margin:0 0 1.75rem;border:3px double var(--gold);
+    background:var(--parchment);padding:.6rem;
+    box-shadow:0 6px 20px rgba(46,36,25,.14);
+  }
+  .painting img{display:block;width:100%;height:auto;}
+  .painting.portrait{max-width:430px;margin-left:auto;margin-right:auto;}
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.25rem;}
+  .stat{background:var(--parchment);border:3px double var(--gold);padding:1.4rem 1rem;text-align:center;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .stat-num{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2.05rem;color:var(--oxblood);line-height:1.1;margin-bottom:.45rem;}
+  .stat-label{font-size:.95rem;color:var(--sepia);line-height:1.5;}
+  .fine{text-align:center;color:var(--sepia);font-style:italic;}
+  .phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.25rem;}
+  .phase{background:var(--parchment);border:3px double var(--gold);padding:1.4rem 1.2rem;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .phase-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.16em;font-weight:700;font-size:.92rem;color:var(--vellum);background:var(--oxblood);padding:.32rem .95rem;margin-bottom:.75rem;}
+  .phase p{color:var(--umber);}
+  .fleuron{display:flex;align-items:center;gap:1.1rem;margin:clamp(3rem,8vw,4.5rem) auto;color:var(--oxblood);}
+  .fleuron::before,.fleuron::after{content:"";flex:1;border-top:3px double var(--gold);}
+  .fleuron span{font-size:1.6rem;line-height:1;}
+  .section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.32em;text-indent:.32em;
+    color:var(--oxblood);font-weight:600;
+    font-size:clamp(1.25rem,3.4vw,1.6rem);
+    text-align:center;margin-bottom:1.5rem;
+  }
   /* ---------- footer ---------- */
   .site-footer{
     margin-top:clamp(4rem,10vw,6rem);
@@ -199,6 +226,37 @@
     <p><strong>Operated by Glenride.</strong> Glenride holds the manuscripts and runs the platform day to day. Changes to this mechanism go through consensus of the larger Glenride body — and the trust center stays the public record of what is live versus planned.</p>
     <p style="margin-top:.6rem;">This spec was first drafted for $SPIN; the economy now runs on <strong>STANZA</strong> — the token going forward. The $SPIN deployment is superseded, kept on record at the <a href="token.html" style="color:var(--oxblood);">token page</a>.</p>
   </div>
+
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <section id="recognition">
+    <h2 class="section-title">Recognition</h2>
+    <figure class="painting portrait">
+      <img src="painting-recognition.jpg" alt="A scholar receiving an honored manuscript wreathed in laurel" width="1170" height="1755">
+    </figure>
+    <div class="stat-grid">
+      <div class="stat"><span class="stat-num">25,000</span><span class="stat-label">STANZA · accepted manuscript</span></div>
+      <div class="stat"><span class="stat-num">40,000</span><span class="stat-label">STANZA · accepted dataset</span></div>
+      <div class="stat"><span class="stat-num">55,000</span><span class="stat-label">STANZA · dataset with worked example</span></div>
+      <div class="stat"><span class="stat-num">60%</span><span class="stat-label">of every reader license — straight to the scholar</span></div>
+    </div>
+    <p class="fine">Peer reviewers are honored for their part. If you do the work, you get named for it. That’s the whole of it.</p>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
+
+  <section id="build">
+    <h2 class="section-title">The build</h2>
+    <div class="phase-grid">
+      <div class="phase"><span class="phase-badge">Phase 0 · Now</span><p>The foundation: the repository, the review standard, the token mechanics — built in the open. Today you can read the covenant, verify the contract, and see exactly where it stands.</p></div>
+      <div class="phase"><span class="phase-badge">Phase 1 · Next</span><p>For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 STANZA for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.</p></div>
+      <div class="phase"><span class="phase-badge">Phase 2 · Then</span><p>For readers: license what you need, directly — no subscriptions, no gates. 60% of every license goes straight to the scholar who wrote it.</p></div>
+    </div>
+    <p class="fine">We&rsquo;re building it in the open, and we&rsquo;re telling you exactly where it stands.</p>
+  </section>
+
+  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
 
   <a class="btn" href="trust.html">BACK TO THE TRUST CENTER →</a>
 </main>

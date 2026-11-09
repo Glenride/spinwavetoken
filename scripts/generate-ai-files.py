@@ -50,6 +50,16 @@ PAGES = [
         "related": ["token", "trust", "flow", "how"],
     },
     {
+        "slug": "tale", "html": "tale.html",
+        "desc": "The tale behind SpinWave: Archimedes, Reynard the fox, and "
+                "the straight line through the paywall maze.",
+        "ai_summary": "The tale behind SpinWave: Archimedes wrote that the "
+                "straight line is the least; Reynard the fox routed around "
+                "the courts of the powerful; SpinWave draws the straight "
+                "line a third time, through the paywall maze.",
+        "related": ["how", "trust", "token"],
+    },
+    {
         "slug": "flow", "html": "flow.html",
         "desc": "Where the 100 billion STANZA sits today and how it will "
                 "move, hop by hop.",
@@ -140,8 +150,16 @@ PAGES = [
                 "SpinWave makes no promises about its value.",
         "related": ["privacy", "trust"],
     },
+    {
+        "slug": "dashboard", "html": "dashboard.html",
+        "desc": "The SpinWave operator dashboard: your works, verdicts, "
+                "verified wallet, and certificates. Sign-in required.",
+        "ai_summary": "Inside SpinWave: the operator dashboard for signed-in "
+                "scholars and reviewers \u2014 works in the pipeline, verdicts in "
+                "writing, verified wallet, and certificates. Sign-in required.",
+        "related": ["trust", "token"],
+    },
 ]
-
 # Pages whose markdown is a template: the HTML page itself is rendered
 # client-side from /api/records or /api/certificate for a given ?id=.
 # Their .md files describe the page + the fields; the middleware renders
@@ -603,7 +621,7 @@ def main():
         print(f"wrote {p['slug']}.md ({len(p['md'])} chars)")
 
     by_slug = {p["slug"]: p for p in pages_meta}
-    core = ["index", "token", "flow", "trust", "how", "letter"]
+    core = ["index", "tale", "token", "flow", "trust", "how", "letter"]
     docs = ["certificate", "records"]
     legal = ["privacy", "terms"]
 
@@ -641,13 +659,15 @@ def main():
             "(12 or more confirmations).", "",
             "## Optional", ""]
     llms += [link_line(by_slug[s]) for s in legal]
+    llms += ["", "## Operator", "",
+             link_line(by_slug["dashboard"])]
     llms_txt = "\n".join(llms) + "\n"
     (ROOT / "llms.txt").write_text(llms_txt)
     print(f"wrote llms.txt ({len(llms_txt)} chars)")
 
     full_parts = [f"# {SITE_NAME} - full content", "", f"> {SITE_DESC}", "",
                   f"Generated: {TODAY}", ""]
-    for slug in core + docs + legal:
+    for slug in core + docs + legal + ["dashboard"]:
         p = by_slug[slug]
         full_parts += ["---", "",
                        f"<!-- source: {html_url(p)} -->", "",
@@ -679,8 +699,8 @@ no training on user-generated private data
 Cite as: SpinWave — <canonical page URL, e.g. {SITE_URL}/token.html>
 
 [scope]
-included: {", ".join(html_url(p) for p in pages_meta)}
-excluded: /api/*, /auth/*
+included: {", ".join(html_url(p) for p in pages_meta if p['slug'] != 'dashboard')}
+excluded: /api/*, /auth/*, /dashboard.html
 # Keep in sync with /llms.txt and /robots.txt.
 
 [contact]
@@ -691,9 +711,10 @@ Last updated: {TODAY}
     (ROOT / "ai.txt").write_text(ai)
     print(f"wrote ai.txt ({len(ai)} chars)")
 
-    prio = {"index": "1.0", "token": "0.8", "flow": "0.7", "trust": "0.7",
-            "how": "0.6", "letter": "0.6", "certificate": "0.5",
-            "records": "0.5", "privacy": "0.3", "terms": "0.3"}
+    prio = {"index": "1.0", "tale": "0.7", "token": "0.8", "flow": "0.7",
+            "trust": "0.7", "how": "0.6", "letter": "0.6", "certificate": "0.5",
+            "records": "0.5", "privacy": "0.3", "terms": "0.3",
+            "dashboard": "0.1"}
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for p in pages_meta:
@@ -720,6 +741,7 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /auth/
+Disallow: /dashboard.html
 
 Sitemap: https://spinwave.tech/sitemap.xml
 """

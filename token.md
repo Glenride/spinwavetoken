@@ -3,7 +3,7 @@
 > STANZA exactly as it stands: live on Base, pool deployed, no trades yet.
 
 Canonical: https://spinwave.tech/token.html
-Last updated: 2026-10-31
+Last updated: 2026-11-05
 
 ## At a glance
 

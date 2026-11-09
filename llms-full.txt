@@ -2,7 +2,7 @@
 
 > SpinWave is the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or attested certificates, for recognizing scholars and licensing their work directly.
 
-Generated: 2026-11-05
+Generated: 2026-11-09
 
 ---
 
@@ -13,18 +13,40 @@ Generated: 2026-11-05
 > Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox — the ember still burns. SpinWave is the straight line.
 
 Canonical: https://spinwave.tech/
-Last updated: 2026-10-31
+Last updated: 2026-11-05
 
 The Tale of Reynard
 ## The straight line.
-## What is STANZA?
 SpinWave is the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or by attested certificates, for recognizing scholars. Scholars earn it for manuscripts and datasets freed from paywalls; readers will use it to license that work directly.
 Run with Reynard
+## Recognition
+- **25,000 STANZA** — accepted manuscript
+- **40,000 STANZA** — accepted dataset
+- **55,000 STANZA** — dataset with a worked example
+- **60% of every reader license** — straight to the scholar
+It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed.
 ## Verify a certificate
 Anyone can check a SpinWave certificate here, with no sign-in. Enter a record ID, a certificate ID, or a Base transaction hash.
-It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed. SpinWave is the database and storage layer of the Glenride think tank. STANZA is the mode of data transfer, represented by monetary value or attested certificates. The name comes first; the money, if it ever comes, comes later.
-Centuries before the tale of Reynard, an ancient mathematician named Archimedes formally wrote down an axiom: of all lines which have the same extremities, the straight line is the least. Fast-forward to medieval times: a lion king summons a fox named Reynard. But instead of pleading, he decided to upset the court. Today, that ember still burns brightly.
-**Set knowledge free — then prove it.** Every work in the repository is Glenride-attested: verified authorship, verified claims, verified provenance. In a world of infinite plausible output, SpinWave is the place where knowledge is *proven*.
+[The tale](https://spinwave.tech/tale.html) · [How it will work](https://spinwave.tech/how.html) · [Trust Center](https://spinwave.tech/trust.html) · [Token status](https://spinwave.tech/token.html)
+
+## Related
+
+- [Token Status — SpinWave](https://spinwave.tech/token.html)
+- [Trust Center — SpinWave](https://spinwave.tech/trust.html)
+- [Capital Flow — SpinWave](https://spinwave.tech/flow.html)
+- [How It Will Work — SpinWave](https://spinwave.tech/how.html)
+
+---
+
+<!-- source: https://spinwave.tech/tale.html -->
+
+# The Tale of Reynard — SpinWave
+
+> The tale behind SpinWave: Archimedes, Reynard the fox, and the straight line through the paywall maze.
+
+Canonical: https://spinwave.tech/tale.html
+Last updated: 2026-11-09
+
 Published: 2026 · Updated: October 19, 2026
 ## The maze
 For decades, research has sat behind paywalls — written by scholars, locked by publishers. The tower built a maze and called it order. **STANZA is the straight line through it.**
@@ -55,39 +77,12 @@ IV
 No permission needed.
 V
 Ideas set free.
-## Recognition
-25,000
-STANZA · accepted manuscript
-40,000
-STANZA · accepted dataset
-55,000
-STANZA · dataset with worked example
-60%
-of every reader license — straight to the scholar
-Peer reviewers are honored for their part. If you do the work, you get named for it. That’s the whole of it.
-## The build
-Phase 0 · Now
-The foundation: the repository, the review standard, the token mechanics — built in the open. Today you can read the covenant, verify the contract, and see exactly where it stands.
-Phase 1 · Next
-For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 STANZA for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.
-Phase 2 · Then
-For readers: license what you need, directly — no subscriptions, no gates. 60% of every license goes straight to the scholar who wrote it.
-We’re building it in the open, and we’re telling you exactly where it stands.
-## Where things stand
-The STANZA contract — current
-0xf629f16ba91086e266accc417d10742f76207ba3
-Any other address is not STANZA. The token lives on Base — it has never lived anywhere else. The first $SPIN deployment (`0x4c972afefa2e4552307b87cf944e53136c361ba3`) is superseded — [full history on the token page →](https://spinwave.tech/token.html)
-- **Recognition is pending, not a balance.** The amounts above are reserved for scholars when Phase 1 opens. They cannot be withdrawn, transferred, or spent until then.
-- **The token is live but not trading.** STANZA exists on Base and the pool is deployed — but no market has formed yet. Until trading begins, there is no price.
-- **Nothing is promised but the work.** STANZA honors scholarship; it is not an investment, and we make no promises about its value.
-[Read the Trust Center →](https://spinwave.tech/trust.html) capital flow, token status, and risks, in plain language.
 
 ## Related
 
-- [Token Status — SpinWave](https://spinwave.tech/token.html)
-- [Trust Center — SpinWave](https://spinwave.tech/trust.html)
-- [Capital Flow — SpinWave](https://spinwave.tech/flow.html)
 - [How It Will Work — SpinWave](https://spinwave.tech/how.html)
+- [Trust Center — SpinWave](https://spinwave.tech/trust.html)
+- [Token Status — SpinWave](https://spinwave.tech/token.html)
 
 ---
 
@@ -98,7 +93,7 @@ Any other address is not STANZA. The token lives on Base — it has never lived 
 > STANZA exactly as it stands: live on Base, pool deployed, no trades yet.
 
 Canonical: https://spinwave.tech/token.html
-Last updated: 2026-10-31
+Last updated: 2026-11-05
 
 ## At a glance
 
@@ -186,7 +181,7 @@ Loads the STANZA/ETH swap on Base with the verified contract prefilled. Nothing 
 > Where the STANZA sits today and how it will move, hop by hop.
 
 Canonical: https://spinwave.tech/flow.html
-Last updated: 2026-10-21
+Last updated: 2026-11-05
 
 Live · On-chain
 ## CAPITAL FLOW
@@ -245,7 +240,7 @@ The on-chain figures above are read from Base. The planned flows are not live �
 > What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.
 
 Canonical: https://spinwave.tech/trust.html
-Last updated: 2026-10-21
+Last updated: 2026-11-05
 
 Published: 2026 · Updated: October 19, 2026
 ## TRUST CENTER
@@ -306,7 +301,7 @@ Said plainly, because the fox respects a reader who reads:
 > The frozen SpinWave mechanism: scholar upload, license tiers, reader access. What's being built next.
 
 Canonical: https://spinwave.tech/how.html
-Last updated: 2026-10-21
+Last updated: 2026-11-05
 
 Frozen spec · Not live yet
 ## HOW IT WILL WORK
@@ -344,6 +339,24 @@ Exclusive
 Negotiated — including embargo-style timed exclusives: one outlet, one window, terms visible to everyone. A priced product, not a backroom deal.
 **Operated by Glenride.** Glenride holds the manuscripts and runs the platform day to day. Changes to this mechanism go through consensus of the larger Glenride body — and the trust center stays the public record of what is live versus planned.
 This spec was first drafted for $SPIN; the economy now runs on **STANZA** — the token going forward. The $SPIN deployment is superseded, kept on record at the [token page](https://spinwave.tech/token.html).
+## Recognition
+25,000
+STANZA · accepted manuscript
+40,000
+STANZA · accepted dataset
+55,000
+STANZA · dataset with worked example
+60%
+of every reader license — straight to the scholar
+Peer reviewers are honored for their part. If you do the work, you get named for it. That’s the whole of it.
+## The build
+Phase 0 · Now
+The foundation: the repository, the review standard, the token mechanics — built in the open. Today you can read the covenant, verify the contract, and see exactly where it stands.
+Phase 1 · Next
+For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 STANZA for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.
+Phase 2 · Then
+For readers: license what you need, directly — no subscriptions, no gates. 60% of every license goes straight to the scholar who wrote it.
+We’re building it in the open, and we’re telling you exactly where it stands.
 [BACK TO THE TRUST CENTER →](https://spinwave.tech/trust.html)
 
 ## Related
@@ -361,7 +374,7 @@ This spec was first drafted for $SPIN; the economy now runs on **STANZA** — th
 > $SPIN is now STANZA. SpinWave is the database and storage layer of the Glenride think tank; STANZA is the mode of data transfer — both contracts, plainly stated.
 
 Canonical: https://spinwave.tech/letter.html
-Last updated: 2026-10-31
+Last updated: 2026-11-05
 
 An open letter · October 18, 2026
 ## $SPIN is now STANZA.
@@ -394,7 +407,7 @@ Nothing here is financial advice. We're early, and early is thin. But the name m
 > A SpinWave certificate, rendered from its canonical JSON. If this page and the JSON disagree, the JSON, the record, and the Base anchor win.
 
 Canonical: https://spinwave.tech/certificate.html
-Last updated: 2026-10-29
+Last updated: 2026-11-05
 
 ## At a glance
 
@@ -429,7 +442,7 @@ This page renders the canonical certificate JSON. If this page and the JSON disa
 > A validated SpinWave record, with its pipeline state and, once confirmed, its Base anchor.
 
 Canonical: https://spinwave.tech/records.html
-Last updated: 2026-10-29
+Last updated: 2026-11-05
 
 ## At a glance
 
@@ -463,7 +476,7 @@ A record is certified only when its anchor has confirmed on Base. An anchor show
 > What SpinWave collects (almost nothing) and what it does not. Plain language.
 
 Canonical: https://spinwave.tech/privacy.html
-Last updated: 2026-10-31
+Last updated: 2026-11-05
 
 ## PRIVACY POLICY
 No accounts, no trackers
@@ -514,7 +527,7 @@ Last updated: October 19, 2026.
 > What STANZA is, what it is not, and the responsibilities of using this site. Plain language.
 
 Canonical: https://spinwave.tech/terms.html
-Last updated: 2026-10-31
+Last updated: 2026-11-05
 
 ## TERMS OF SERVICE
 Read it in five minutes
@@ -559,3 +572,22 @@ Last updated: October 19, 2026.
 
 - [Privacy Policy — SpinWave](https://spinwave.tech/privacy.html)
 - [Trust Center — SpinWave](https://spinwave.tech/trust.html)
+
+---
+
+<!-- source: https://spinwave.tech/dashboard.html -->
+
+# Inside SpinWave
+
+> The SpinWave operator dashboard: your works, verdicts, verified wallet, and certificates. Sign-in required.
+
+Canonical: https://spinwave.tech/dashboard.html
+Last updated: 2026-11-09
+
+## Verify a certificate
+Anyone can check a SpinWave certificate here, with no sign-in. Enter a record ID, a certificate ID, or a Base transaction hash.
+
+## Related
+
+- [Trust Center — SpinWave](https://spinwave.tech/trust.html)
+- [Token Status — SpinWave](https://spinwave.tech/token.html)

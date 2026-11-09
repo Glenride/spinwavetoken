@@ -3,7 +3,7 @@
 > What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.
 
 Canonical: https://spinwave.tech/trust.html
-Last updated: 2026-10-21
+Last updated: 2026-11-05
 
 Published: 2026 · Updated: October 19, 2026
 ## TRUST CENTER

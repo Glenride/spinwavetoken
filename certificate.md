@@ -3,7 +3,7 @@
 > A SpinWave certificate, rendered from its canonical JSON. If this page and the JSON disagree, the JSON, the record, and the Base anchor win.
 
 Canonical: https://spinwave.tech/certificate.html
-Last updated: 2026-10-29
+Last updated: 2026-11-05
 
 ## At a glance
 

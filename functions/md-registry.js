@@ -11,7 +11,19 @@ export const REGISTRY = {
     "title": "SpinWave \u2014 The straight line.",
     "description": "Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox \u2014 the ember still burns. SpinWave is the straight line.",
     "ai_summary": "SpinWave is the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or attested certificates; the STANZA token is live on Base with 100 billion supply and no trades yet.",
-    "lastmod": "2026-10-31",
+    "lastmod": "2026-11-05",
+    "dynamic": false
+  },
+  "tale": {
+    "html": "tale.html",
+    "route": "/tale.html",
+    "clean_route": "/tale",
+    "md": "/tale.md",
+    "canonical": "https://spinwave.tech/tale.html",
+    "title": "The Tale of Reynard \u2014 SpinWave",
+    "description": "The tale behind SpinWave: Archimedes, Reynard the fox, and the straight line through the paywall maze.",
+    "ai_summary": "The tale behind SpinWave: Archimedes wrote that the straight line is the least; Reynard the fox routed around the courts of the powerful; SpinWave draws the straight line a third time, through the paywall maze.",
+    "lastmod": "2026-11-09",
     "dynamic": false
   },
   "flow": {
@@ -23,7 +35,7 @@ export const REGISTRY = {
     "title": "Capital Flow \u2014 SpinWave",
     "description": "Where the STANZA sits today and how it will move, hop by hop.",
     "ai_summary": "Capital flow for STANZA: 100 billion minted October 17, 2026; 85 billion in the Uniswap V4 pool paired with Wrapped TAO, 15 billion under creator vesting, and no trades since deployment. Scholar and reader flows are locked until Phases 1 and 2.",
-    "lastmod": "2026-10-21",
+    "lastmod": "2026-11-05",
     "dynamic": false
   },
   "token": {
@@ -35,7 +47,7 @@ export const REGISTRY = {
     "title": "Token Status \u2014 SpinWave",
     "description": "STANZA exactly as it stands: live on Base, pool deployed, no trades yet.",
     "ai_summary": "STANZA is live on Base at contract 0xf629f16ba91086e266accc417d10742f76207ba3, with 100 billion supply, 85 billion in the liquidity pool and 15 billion under creator vesting. No trade has ever executed, so there is no price.",
-    "lastmod": "2026-10-31",
+    "lastmod": "2026-11-05",
     "dynamic": false
   },
   "trust": {
@@ -47,7 +59,7 @@ export const REGISTRY = {
     "title": "Trust Center \u2014 SpinWave",
     "description": "What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.",
     "ai_summary": "The SpinWave trust center: what is live, what is not, and what a pending recognition actually is. Scholar recognition and reader licensing are locked until Phases 1 and 2; the STANZA token is live on Base with no trades yet.",
-    "lastmod": "2026-10-21",
+    "lastmod": "2026-11-05",
     "dynamic": false
   },
   "how": {
@@ -59,7 +71,7 @@ export const REGISTRY = {
     "title": "How It Will Work \u2014 SpinWave",
     "description": "The frozen SpinWave mechanism: scholar upload, license tiers, reader access. What's being built next.",
     "ai_summary": "How SpinWave will work: scholars upload manuscripts and datasets, recognition is recorded as pending STANZA, and readers will pay STANZA to license work directly. The mechanism is decided, not built.",
-    "lastmod": "2026-10-21",
+    "lastmod": "2026-11-05",
     "dynamic": false
   },
   "letter": {
@@ -71,7 +83,7 @@ export const REGISTRY = {
     "title": "An Open Letter on the Rebrand \u2014 SpinWave",
     "description": "$SPIN is now STANZA. SpinWave is the database and storage layer of the Glenride think tank; STANZA is the mode of data transfer \u2014 both contracts, plainly stated.",
     "ai_summary": "$SPIN is now STANZA. SpinWave is the database and storage layer of the Glenride think tank; STANZA is the mode of data transfer. The STANZA contract is 0xf629f16ba91086e266accc417d10742f76207ba3 on Base.",
-    "lastmod": "2026-10-31",
+    "lastmod": "2026-11-05",
     "dynamic": false
   },
   "certificate": {
@@ -83,7 +95,7 @@ export const REGISTRY = {
     "title": "Certificate \u2014 SpinWave",
     "description": "A SpinWave certificate, rendered from its canonical JSON. If this page and the JSON disagree, the JSON, the record, and the Base anchor win.",
     "ai_summary": "A SpinWave certificate, rendered from its canonical JSON. A certificate verifies only with a confirmed Base anchor (12 or more confirmations); if the page and the JSON disagree, the JSON, the record, and the anchor win.",
-    "lastmod": "2026-10-29",
+    "lastmod": "2026-11-05",
     "dynamic": true
   },
   "records": {
@@ -95,7 +107,7 @@ export const REGISTRY = {
     "title": "Record \u2014 SpinWave",
     "description": "A validated SpinWave record, with its pipeline state and, once confirmed, its Base anchor.",
     "ai_summary": "A validated SpinWave record, with its pipeline state and, once confirmed, its Base anchor. A record is certified only when its anchor has confirmed on Base.",
-    "lastmod": "2026-10-29",
+    "lastmod": "2026-11-05",
     "dynamic": true
   },
   "privacy": {
@@ -107,7 +119,7 @@ export const REGISTRY = {
     "title": "Privacy Policy \u2014 SpinWave",
     "description": "What SpinWave collects (almost nothing) and what it does not. Plain language.",
     "ai_summary": "SpinWave is a static website with no accounts, no sign-ups, no analytics, and no advertising trackers. It collects almost nothing.",
-    "lastmod": "2026-10-31",
+    "lastmod": "2026-11-05",
     "dynamic": false
   },
   "terms": {
@@ -119,7 +131,19 @@ export const REGISTRY = {
     "title": "Terms of Service \u2014 SpinWave",
     "description": "What STANZA is, what it is not, and the responsibilities of using this site. Plain language.",
     "ai_summary": "STANZA is a utility token for recognizing scholars and licensing their work. It is not an investment, and SpinWave makes no promises about its value.",
-    "lastmod": "2026-10-31",
+    "lastmod": "2026-11-05",
+    "dynamic": false
+  },
+  "dashboard": {
+    "html": "dashboard.html",
+    "route": "/dashboard.html",
+    "clean_route": "/dashboard",
+    "md": "/dashboard.md",
+    "canonical": "https://spinwave.tech/dashboard.html",
+    "title": "Inside SpinWave",
+    "description": "The SpinWave operator dashboard: your works, verdicts, verified wallet, and certificates. Sign-in required.",
+    "ai_summary": "Inside SpinWave: the operator dashboard for signed-in scholars and reviewers \u2014 works in the pipeline, verdicts in writing, verified wallet, and certificates. Sign-in required.",
+    "lastmod": "2026-11-09",
     "dynamic": false
   }
 };

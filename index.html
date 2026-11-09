@@ -499,30 +499,15 @@
   </a>
   <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
   <nav class="nav-links" id="nav-links" aria-label="Primary">
-    <a href="#maze">The maze</a>
-    <a href="#timeline">Timeline</a>
-    <a href="#reynard">Reynard</a>
-    <a href="#recognition">Recognition</a>
-    <div class="nav-drop">
-      <a href="trust.html" class="trust-link">Trust Center &#9662;</a>
-      <nav class="drop-menu" aria-label="Trust Center sections">
-        <a href="trust.html" class="drop-home">Trust Center</a>
-        <a href="how.html">How It Will Work</a>
-        <a href="flow.html">Capital Flow</a>
-        <a href="trust.html#pending">What Pending Means</a>
-        <a href="token.html">Token Status</a>
-        <a href="trust.html#risks">Risks</a>
-      </nav>
-    </div>
-    <a href="#dash-works" class="dash-nav">Works</a>
-    <a href="#dash-wallet" class="dash-nav">Wallet</a>
-    <a href="#dash-reasons" class="dash-nav">Verdicts</a>
-    <a href="#dash-review" class="dash-nav">Review</a>
-    <a href="#dash-pipeline" class="dash-nav">Pipeline</a>
+    <a href="tale.html">The tale</a>
+    <a href="how.html">How it works</a>
+    <a href="records.html">Records</a>
+    <a href="trust.html">Trust Center</a>
     <a href="/auth/login" id="authLogin">Sign in</a>
     <span id="authSigned" class="auth-signed" hidden>Signed in · <a href="/auth/logout">Sign out</a></span>
   </nav>
 </nav>
+
 <p id="authError" class="auth-error" hidden></p>
 <header class="hero" id="top">
   <canvas id="ember-canvas" aria-hidden="true"></canvas>
@@ -530,99 +515,19 @@
   <div class="hero-inner">
     <p class="eyebrow eyebrow-light">The Tale of Reynard</p>
     <h1>The straight line.</h1>
-    <h2 class="hero-q">What is STANZA?</h2>
     <p class="hero-a">SpinWave is the database and storage layer of the Glenride think tank. STANZA is its mode of data transfer, represented by monetary value or by attested certificates, for recognizing scholars. Scholars earn it for manuscripts and datasets freed from paywalls; readers will use it to license that work directly.</p>
     <a class="btn" href="#notify">Run with Reynard</a>
   </div>
 </header>
-<section id="dashboard" hidden>
-  <div class="dash-head">
-    <h2>Inside SpinWave</h2>
-    <p class="dash-lede">SpinWave does not accept submissions. Drafts are submitted in ThinkTank OS — this page is for viewing your pipeline, your verdicts, your verified wallet, and your certificates.</p>
-    <p class="dash-email" id="dash-email"></p>
-  </div>
-  <div class="dash-summary" role="status" aria-live="polite">
-    <span><span class="dash-label">Works</span> <span id="dash-sum-works">Loading…</span></span>
-    <span><span class="dash-label">Verdicts</span> <span id="dash-sum-verdicts">Loading…</span></span>
-    <span><span class="dash-label">Wallet</span> <span id="dash-sum-wallet">Checking…</span></span>
-  </div>
-  <div class="dash-layout">
-    <div class="dash-main">
-      <div class="dash-section" id="dash-works">
-        <h3>Your works</h3>
-        <p id="works-line">Loading your works…</p>
-        <ul class="dash-list" id="works-list"></ul>
-        <p class="dash-note">Works arrive here from the pipeline only. No work, payment, record, or certificate is created from this page. Drafts are submitted in ThinkTank OS.</p>
-      </div>
-      <div class="dash-section" id="dash-reasons">
-        <h3>Verdicts, in writing</h3>
-        <p id="reasons-line">Loading your verdicts…</p>
-        <ul class="dash-list" id="reasons-list"></ul>
-        <p class="dash-note">When a work is judged, its reasons appear here. A CANCEL names what failed and what to fix; a Human verifies the verdict if necessary, or if you object to it.</p>
-      </div>
-      <div class="dash-section" id="dash-review">
-        <h3>Review queue</h3>
-        <p id="review-line">Checking the reviewer roster…</p>
-        <ul class="dash-list" id="review-list"></ul>
-        <form id="review-form" hidden>
-          <p>Record a verdict (roster reviewers only — one verdict per work):</p>
-          <p><label>Work <select id="review-work" aria-label="Work to judge"></select></label></p>
-          <p><label>Verdict <select id="review-verdict" aria-label="Verdict"><option value="PAY">PAY</option><option value="CANCEL">CANCEL</option><option value="INCONCLUSIVE">INCONCLUSIVE</option></select></label></p>
-          <p><label>Reasons (required, in writing)<br><textarea id="review-reasons" rows="4" aria-label="Verdict reasons"></textarea></label></p>
-          <p>Check packet — every box must be answered, and conflict-free must be true:</p>
-          <p class="dash-checks"><label><input type="checkbox" id="check-original"> Original</label> <label><input type="checkbox" id="check-complete"> Complete</label> <label><input type="checkbox" id="check-declared"> Declared</label> <label><input type="checkbox" id="check-duplicate_checked"> Duplicate-checked</label> <label><input type="checkbox" id="check-conflict_free"> Conflict-free</label></p>
-          <p><button class="btn" type="button" id="review-submit">Record verdict</button></p>
-        </form>
-        <p class="dash-note">Reviewers are designated Glenride staff and scholars in good standing referred by designated staff. A verdict needs written reasons and a complete check packet. Inconclusive never pays, and a PAY verdict moves no money on its own — payment is proposed here, signed by a Human in the allocation Safe app, and only then recorded.</p>
-        <p id="review-note" role="status" aria-live="polite"></p>
-      </div>
-      <div class="dash-section" id="dash-pipeline">
-        <h3>Pipeline</h3>
-        <p id="pipeline-line">Checking operator access…</p>
-        <ul class="dash-list" id="pipeline-list"></ul>
-        <form id="pipeline-form" hidden>
-          <p>Record a pipeline step (operators only — the server never signs or moves STANZA):</p>
-          <p><label>Work <select id="pipeline-work" aria-label="Work"></select></label></p>
-          <p><label>Action <select id="pipeline-action" aria-label="Pipeline action"><option value="propose_payment">Propose payment</option><option value="confirm_payment">Confirm payment (Safe-signed tx)</option><option value="record_upload">Transfer TTOS draft → SpinWave record</option><option value="request_anchor">Request anchor (Pearls)</option><option value="confirm_anchor">Confirm anchor (12+ confirmations)</option></select></label></p>
-          <p><label>Transaction hash (confirm steps)<br><input id="pipeline-tx" type="text" aria-label="Transaction hash"></label></p>
-          <p><label>Document fingerprint (transfer)<br><input id="pipeline-fingerprint" type="text" aria-label="Document fingerprint"></label></p>
-          <p><label>Storage pointer (transfer)<br><input id="pipeline-pointer" type="text" aria-label="Storage pointer"></label></p>
-          <p><label>Anchor request ID (request anchor)<br><input id="pipeline-request" type="text" aria-label="Anchor request ID"></label></p>
-          <p><label>Confirmations (confirm anchor)<br><input id="pipeline-confirmations" type="number" min="12" value="12" aria-label="Confirmations"></label></p>
-          <p><button class="btn" type="button" id="pipeline-submit">Record step</button></p>
-        </form>
-        <p class="dash-note">Order is enforced: PAY verdict → payment proposed → payment confirmed on Base → validated TTOS draft transferred to SpinWave → anchor requested → anchor confirmed (12+) → record created and work certified. A failed or missing Base transaction advances nothing. This transfer is an operator step, not a submission — scholars submit in ThinkTank OS only.</p>
-        <p id="pipeline-note" role="status" aria-live="polite"></p>
-      </div>
-    </div>
-    <div class="dash-side">
-      <div class="dash-panel" id="dash-wallet">
-        <h3>Verified wallet</h3>
-        <p id="verified-wallet-line">Checking your verified wallet…</p>
-        <button class="btn" type="button" id="verify-wallet" hidden>Verify this wallet</button>
-        <p id="verified-wallet-note" role="status" aria-live="polite"></p>
-        <p class="dash-note">Only a signature-verified wallet is ever used for a payment. The waitlist wallet below is unverified and is not used for payment. Verifying now does not move funds.</p>
-      </div>
-      <div class="dash-panel" id="dash-track">
-        <h3>Waitlist</h3>
-        <p id="track-line">Not on the waitlist yet - pick a track below.</p>
-        <p id="track-wallet" hidden></p>
-        <button class="btn" type="button" id="link-wallet" hidden>Link this wallet</button>
-        <p id="wallet-note" role="status" aria-live="polite"></p>
-        <div class="dash-join" id="dash-join">
-          <p>Pick a track. One tap - you are already signed in.</p>
-          <button class="btn" type="button" id="join-scholar">Join as a scholar</button>
-          <button class="btn" type="button" id="join-supporter">Join as a supporter</button>
-          <p id="join-note" role="status" aria-live="polite"></p>
-        </div>
-      </div>
-      <div class="dash-panel" id="dash-learn">
-        <h3>How recognition works</h3>
-        <p>Scholars bring a manuscript or dataset freed from paywalls, and are recognized in STANZA — 25,000 for an accepted manuscript, 40,000 for a dataset, 55,000 for a dataset with a worked example. STANZA is not reserved for the Elite; it is reserved for the most intelligent.</p>
-        <p>Token: live on Base. Trading: not yet — pool deployed, no trades, no price. Reader licensing: locked until a later phase.</p>
-      </div>
-    </div>
-  </div>
+<section class="wrap" id="facts">
+  <h2 class="section-title">Recognition</h2>
+  <ul class="ticks">
+    <li><strong>25,000 STANZA</strong> — accepted manuscript</li>
+    <li><strong>40,000 STANZA</strong> — accepted dataset</li>
+    <li><strong>55,000 STANZA</strong> — dataset with a worked example</li>
+    <li><strong>60% of every reader license</strong> — straight to the scholar</li>
+  </ul>
+  <p class="fine" style="margin-top:1rem;">It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed.</p>
 </section>
 <section id="verify" class="wrap">
   <h2 class="section-title">Verify a certificate</h2>
@@ -630,191 +535,14 @@
   <p><input type="text" id="verify-input" placeholder="Record ID, certificate ID, or Base hash" style="width:min(34rem,90%);padding:.5rem;" aria-label="Record ID, certificate ID, or Base hash"> <button class="btn" type="button" id="verify-btn">Verify</button></p>
   <p class="fine" id="verify-result" role="status" aria-live="polite"></p>
 </section>
-<section class="manifesto">
-  <p>It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed. SpinWave is the database and storage layer of the Glenride think tank. STANZA is the mode of data transfer, represented by monetary value or attested certificates. The name comes first; the money, if it ever comes, comes later.</p>
-  <p>Centuries before the tale of Reynard, an ancient mathematician named Archimedes formally wrote down an axiom: of all lines which have the same extremities, the straight line is the least. Fast-forward to medieval times: a lion king summons a fox named Reynard. But instead of pleading, he decided to upset the court. Today, that ember still burns brightly.</p>
-  <p><strong>Set knowledge free &mdash; then prove it.</strong> Every work in the repository is Glenride-attested: verified authorship, verified claims, verified provenance. In a world of infinite plausible output, SpinWave is the place where knowledge is <em>proven</em>.</p>
+<section class="wrap" id="journey">
+  <p class="fine"><a href="tale.html" style="color:var(--oxblood);">The tale</a> &nbsp;·&nbsp; <a href="how.html" style="color:var(--oxblood);">How it will work</a> &nbsp;·&nbsp;  <a href="trust.html" style="color:var(--oxblood);">Trust Center</a> &nbsp;·&nbsp; <a href="token.html" style="color:var(--oxblood);">Token status</a></p>
 </section>
-<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker-track"></div></div>
-<main class="wrap">
-  <p class="fine" style="margin-top:1.15rem;">Published: 2026 &middot; Updated: October 19, 2026</p>
-
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ THE MAZE ============ -->
-
-  <section id="maze">
-    <h2 class="section-title">The maze</h2>
-    <figure class="painting">
-      <img src="painting-maze.jpg" alt="The maze — scholars wandering torch-lit stone corridors of locked gates" width="1170" height="786">
-    </figure>
-    <div class="card">
-      <p>For decades, research has sat behind paywalls — written by scholars, locked by publishers. The tower built a maze and called it order. <strong>STANZA is the straight line through it.</strong></p>
-    </div>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ THE TIMELINE ============ -->
-  <section id="timeline">
-    <h2 class="section-title">The timeline</h2>
-    <div class="card">
-      <div class="era">
-        <p class="era-date">225 BCE — The axiom</p>
-        <p>Archimedes formalizes what every road-builder already knew: of all lines which have the same extremities, the straight line is the least. Common sense, written down.</p>
-      </div>
-      <div class="era">
-        <p class="era-date">c. 1175 — The tale</p>
-        <p>Across Europe, ordinary people tell stories of Reynard the Fox — small against kings and courts, who never petitions the powerful and simply does what should be done: he routes around them. The tales are satire, and that is the politics — among the first stories common people used to laugh at power. They loved him because he was obviously right.</p>
-      </div>
-      <div class="era">
-        <p class="era-date">Today — The token</p>
-        <p>Glenride is a think tank in the traditional structure — manuscripts, peer review, rigor, scholars named for their work. But ideologically separate: no tower decides what gets read or who gets honored. Independence needs a mechanism, because recognition can't run on goodwill. <strong>STANZA is that mechanism</strong> — and it is a promise: that those who truly move the world with research will be honored for it. Not by the court. By the commons. The straight line, drawn a third time.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ WHO IS REYNARD? ============ -->
-  <section id="reynard">
-    <h2 class="section-title">Who is Reynard?</h2>
-    <figure class="painting">
-      <img src="painting-reynard-court.jpg" alt="Reynard the fox standing before the lion king's court" width="1170" height="659">
-    </figure>
-    <div class="card">
-      <p class="dropcap">In the medieval tales, Reynard was the fox who outwitted kings — summoned to the lion&rsquo;s court, condemned by wolves, hunted by bears, and he talked his way out every single time. Not with force. With wit. The powerful built their courts and wrote their rules. Reynard built his exits. Eight hundred years later, the court is publishers and the walls are paywalls. The fox is back.</p>
-      <figure class="figure-sketch">
-        <img src="spinwave-fox-mark.jpg" alt="Reynard the fox — the SpinWave mark" width="1170" height="1170">
-        <figcaption>The SpinWave mark</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ THE LINE ============ -->
-  <section>
-    <h2 class="section-title">The line</h2>
-    <figure class="painting">
-      <img src="painting-straight-line.jpg" alt="A hand drawing one straight ink line through a maze on vellum" width="1170" height="659">
-    </figure>
-    <div class="card">
-      <p>SpinWave is a scholarly manuscript and data repository built on one conviction: knowledge belongs to everyone.</p>
-      <ul class="ticks">
-        <li>Scholars bring manuscripts and datasets out of the maze.</li>
-        <li>Readers come to learn — no gates, no paywalls.</li>
-        <li>Every contribution recognized. Every scholar named.</li>
-        <li>STANZA is how the clever recognize their own.</li>
-      </ul>
-    </div>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ PILLARS ============ -->
-  <section id="pillars">
-    <h2 class="section-title">The creed</h2>
-    <div class="pillar-track">
-      <div class="pillar"><span class="pillar-num">I</span><p>Wit over walls.</p></div>
-      <div class="pillar"><span class="pillar-num">II</span><p>Knowledge belongs to everyone.</p></div>
-      <div class="pillar"><span class="pillar-num">III</span><p>Honor the scholars.</p></div>
-      <div class="pillar"><span class="pillar-num">IV</span><p>No permission needed.</p></div>
-      <div class="pillar"><span class="pillar-num">V</span><p>Ideas set free.</p></div>
-    </div>
-    <p class="swipe-hint">swipe &rarr;</p>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ RECOGNITION ============ -->
-  <section id="recognition">
-    <h2 class="section-title">Recognition</h2>
-    <figure class="painting portrait">
-      <img src="painting-recognition.jpg" alt="A scholar receiving an honored manuscript wreathed in laurel" width="1170" height="1755">
-    </figure>
-    <div class="stat-grid">
-      <div class="stat"><span class="stat-num">25,000</span><span class="stat-label">STANZA · accepted manuscript</span></div>
-      <div class="stat"><span class="stat-num">40,000</span><span class="stat-label">STANZA · accepted dataset</span></div>
-      <div class="stat"><span class="stat-num">55,000</span><span class="stat-label">STANZA · dataset with worked example</span></div>
-      <div class="stat"><span class="stat-num">60%</span><span class="stat-label">of every reader license — straight to the scholar</span></div>
-    </div>
-    <p class="fine">Peer reviewers are honored for their part. If you do the work, you get named for it. That’s the whole of it.</p>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ THE TIMELINE ============ -->
-  <section>
-    <h2 class="section-title">The build</h2>
-    <div class="phase-grid">
-      <div class="phase"><span class="phase-badge">Phase 0 · Now</span><p>The foundation: the repository, the review standard, the token mechanics — built in the open. Today you can read the covenant, verify the contract, and see exactly where it stands.</p></div>
-      <div class="phase"><span class="phase-badge">Phase 1 · Next</span><p>For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 STANZA for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.</p></div>
-      <div class="phase"><span class="phase-badge">Phase 2 · Then</span><p>For readers: license what you need, directly — no subscriptions, no gates. 60% of every license goes straight to the scholar who wrote it.</p></div>
-    </div>
-    <p class="fine">We&rsquo;re building it in the open, and we&rsquo;re telling you exactly where it stands.</p>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ STANDING ============ -->
-  <section id="standing">
-    <h2 class="section-title">Where things stand</h2>
-    <div class="card">
-      <div class="status-board" id="status-board"></div>
-      <div class="contract-callout">
-        <span style="font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.05em;font-weight:700;">The STANZA contract — current</span>
-        <code class="contract" id="spin-contract">0xf629f16ba91086e266accc417d10742f76207ba3</code>
-        <button class="copy-btn" id="copy-contract" type="button">Copy</button>
-      </div>
-      <p class="fine">Any other address is not STANZA. The token lives on Base — it has never lived anywhere else. The first $SPIN deployment (<code>0x4c972afefa2e4552307b87cf944e53136c361ba3</code>) is superseded — <a href="token.html" style="color:var(--oxblood);">full history on the token page →</a></p>
-      <ul class="plainly">
-        <li><strong>Recognition is pending, not a balance.</strong> The amounts above are reserved for scholars when Phase 1 opens. They cannot be withdrawn, transferred, or spent until then.</li>
-        <li><strong>The token is live but not trading.</strong> STANZA exists on Base and the pool is deployed — but no market has formed yet. Until trading begins, there is no price.</li>
-        <li><strong>Nothing is promised but the work.</strong> STANZA honors scholarship; it is not an investment, and we make no promises about its value.</li>
-      </ul>
-      <p class="fine" style="margin-top:1rem;"><a href="trust.html" style="color:var(--oxblood);">Read the Trust Center →</a> capital flow, token status, and risks, in plain language.</p>
-    </div>
-  </section>
-
-  <div class="fleuron" aria-hidden="true"><span>❦</span></div>
-
-  <!-- ============ QUEST ============ -->
-  <section id="notify">
-    <h2 class="section-title">Run with Reynard</h2>
-    <figure class="painting">
-      <img src="painting-fox-path.jpg" alt="The fox pausing on a moonlit path, looking back — follow me" width="1170" height="659">
-    </figure>
-    <div class="card follow-card">
-      <p class="fine" style="margin-bottom:1.2rem;">SpinWave is told in the open — follow along wherever you already are. Nothing to unlock, no errands to run.</p>
-      <div class="follow-rows">
-        <div class="follow-row">
-          <div class="follow-text">
-            <p class="quest-title">The tale, as told</p>
-            <p class="quest-desc">SpinWave on X — announcements and the argument, in the order they happened.</p>
-          </div>
-          <a class="quest-go" data-url="xProfile" href="#" target="_blank" rel="noopener">X &rarr;</a>
-        </div>
-        <div class="follow-row">
-          <div class="follow-text">
-            <p class="quest-title">The den</p>
-            <p class="quest-desc">The Telegram — the coordination room for the work.</p>
-          </div>
-          <a class="quest-go" data-url="telegram" href="#" target="_blank" rel="noopener">Telegram &rarr;</a>
-        </div>
-        <div class="follow-row">
-          <div class="follow-text">
-            <p class="quest-title">The record</p>
-            <p class="quest-desc">The timeline above — axiom, tale, token — the whole thing in one read.</p>
-          </div>
-          <a class="quest-go" href="#timeline">Read &uarr;</a>
-        </div>
-      </div>
-    </div>
-    <div class="card den-card" id="den-card">
+<section id="notify" class="wrap">
+  <h2 class="section-title">Run with Reynard</h2>
+  <div class="card den-card" id="den-card">
       <p class="eyebrow" style="margin-bottom:.4rem;">Den standing</p>
-      <p class="fine">Connect your wallet — here, or in your wallet&rsquo;s dApp browser — and the den will know you.</p>
+      <p class="fine">Connect your wallet and the den will know you.</p>
       <div class="den-row">
         <button class="btn" id="den-connect" type="button">Connect wallet</button>
       </div>
@@ -824,7 +552,7 @@
       </div>
       <p class="fine" id="den-note" style="margin-top:.8rem;"></p>
     </div>
-    <div class="card quest-mail">
+  <div class="card quest-mail">
       <p>Prefer the quiet path? Leave your email and we&apos;ll write when Phase 1 opens.</p>
       <form id="notify-form" novalidate>
         <label for="notify-email" class="eyebrow" style="margin-bottom:0;">Your email</label>
@@ -833,26 +561,18 @@
         <p id="form-note" role="status" aria-live="polite"></p>
       </form>
     </div>
-  </section>
-
-
-
-</main>
-
-<!-- ============ FOOTER ============ -->
+</section>
 <footer class="site-footer">
   <div class="foot-inner">
     <span class="seal-mark" aria-hidden="true">❦</span>
     <p class="foot-tag">STANZA is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
     <p class="foot-contract"><code class="contract">0xf629f16ba91086e266accc417d10742f76207ba3</code></p>
-    <p class="foot-note">The goods and guides behind the project live at <a href="https://den.dvaughnhouse.com" style="color:var(--gold)">the Den</a> — field guides, gear, and apparel from the same house, in one store.</p>
     <div class="foot-disclaimers">
       <p>It is not an investment, and we make no promises about its value. Nothing here is financial advice.</p>
-      <p>Recognition is pending and locked until Phase 1. It is not a balance and cannot be withdrawn, transferred, or spent until then.</p>
-      <p>The token is live on Base and the pool is deployed, but no market has formed yet &mdash; the pool has seen no trades. Verify the contract above; any other address is not STANZA.</p>
+      <p>Recognition is pending and locked until Phase 1.</p>
     </div>
     <nav class="foot-nav">
-      <a href="trust.html">Trust Center</a> &nbsp;&middot;&nbsp; <a href="flow.html">Capital Flow</a> &nbsp;&middot;&nbsp; <a href="trust.html#pending">What Pending Means</a> &nbsp;&middot;&nbsp; <a href="token.html">Token Status</a> &nbsp;&middot;&nbsp; <a href="trust.html#risks">Risks</a>
+      <a href="tale.html">The Tale</a> &nbsp;&middot;&nbsp; <a href="how.html">How It Will Work</a> &nbsp;&middot;&nbsp; <a href="trust.html">Trust Center</a>
     </nav>
     <nav class="foot-legal">
       <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a>
@@ -861,7 +581,6 @@
     <p class="fineprint">&copy; 2026 Glenride &middot; Built in the open, everything verifiable on-chain.</p>
   </div>
 </footer>
-
 <script>
 // Paste your Formspree/Basin endpoint here to connect the notification list.
 // Leave it as an empty string until then — the form degrades gracefully.
@@ -902,26 +621,6 @@ document.getElementById("notify-form").addEventListener("submit", async function
   }
 });
 </script>
-<script>
-// Quest wiring. Paste real URLs when ready — empty strings render as "soon".
-// Paste your links here. Leave a value empty and its link quietly reads "soon".
-var FOLLOW_URLS = {
-  xProfile: "",    // e.g. "https://x.com/spinwave"
-  telegram: ""     // e.g. "https://t.me/spinwave"
-};
-(function(){
-  Array.prototype.forEach.call(document.querySelectorAll('.quest-go[data-url]'), function(a){
-    var url = FOLLOW_URLS[a.getAttribute("data-url")] || "";
-    if (url) { a.href = url; }
-    else {
-      var sp = document.createElement("span");
-      sp.className = "soon"; sp.textContent = "soon";
-      a.replaceWith(sp);
-    }
-  });
-})();
-</script>
-<script src="status.js"></script>
 <script>
 /* ===== Slickness kit (no backend): status, motion, wallet ===== */
 (function(){
@@ -1083,282 +782,6 @@ var FOLLOW_URLS = {
 })();
 </script>
 <script>
-/* ===== SpinWave dashboard (logged-in state, live 2026-10-28) ===== */
-(function(){
-  "use strict";
-  var dash = document.getElementById("dashboard");
-  var joinNote = document.getElementById("join-note");
-  var trackLine = document.getElementById("track-line");
-  var trackWallet = document.getElementById("track-wallet");
-  var linkBtn = document.getElementById("link-wallet");
-  var walletNote = document.getElementById("wallet-note");
-  function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
-  function render(st){
-    if (!st.joined) {
-      trackLine.textContent = "Not on the waitlist yet - pick a track above.";
-      trackWallet.hidden = true;
-      return;
-    }
-    trackLine.textContent = "You are #" + st.position + " in line on the " + st.track + " track.";
-    if (st.wallet) { trackWallet.textContent = "Waitlist wallet (unverified — not used for payment): " + short(st.wallet); trackWallet.hidden = false; }
-    else { trackWallet.hidden = true; }
-  }
-  function load(){
-    fetch("/api/waitlist").then(function(r){ return r.ok ? r.json() : null; }).then(function(st){
-      if (st) render(st);
-    }).catch(function(){});
-  }
-  function join(track){
-    fetch("/api/waitlist", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ track: track }) })
-      .then(function(r){ return r.ok ? r.json() : null; }).then(function(st){
-        if (st) { render(st); joinNote.textContent = "You are on the " + st.track + " track - switch anytime."; }
-        else { joinNote.textContent = "Something went wrong - please try again later."; }
-      }).catch(function(){ joinNote.textContent = "Something went wrong - please try again later."; });
-  }
-  var js = document.getElementById("join-scholar");
-  var jp = document.getElementById("join-supporter");
-  if (js) js.addEventListener("click", function(){ join("scholar"); });
-  if (jp) jp.addEventListener("click", function(){ join("supporter"); });
-  if (linkBtn) linkBtn.addEventListener("click", function(){
-    var eth = window.ethereum;
-    if (!eth) { walletNote.textContent = "No wallet found - open this page in your wallet's dApp browser and connect from there."; return; }
-    eth.request({ method: "eth_requestAccounts" }).then(function(accounts){
-      var addr = accounts[0];
-      return eth.request({ method: "eth_chainId" }).then(function(chainId){
-        if (chainId !== "0x2105") {
-          return eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: "0x2105" }] }).catch(function(){ throw new Error("switch"); });
-        }
-      }).then(function(){
-        return fetch("/api/waitlist", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ wallet: addr }) });
-      }).then(function(r){
-        if (r.status === 409) { walletNote.textContent = "Join the waitlist first, then link a wallet."; return null; }
-        if (!r.ok) { walletNote.textContent = "Something went wrong - please try again later."; return null; }
-        return r.json();
-      }).then(function(st){
-        if (st) { render(st); walletNote.textContent = "Wallet linked."; }
-      });
-    }).catch(function(err){
-      walletNote.textContent = (err && err.message === "switch") ? "Please switch your wallet to the Base network." : "Connection declined - no harm done.";
-    });
-  });
-  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-    if (d && d.email && dash) { dash.hidden = false; if (linkBtn) linkBtn.hidden = false; load(); }
-  }).catch(function(){});
-})();
-</script>
-<script>
-/* ===== SpinWave MVP logged-in state (2026-10-29): My Works, verified wallet, reasons, public verifier =====
-   No money moves in this block. Wallet verification signs a message only;
-   payment, upload, anchoring, and certification are pipeline stages, not browser actions. */
-(function(){
-  "use strict";
-  function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
-  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  var STATE_TEXT = {
-    "awaiting validity": "Awaiting validity — judged, with reasons, before anything else happens.",
-    "payment failed": "Payment failed — no document uploaded, no certificate. The reason is shown to you and to the operator.",
-    "payment complete": "Payment complete — upload is next.",
-    "upload pending": "Payment complete, upload pending.",
-    "anchoring pending": "Anchoring pending — no certificate until the anchor confirms on Base.",
-    "anchored": "Anchored — certificate is next.",
-    "certified": "Certified — the certificate below verifies on Base.",
-    "cancelled": "Cancelled — see Reasons for what failed and what to fix. No payment, no record, no certificate."
-  };
-  function loadWorks(){
-    var line = document.getElementById("works-line"), list = document.getElementById("works-list");
-    if (!line || !list) return;
-    fetch("/api/my-works").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-      if (!d || !d.works) { line.textContent = "Could not load your works right now."; return; }
-      if (!d.works.length) {
-        line.textContent = "No works in the pipeline yet. Drafts are submitted in ThinkTank OS — your works will appear here as they move through validity, payment, upload, anchoring, and certification.";
-        return;
-      }
-      line.textContent = "Your works, in pipeline state:";
-      var sw = document.getElementById("dash-sum-works"); if (sw) sw.textContent = d.works.length ? d.works.length + " in the pipeline" : "No works yet";
-      list.innerHTML = d.works.map(function(w){
-        var extra = "";
-        if (w.payment_ref) extra += " Payment: " + esc(w.payment_ref) + ".";
-        if (w.record_id) extra += " Record: " + esc(w.record_id) + ".";
-        if (w.anchor_tx) extra += " Anchor: " + esc(w.anchor_tx) + ".";
-        if (w.certificate_id) extra += " Certificate: " + esc(w.certificate_id) + ".";
-        if (w.coauthors && w.coauthors.length) {
-          extra += " Co-authors: " + w.coauthors.map(function(c){
-            return esc(c.email) + " " + esc(c.share_percent) + "% (" + (c.share_status === "held" ? "share held until verified" : "payable") + ")";
-          }).join(", ") + ".";
-        }
-        var slug = (w.state || "").replace(/ /g, "-");
-        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") <span class=\"state-badge state-" + slug + "\">" + esc(w.state || "") + "</span> " + esc(STATE_TEXT[w.state] || "") + extra + "</li>";
-      }).join("");
-    }).catch(function(){ line.textContent = "Could not load your works right now."; });
-  }
-  function loadReasons(){
-    var line = document.getElementById("reasons-line"), list = document.getElementById("reasons-list");
-    if (!line || !list) return;
-    fetch("/api/my-reasons").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-      if (!d || !d.verdicts) { line.textContent = "Could not load your verdicts right now."; return; }
-      if (!d.verdicts.length) { line.textContent = "No verdicts yet. When a work is judged, its reasons will appear here in writing."; return; }
-      line.textContent = "Your verdicts:";
-      var sv = document.getElementById("dash-sum-verdicts"); if (sv) sv.textContent = d.verdicts.length ? d.verdicts.length + " recorded" : "No verdicts yet";
-      list.innerHTML = d.verdicts.map(function(v){
-        return "<li><strong>" + esc(v.title || v.work_id) + "</strong> — " + esc(v.verdict) + ": " + esc(v.reasons || "(no reasons recorded — that is a pipeline defect, not a verdict)") + "</li>";
-      }).join("");
-    }).catch(function(){ line.textContent = "Could not load your verdicts right now."; });
-  }
-  function loadVerifiedWallet(){
-    var line = document.getElementById("verified-wallet-line"), btn = document.getElementById("verify-wallet");
-    if (!line) return;
-    fetch("/api/wallet-link").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-      if (d && d.verified && d.address) {
-        line.textContent = "Verified wallet: " + short(d.address) + ". STANZA payments for your works go to this wallet once payment opens.";
-        var sw2 = document.getElementById("dash-sum-wallet"); if (sw2) sw2.textContent = "Verified " + short(d.address);
-        if (btn) btn.hidden = true;
-      } else {
-        line.textContent = "No verified wallet yet. Verify the wallet you control, and that wallet is the one payments will go to once payment opens.";
-        var sw3 = document.getElementById("dash-sum-wallet"); if (sw3) sw3.textContent = "Not verified yet";
-        if (btn) btn.hidden = false;
-      }
-    }).catch(function(){ line.textContent = "Could not check your verified wallet right now."; });
-  }
-  var vb = document.getElementById("verify-wallet");
-  if (vb) vb.addEventListener("click", function(){
-    var note = document.getElementById("verified-wallet-note");
-    var eth = window.ethereum;
-    if (!eth) { note.textContent = "No wallet found — open this page in your wallet's dApp browser and connect from there."; return; }
-    eth.request({ method: "eth_requestAccounts" }).then(function(accounts){
-      var addr = accounts[0];
-      return fetch("/api/wallet-nonce?address=" + encodeURIComponent(addr)).then(function(r){
-        if (!r.ok) throw new Error("nonce");
-        return r.json();
-      }).then(function(n){
-        return eth.request({ method: "personal_sign", params: [n.message, addr] }).then(function(sig){
-          return fetch("/api/wallet-link", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ address: addr, signature: sig }) });
-        });
-      }).then(function(r){
-        if (!r.ok) throw new Error("link");
-        return r.json();
-      }).then(function(d){
-        if (d && d.verified) { loadVerifiedWallet(); note.textContent = "Wallet verified. It does not move funds."; }
-        else note.textContent = "Verification did not complete — try again.";
-      });
-    }).catch(function(){ note.textContent = "Verification declined or failed — no harm done, and no wallet was linked."; });
-  });
-  var vf = document.getElementById("verify-btn");
-  if (vf) vf.addEventListener("click", function(){
-    var inp = document.getElementById("verify-input"), out = document.getElementById("verify-result");
-    var q = (inp.value || "").trim();
-    if (!q) { out.textContent = "Enter a record ID, certificate ID, or Base hash first."; return; }
-    var isHash = /^0x[0-9a-fA-F]{64}$/.test(q);
-    var url = isHash ? "/api/verify?hash=" + encodeURIComponent(q) : "/api/verify?id=" + encodeURIComponent(q);
-    fetch(url).then(function(r){ return r.json(); }).then(function(d){
-      if (d.status === "verified") {
-        out.innerHTML = "VERIFIED — " + esc(d.record.title) + ". Anchor: <a href=\"" + esc(d.basescan_url) + "\">" + esc(d.record.anchor_tx) + "</a> (" + esc(d.record.anchor_confirmations) + " confirmations, required: 12). Fingerprint: " + esc(d.record.document_fingerprint || "—") + ". Record: <a href=\"" + esc(d.record.record_url) + "\">" + esc(d.record.id) + "</a>. Certificate: <a href=\"/certificate?id=" + encodeURIComponent(d.record.certificate_id || "") + "\">" + esc(d.record.certificate_id || "") + "</a>.";
-      } else if (d.status === "invalid") {
-        out.textContent = "INVALID — " + (d.message || "") + (d.failed_check ? " (failed check: " + d.failed_check + ")" : "");
-      } else if (d.status === "not_certified") {
-        out.textContent = "NOT CERTIFIED — " + (d.message || "");
-      } else if (d.status === "not_found") {
-        out.textContent = "NOT FOUND — " + (d.message || "");
-      } else {
-        out.textContent = "Could not verify right now.";
-      }
-    }).catch(function(){ out.textContent = "Could not verify right now."; });
-  });
-  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-    if (d && d.email) { loadWorks(); loadReasons(); loadVerifiedWallet(); }
-  }).catch(function(){});
-})();
-</script>
-<script>
-/* ===== Review queue (MVP Phase A, 2026-10-29): roster-gated verdict form.
-   The server enforces roster, conflict, one-verdict-per-work, reasons,
-   and the full check packet — the form only collects them. No payment,
-   record, anchor, or certificate is created from this page. */
-(function(){
-  "use strict";
-  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  var line = document.getElementById("review-line"), list = document.getElementById("review-list");
-  var form = document.getElementById("review-form"), sel = document.getElementById("review-work");
-  var note = document.getElementById("review-note");
-  if (!line || !list) return;
-  var submit = document.getElementById("review-submit");
-  if (submit) submit.addEventListener("click", function(){
-    var workId = sel ? sel.value : "";
-    var verdict = document.getElementById("review-verdict").value;
-    var reasons = document.getElementById("review-reasons").value.trim();
-    var checklist = {
-      original: document.getElementById("check-original").checked,
-      complete: document.getElementById("check-complete").checked,
-      declared: document.getElementById("check-declared").checked,
-      duplicate_checked: document.getElementById("check-duplicate_checked").checked,
-      conflict_free: document.getElementById("check-conflict_free").checked
-    };
-    if (!workId || !reasons || !checklist.conflict_free) { note.textContent = "Pick a work, write the reasons, and confirm conflict-free before recording."; return; }
-    fetch("/api/review-queue", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ work_id: workId, verdict: verdict, reasons: reasons, checklist: checklist }) })
-      .then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
-      .then(function(res){
-        if (res.status === 200) { note.textContent = "Verdict recorded: " + res.body.verdict + ". Payment moved: no. Record created: no. Certificate created: no."; }
-        else { note.textContent = "Could not record: " + (res.body.message || res.body.error || "try again."); }
-      }).catch(function(){ note.textContent = "Could not record right now."; });
-  });
-  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-    if (!d || !d.email) return;
-    fetch("/api/review-queue").then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); }).then(function(res){
-      if (res.status === 403) { line.textContent = "You are not on the reviewer roster."; if (form) form.hidden = true; return; }
-      if (!res.body || !res.body.queue) { line.textContent = "Could not load the review queue right now."; return; }
-      if (form) form.hidden = false;
-      if (!res.body.queue.length) { line.textContent = "No works awaiting validity right now."; return; }
-      line.textContent = "Works awaiting validity (21-day review window):";
-      list.innerHTML = res.body.queue.map(function(w){
-        var by = w.review_by ? " Review by " + new Date(w.review_by).toLocaleDateString() + "." : "";
-        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> (" + esc(w.work_type || "") + ") — owner " + esc(w.owner_email || "") + "." + by + "</li>";
-      }).join("");
-      if (sel) sel.innerHTML = res.body.queue.map(function(w){ return "<option value=\"" + esc(w.id) + "\">" + esc(w.title || w.id) + "</option>"; }).join("");
-    }).catch(function(){ line.textContent = "Could not load the review queue right now."; });
-  }).catch(function(){});
-})();
-</script>
-<script>
-/* ===== Pipeline (2026-10-29): operator steps, server never signs. ===== */
-(function(){
-  "use strict";
-  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  var line = document.getElementById("pipeline-line"), list = document.getElementById("pipeline-list");
-  var form = document.getElementById("pipeline-form"), sel = document.getElementById("pipeline-work");
-  var note = document.getElementById("pipeline-note");
-  if (!line || !list) return;
-  var submit = document.getElementById("pipeline-submit");
-  if (submit) submit.addEventListener("click", function(){
-    var body = { action: document.getElementById("pipeline-action").value, work_id: sel ? sel.value : "" };
-    var tx = document.getElementById("pipeline-tx").value.trim();
-    if (body.action === "confirm_payment") body.tx_hash = tx;
-    if (body.action === "record_upload") { body.document_fingerprint = document.getElementById("pipeline-fingerprint").value.trim(); body.storage_pointer = document.getElementById("pipeline-pointer").value.trim(); }
-    if (body.action === "request_anchor") body.anchor_request_id = document.getElementById("pipeline-request").value.trim();
-    if (body.action === "confirm_anchor") { body.anchor_tx = tx; body.confirmations = Number(document.getElementById("pipeline-confirmations").value); }
-    fetch("/api/pipeline", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
-      .then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
-      .then(function(res){
-        note.textContent = res.status === 200 ? "Recorded: " + JSON.stringify(res.body) : "Could not record: " + (res.body.message || res.body.error || "try again.");
-      }).catch(function(){ note.textContent = "Could not record right now."; });
-  });
-  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-    if (!d || !d.email) return;
-    fetch("/api/pipeline").then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); }).then(function(res){
-      if (res.status === 403) { line.textContent = "Pipeline access is for the reviewer/operator roster only."; return; }
-      if (!res.body || !res.body.works) { line.textContent = "Could not load the pipeline right now."; return; }
-      if (form) form.hidden = false;
-      if (!res.body.works.length) { line.textContent = "No works in the pipeline yet."; return; }
-      line.textContent = "Works in the pipeline:";
-      list.innerHTML = res.body.works.map(function(w){
-        var v = w.verdict ? " Verdict: " + esc(w.verdict.verdict) + "." : "";
-        var p = w.payment ? " Payment: " + esc(w.payment.status) + "." : "";
-        return "<li><strong>" + esc(w.title || "Untitled") + "</strong> — " + esc(w.state || "") + "." + v + p + "</li>";
-      }).join("");
-      if (sel) sel.innerHTML = res.body.works.map(function(w){ return "<option value=\"" + esc(w.id) + "\">" + esc(w.title || w.id) + " — " + esc(w.state || "") + "</option>"; }).join("");
-    }).catch(function(){ line.textContent = "Could not load the pipeline right now."; });
-  }).catch(function(){});
-})();
-</script>
-<script>
 /* ===== Mobile nav toggle (2026-10-28): links hide under 760px, so Menu opens them ===== */
 (function(){
   "use strict";
@@ -1481,18 +904,13 @@ var FOLLOW_URLS = {
 })();
 </script>
 <script>
-/* ===== Logged-in state hides landing page content (2026-10-29) =====
-   Signed-in visitors see only the dashboard (#dashboard) and the verifier
-   (#verify). The landing hero, manifesto, ticker, main sections, footer, and
-   landing-anchor nav links are hidden by body.signed-in CSS above.
-   Signed-out visitors are unaffected: no class is added, so the full public
-   landing page renders as before. A brief flash of landing content before
-   /api/me answers is inherent to a static page (no server-side render) and
-   is not a leak — the landing content is public anyway. */
+/* ===== Signed-in visitors go to the dashboard (2026-11-08 thin landing):
+   the operator dashboard now lives at /dashboard.html. Signed-out
+   visitors are unaffected: no redirect, the thin public page renders. */
 (function(){
   "use strict";
   fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-    if (d && d.email) { document.body.classList.add("signed-in"); var de = document.getElementById("dash-email"); if (de) de.textContent = "Signed in as " + d.email; }
+    if (d && d.email) { window.location.replace("/dashboard.html"); }
   }).catch(function(){});
 })();
 </script>

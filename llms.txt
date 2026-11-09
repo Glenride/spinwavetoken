@@ -7,6 +7,7 @@ SpinWave is the database and storage layer of the Glenride think tank. STANZA is
 ## Core pages
 
 - [SpinWave — The straight line.](https://spinwave.tech/index.md): Archimedes wrote: of all lines with the same extremities, the straight line is the least. A lion king summoned Reynard the fox — the ember still burns. SpinWave is the straight line.
+- [The Tale of Reynard — SpinWave](https://spinwave.tech/tale.md): The tale behind SpinWave: Archimedes, Reynard the fox, and the straight line through the paywall maze.
 - [Token Status — SpinWave](https://spinwave.tech/token.md): STANZA exactly as it stands: live on Base, pool deployed, no trades yet.
 - [Capital Flow — SpinWave](https://spinwave.tech/flow.md): Where the STANZA sits today and how it will move, hop by hop.
 - [Trust Center — SpinWave](https://spinwave.tech/trust.md): What is live, what is not, and what a pending recognition actually is. The SpinWave trust center.
@@ -35,3 +36,7 @@ SpinWave is the database and storage layer of the Glenride think tank. STANZA is
 
 - [Privacy Policy — SpinWave](https://spinwave.tech/privacy.md): What SpinWave collects (almost nothing) and what it does not. Plain language.
 - [Terms of Service — SpinWave](https://spinwave.tech/terms.md): What STANZA is, what it is not, and the responsibilities of using this site. Plain language.
+
+## Operator
+
+- [Inside SpinWave](https://spinwave.tech/dashboard.md): The SpinWave operator dashboard: your works, verdicts, verified wallet, and certificates. Sign-in required.

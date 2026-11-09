@@ -3,7 +3,7 @@
 > A validated SpinWave record, with its pipeline state and, once confirmed, its Base anchor.
 
 Canonical: https://spinwave.tech/records.html
-Last updated: 2026-10-29
+Last updated: 2026-11-05
 
 ## At a glance
 

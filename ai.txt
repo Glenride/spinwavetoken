@@ -19,11 +19,11 @@ no training on user-generated private data
 Cite as: SpinWave — <canonical page URL, e.g. https://spinwave.tech/token.html>
 
 [scope]
-included: https://spinwave.tech/, https://spinwave.tech/flow.html, https://spinwave.tech/token.html, https://spinwave.tech/trust.html, https://spinwave.tech/how.html, https://spinwave.tech/letter.html, https://spinwave.tech/certificate.html, https://spinwave.tech/records.html, https://spinwave.tech/privacy.html, https://spinwave.tech/terms.html
-excluded: /api/*, /auth/*
+included: https://spinwave.tech/, https://spinwave.tech/tale.html, https://spinwave.tech/flow.html, https://spinwave.tech/token.html, https://spinwave.tech/trust.html, https://spinwave.tech/how.html, https://spinwave.tech/letter.html, https://spinwave.tech/certificate.html, https://spinwave.tech/records.html, https://spinwave.tech/privacy.html, https://spinwave.tech/terms.html
+excluded: /api/*, /auth/*, /dashboard.html
 # Keep in sync with /llms.txt and /robots.txt.
 
 [contact]
 Glenride team via the contact page at https://dvaughnhouse.com
 
-Last updated: 2026-11-05
+Last updated: 2026-11-09

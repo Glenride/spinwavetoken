@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tale of Reynard — SpinWave</title>
+<meta name="description" content="The tale behind SpinWave: Archimedes, Reynard the fox, and the straight line through the paywall maze.">
+<link rel="alternate" type="text/markdown" href="https://spinwave.tech/tale.md">
+<meta name="ai-summary" content="The tale behind SpinWave: Archimedes wrote that the straight line is the least; Reynard the fox routed around the courts of the powerful; SpinWave draws the straight line a third time, through the paywall maze.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vellum:#EDE4D0;
+    --parchment:#DCCFAF;
+    --umber:#2E2419;
+    --sepia:#4A3B28;
+    --oxblood:#6E3232;
+    --olive:#5E5E3B;
+    --gold:#A8894A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'EB Garamond',Georgia,serif;
+    color:var(--umber);
+    background-color:var(--vellum);
+    background-image:
+      radial-gradient(ellipse at 18% 8%, rgba(168,137,74,.07), transparent 55%),
+      radial-gradient(ellipse at 85% 92%, rgba(74,59,40,.06), transparent 50%),
+      radial-gradient(ellipse at 70% 30%, rgba(110,50,50,.03), transparent 45%);
+    line-height:1.75;
+    font-size:clamp(1.02rem, 1.6vw, 1.15rem);
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--oxblood);color:var(--vellum);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem);}
+
+  /* ---------- hero frame with filigree corners ---------- */
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.65rem clamp(1.25rem,5vw,2.5rem);
+    background:rgba(237,228,208,.97);
+    border-bottom:3px double var(--gold);
+  }
+  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:none;}
+  .brand-seal{width:38px;height:38px;border:2px double var(--gold);border-radius:50%;overflow:hidden;background:var(--parchment);flex:none;}
+  .brand-seal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:sepia(.45) contrast(.92) brightness(1.03);}
+  .brand-word{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.28em;text-indent:.28em;font-weight:700;font-size:1.12rem;color:var(--umber);}
+  .nav-links{display:flex;gap:1.7rem;align-items:center;}
+  .nav-links > a{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);text-decoration:none;}
+  .nav-links > a:hover{color:var(--oxblood);}
+  .nav-links .auth-signed{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);}
+  .nav-links .auth-signed a{color:var(--sepia);text-decoration:none;}
+  .nav-links .auth-signed a:hover{color:var(--oxblood);}
+  .auth-error{text-align:center;color:var(--oxblood);font-size:.95rem;padding:.5rem 1rem 0;}
+  .nav-links a.trust-link{
+    color:var(--oxblood);font-weight:700;
+    border:1.5px solid var(--gold);border-radius:999px;
+    padding:.28rem 1rem;white-space:nowrap;
+  }
+  .nav-links a.trust-link:hover{background:#83662A;color:#fff;}
+  .nav-drop{position:relative;}
+  .nav-drop .drop-menu{
+    display:block;position:absolute;top:100%;right:0;min-width:230px;
+    background:var(--umber);border:1px solid var(--gold);border-radius:6px;
+    padding:.5rem 0;box-shadow:0 10px 28px rgba(46,36,25,.3);z-index:100;
+    opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;
+    transition:opacity .17s ease,transform .17s cubic-bezier(.2,.7,.2,1),visibility 0s linear .17s;
+  }
+  .nav-drop:hover .drop-menu,.nav-drop:focus-within .drop-menu{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.7,.2,1),visibility 0s;}
+  .nav-drop .drop-menu::before{
+    content:"";position:absolute;top:-.6rem;left:0;right:0;height:.6rem;
+  }
+  .nav-drop .drop-menu a{
+    display:block;padding:.55rem 1.25rem;color:var(--parchment);text-decoration:none;
+    font-size:.95rem;letter-spacing:.03em;white-space:nowrap;
+  }
+  .nav-drop .drop-menu a:hover{color:var(--gold);background:rgba(168,137,74,.14);}
+  .nav-drop .drop-menu a.drop-home{border-bottom:1px solid rgba(168,137,74,.35);margin-bottom:.35rem;padding-bottom:.7rem;font-weight:700;}
+  @media(max-width:760px){.nav-links{display:none;}}
+  .nav-toggle{display:none;}
+  @media(max-width:760px){
+    .nav-toggle{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:600;font-size:.98rem;color:var(--sepia);background:none;border:1px solid var(--gold);padding:.4rem .9rem;cursor:pointer;flex:none;}
+    .nav-links.open{display:flex;flex-direction:column;align-items:flex-start;gap:.9rem;position:absolute;top:100%;left:0;right:0;background:rgba(237,228,208,.99);border-bottom:3px double var(--gold);padding:1rem clamp(1.25rem,5vw,2.5rem);z-index:50;}
+    .nav-links.open .nav-drop .drop-menu{display:block;position:static;min-width:0;box-shadow:none;border:0;padding:0;opacity:1;visibility:visible;transform:none;transition:none;pointer-events:auto;}
+    .nav-links.open .nav-drop .drop-menu::before{display:none;}
+    .nav-links.open .nav-drop .drop-menu a{display:block;padding:.35rem 0;}
+  }
+  @media(max-width:560px){.card{padding:1.75rem 1.25rem}}
+  @media(max-width:760px){
+    .hero{display:block;min-height:0;background:none;border-bottom:3px double var(--gold);}
+    .hero::before{display:none;}
+    .hero-img-mobile{display:block;width:100%;height:auto;border-bottom:3px double var(--gold);}
+    .hero-inner{margin:0;max-width:none;padding:2.75rem clamp(1.25rem,6vw,2rem);}
+    .lede-box{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:none;box-shadow:none;padding:0;margin:0 0 1.4rem;max-width:none;}
+    .hero h1{color:var(--umber);text-shadow:none;}
+    .hero-q{color:var(--oxblood);text-shadow:none;}
+    .hero-a{color:var(--sepia);text-shadow:none;}
+    .hero .hero-sub{color:var(--sepia);text-shadow:none;}
+    .eyebrow-light{color:var(--oxblood);text-shadow:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;display:flex;align-items:flex-start;
+    min-height:min(88vh,720px);
+    background:url('painting-hero-gate.jpg') center 35%/cover no-repeat, var(--umber);
+    border-bottom:3px double var(--gold);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(92deg, rgba(22,15,9,.45) 0%, rgba(22,15,9,.22) 42%, rgba(22,15,9,0) 78%);
+  }
+  .hero-inner{position:relative;max-width:640px;text-align:left;padding:clamp(1.5rem,4vw,2.5rem) clamp(1.25rem,5vw,3rem) clamp(2.5rem,6vw,4rem);}
+  .lede-box{
+    max-width:520px;margin:0 0 1.5rem;padding:1.1rem 1.4rem;
+    background:rgba(24,17,10,.44);
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px) brightness(.9);
+    border:3px double rgba(168,137,74,.8);
+    box-shadow:0 12px 40px rgba(0,0,0,.35);
+  }
+  .hero .eyebrow{font-size:clamp(.8rem,1.6vw,.92rem);}
+  .eyebrow-light{color:#CFC9BB;text-shadow:0 1px 6px rgba(0,0,0,.65);}
+  .hero h1{color:var(--vellum);text-align:left;text-shadow:0 2px 14px rgba(0,0,0,.65);font-size:clamp(2.4rem,6vw,3.6rem);margin-bottom:.9rem;}
+  .hero .hero-sub{color:#EDE4D0;text-align:left;margin:0 0 1.5rem;max-width:34em;font-size:clamp(.92rem,1.4vw,1.02rem);line-height:1.6;text-shadow:0 1px 8px rgba(0,0,0,.65);}
+  .lede-box .hero-sub{margin:0;}
+  /* ---------- manifesto (extended text, below hero) ---------- */
+  .manifesto{max-width:46rem;margin:0 auto;padding:clamp(3.5rem,9vw,5.5rem) clamp(1.25rem,5vw,2rem);}
+  .manifesto p{font-size:clamp(1.08rem,1.9vw,1.28rem);line-height:1.85;color:var(--sepia);margin:0 0 1.5rem;}
+  .manifesto p:last-child{margin-bottom:0;}
+  .hero .btn{font-size:.9rem;padding:.7rem 1.9rem;}
+  .hero-img-mobile{display:none;}
+  .hero-q{
+    font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.24em;
+    font-weight:600;font-size:1.02rem;color:var(--gold);
+    margin:1.3rem 0 .55rem;text-shadow:0 1px 6px rgba(0,0,0,.65);
+  }
+  .hero-a{
+    color:#EDE4D0;font-size:1.02rem;line-height:1.7;max-width:36em;
+    text-shadow:0 1px 8px rgba(0,0,0,.65);margin:0 0 1.5rem;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:var(--oxblood);
+    font-weight:600;
+    font-size:clamp(.95rem,2.4vw,1.1rem);
+    margin-bottom:1.25rem;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(2.9rem,9vw,4.8rem);
+    line-height:1.05;
+    color:var(--umber);
+    margin-bottom:1.5rem;
+  }
+  .hero-sub{
+    max-width:34em;margin:0 auto 2.25rem;
+    color:var(--sepia);font-size:clamp(1.05rem,2.4vw,1.25rem);line-height:1.7;
+  }
+  .btn{
+    display:inline-block;font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.22em;text-indent:.22em;
+    font-weight:700;font-size:1.05rem;
+    color:var(--vellum);background:var(--oxblood);
+    border:1px solid var(--oxblood);
+    padding:.9rem 2.4rem;text-decoration:none;cursor:pointer;
+    transition:background .25s,color .25s;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--umber);border-color:var(--umber);outline:none;}
+  .btn:focus-visible{box-shadow:0 0 0 3px rgba(168,137,74,.6);}
+
+  /* ---------- fleuron divider ---------- */
+  .fleuron{display:flex;align-items:center;gap:1.1rem;margin:clamp(3rem,8vw,4.5rem) auto;color:var(--oxblood);}
+  .fleuron::before,.fleuron::after{content:"";flex:1;border-top:3px double var(--gold);}
+  .fleuron span{font-size:1.6rem;line-height:1;}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:clamp(2.5rem,7vw,4rem);}
+  h2.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.32em;text-indent:.32em;
+    color:var(--oxblood);font-weight:600;
+    font-size:clamp(1.25rem,3.4vw,1.6rem);
+    text-align:center;margin-bottom:1.5rem;
+  }
+  .card{
+    background:var(--parchment);
+    border:3px double var(--gold);
+    padding:2.5rem;
+    box-shadow:0 6px 24px rgba(46,36,25,.10);
+  }
+  .card p + p{margin-top:1.1em;}
+  .dropcap::first-letter{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:4em;line-height:.82;
+    float:left;padding:.06em .14em 0 0;color:var(--oxblood);
+  }
+  .figure-sketch{
+    width:min(280px,64vw);margin:2rem auto 0;
+    border:3px double var(--gold);background:var(--vellum);
+    padding:.6rem;box-shadow:0 6px 20px rgba(46,36,25,.14);
+  }
+  .figure-sketch img{display:block;width:100%;height:auto;filter:sepia(.35) contrast(.95);}
+  .figure-sketch figcaption{
+    text-align:center;font-family:'Cormorant Garamond',serif;
+    font-variant:small-caps;letter-spacing:.2em;color:var(--sepia);
+    font-size:.95rem;padding-top:.6rem;
+  }
+  .painting{
+    margin:0 0 1.75rem;border:3px double var(--gold);
+    background:var(--parchment);padding:.6rem;
+    box-shadow:0 6px 20px rgba(46,36,25,.14);
+  }
+  .painting img{display:block;width:100%;height:auto;}
+  .painting.portrait{max-width:430px;margin-left:auto;margin-right:auto;}
+  .era{margin-bottom:1.6rem;}
+  .era:last-child{margin-bottom:0;}
+  .era-date{
+    display:inline-block;
+    font-family:'Cormorant Garamond',serif;font-variant:small-caps;
+    letter-spacing:.2em;color:var(--vellum);background:var(--oxblood);
+    font-weight:700;font-size:.95rem;margin-bottom:.6rem;
+    padding:.3rem 1rem;
+  }
+
+  /* ---------- bullets ---------- */
+  .ticks{list-style:none;margin:1.1rem 0 0;}
+  .ticks li{position:relative;padding-left:1.7rem;margin-bottom:.65rem;}
+  .ticks li::before{content:"\2766";position:absolute;left:0;color:var(--oxblood);font-size:.95em;}
+
+  /* ---------- pillars carousel ---------- */
+  .pillar-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(74vw,290px);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.25rem .1rem 1rem;scrollbar-width:thin;}
+  .pillar{scroll-snap-align:start;background:var(--parchment);border:3px double var(--gold);padding:1.7rem 1.3rem;text-align:center;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .pillar-num{display:block;font-family:'Cormorant Garamond',serif;color:var(--oxblood);font-size:1.7rem;font-weight:700;margin-bottom:.6rem;}
+  .pillar p{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;color:var(--umber);line-height:1.4;}
+  .swipe-hint{text-align:center;color:var(--sepia);opacity:.85;font-size:.88rem;letter-spacing:.12em;margin-top:.25rem;}
+  @media(min-width:900px){.swipe-hint{display:none;}}
+
+  /* ---------- stat cards ---------- */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.25rem;}
+  .stat{background:var(--parchment);border:3px double var(--gold);padding:1.4rem 1rem;text-align:center;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .stat-num{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2.05rem;color:var(--oxblood);line-height:1.1;margin-bottom:.45rem;}
+  .stat-label{font-size:.95rem;color:var(--sepia);line-height:1.5;}
+  .fine{text-align:center;color:var(--sepia);font-style:italic;}
+
+  /* ---------- phase cards ---------- */
+  .phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.25rem;}
+  .phase{background:var(--parchment);border:3px double var(--gold);padding:1.4rem 1.2rem;box-shadow:0 6px 20px rgba(46,36,25,.12);}
+  .phase-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.16em;font-weight:700;font-size:.92rem;color:var(--vellum);background:var(--oxblood);padding:.32rem .95rem;margin-bottom:.75rem;}
+  .phase p{color:var(--umber);}
+
+  /* ---------- notify ---------- */
+  #notify .card{text-align:center;}
+  #notify h2{
+    font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.25;color:var(--umber);
+    margin-bottom:1.75rem;
+  }
+  #notify-form{display:flex;flex-direction:column;gap:.9rem;max-width:26rem;margin:0 auto;}
+  #notify-email{
+    font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--umber);
+    background:var(--vellum);border:1px solid var(--gold);
+    padding:.85rem 1.1rem;width:100%;
+  }
+  #notify-email:focus{outline:2px solid var(--oxblood);outline-offset:2px;}
+  #form-note{min-height:1.6em;color:var(--sepia);font-style:italic;font-size:1rem;}
+
+  /* ---------- quest ---------- */
+  section#notify .follow-card{text-align:left;}
+  .follow-row{display:flex;align-items:center;gap:1rem;padding:1rem;border-top:1px solid rgba(168,137,74,.4);}
+  .follow-row:last-of-type{border-bottom:1px solid rgba(168,137,74,.4);}
+  .follow-text{flex:1;}
+  .quest-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--umber);}
+  .quest-desc{font-size:.98rem;color:var(--sepia);}
+  .quest-go{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.05em;font-weight:700;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;}
+  .quest-go:hover{color:var(--umber);}
+  .soon{flex:none;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-size:.85rem;color:var(--sepia);border:1px dashed var(--gold);padding:.3rem 1rem;opacity:.75;white-space:nowrap;}
+  .kin-seal{width:64px;height:64px;margin:0 auto 1rem;}
+  .kin-line{font-style:italic;color:var(--sepia);margin:.6rem 0 1.4rem;}
+  .quest-mail{margin-top:1.5rem;}
+  .quest-mail > p{margin-bottom:1rem;color:var(--sepia);font-style:italic;}
+
+  /* ---------- footer ---------- */
+  .site-footer{
+    margin-top:clamp(4rem,10vw,6rem);
+    background:var(--umber);
+    color:var(--parchment);
+    border-top:4px solid var(--gold);
+    padding:3.5rem 0 2.75rem;
+  }
+  .site-footer .foot-inner{max-width:900px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem);}
+  .site-footer .seal-mark{color:var(--gold);font-size:1.6rem;display:block;text-align:center;margin-bottom:1.25rem;}
+  .site-footer .foot-tag{text-align:center;font-size:1.08rem;line-height:1.6;max-width:36rem;margin:0 auto 1.5rem;color:var(--parchment);}
+  .site-footer .foot-contract{text-align:center;margin:0 0 1.5rem;}
+  .site-footer .contract{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.82rem;color:var(--umber);background:var(--parchment);
+    border:1px solid var(--gold);padding:.55rem 1rem;border-radius:3px;
+    display:inline-block;max-width:100%;overflow-wrap:anywhere;
+  }
+  .site-footer .foot-note{text-align:center;font-style:italic;color:#C2B598;margin:0 0 2rem;}
+  .site-footer .foot-disclaimers{max-width:42rem;margin:0 auto 2rem;text-align:center;font-size:.92rem;line-height:1.7;color:var(--parchment);opacity:.88;}
+  .site-footer .foot-disclaimers p{margin-bottom:.65rem;}
+  .site-footer .foot-nav{
+    text-align:center;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
+    padding-top:1.75rem;border-top:1px solid rgba(168,137,74,.4);margin-bottom:1.75rem;
+  }
+  .site-footer .foot-nav a{color:var(--parchment);text-decoration:none;opacity:.85;}
+  .site-footer .foot-nav a:hover{color:var(--gold);opacity:1;}
+  .site-footer .foot-legal{text-align:center;font-size:.82rem;margin-bottom:1.75rem;}
+  .site-footer .foot-legal a{color:var(--parchment);text-decoration:none;opacity:.7;}
+  .site-footer .foot-legal a:hover{color:var(--gold);opacity:1;}
+  .site-footer .fineprint{text-align:center;font-size:.8rem;color:var(--parchment);opacity:.6;}
+  @media (max-width:520px){
+  }
+
+  /* ---------- slickness kit (no backend): motion, status, wallet ---------- */
+  [hidden]{display:none !important;}
+  /* ---------- logged-in state (2026-10-29): landing page content is removed
+     for signed-in visitors. The public landing page is untouched for signed-out
+     visitors; this only applies once /api/me confirms a session, via the
+     body.signed-in class set by the script at the end of the page. The
+     dashboard (#dashboard) and the public verifier (#verify) stay visible. */
+  body.signed-in .hero,
+  body.signed-in .manifesto,
+  body.signed-in .ticker,
+  body.signed-in main.wrap,
+  body.signed-in .site-footer,
+  body.signed-in .nav-links > a[href^="#"]:not(.dash-nav){display:none !important;}
+  .dash-nav{display:none !important;}
+  body.signed-in .dash-nav{display:inline !important;}
+  .hero-inner > *{opacity:0;transform:translateY(22px);}
+  body.boot .hero-inner > *{animation:riseIn .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  body.boot .hero-inner > *:nth-child(1){animation-delay:.05s}
+  body.boot .hero-inner > *:nth-child(2){animation-delay:.16s}
+  body.boot .hero-inner > *:nth-child(3){animation-delay:.28s}
+  body.boot .hero-inner > *:nth-child(4){animation-delay:.40s}
+  @keyframes riseIn{to{opacity:1;transform:none;}}
+  .reveal{opacity:0;transform:translateY(34px) scale(.985);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .ticker{overflow:hidden;border-top:3px double var(--gold);border-bottom:3px double var(--gold);background:var(--parchment);white-space:nowrap;}
+  .ticker-track{display:inline-flex;width:max-content;animation:tick 38s linear infinite;padding:.7rem 0;}
+  .ticker-track span{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.24em;font-weight:600;color:var(--sepia);font-size:1rem;padding:0 1.6rem;}
+  .ticker-track b{color:var(--oxblood);font-weight:400;}
+  @keyframes tick{to{transform:translateX(-50%);}}
+  [data-tilt]{transform-style:preserve-3d;will-change:transform;transition:transform .18s ease-out;}
+  .tilt-glare{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(600px circle at var(--gx,50%) var(--gy,50%),rgba(255,250,235,.35),transparent 45%);}
+  [data-tilt]:hover .tilt-glare{opacity:1;}
+  .figure-sketch{position:relative;overflow:hidden;}
+  .status-board{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:0 0 1.4rem;}
+  .chip{display:inline-flex;align-items:center;gap:.55rem;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.92rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);padding:.45rem 1rem;}
+  .chip .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .dot.live{background:#5C6B3C;box-shadow:0 0 0 3px rgba(92,107,60,.18);animation:pulse 2.2s infinite;}
+  .dot.pending{background:var(--gold);box-shadow:0 0 0 3px rgba(168,137,74,.18);animation:pulse 2.2s infinite;}
+  .dot.locked{background:#8a7a5c;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .phase{position:relative;}
+  .phase .pdot{position:absolute;top:.9rem;right:.9rem;width:10px;height:10px;border-radius:50%;}
+  .btn{box-shadow:4px 4px 0 rgba(46,36,25,.9);transition:transform .12s,box-shadow .12s,background .25s,color .25s;}
+  .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(46,36,25,.9);}
+  .btn:active{transform:translate(4px,4px);box-shadow:0 0 0 rgba(46,36,25,.9);}
+  .contract-callout{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.8rem;margin:0 0 1rem;}
+  .contract-callout .contract{cursor:default;}
+  .copy-btn{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:var(--sepia);border:1px solid var(--sepia);padding:.5rem 1.1rem;cursor:pointer;box-shadow:3px 3px 0 rgba(46,36,25,.9);transition:transform .12s,box-shadow .12s;}
+  .copy-btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 rgba(46,36,25,.9);}
+  .plainly{list-style:none;margin:1.1rem 0 0;text-align:left;}
+  .plainly li{padding:.9rem 0;border-top:1px solid rgba(168,137,74,.4);}
+  .plainly li:last-child{border-bottom:1px solid rgba(168,137,74,.4);}
+  .plainly strong{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.05em;color:var(--oxblood);}
+  .den-card{margin-top:1.5rem;text-align:center;}
+  .den-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:center;margin-top:1rem;}
+  .den-addr{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;background:var(--vellum);border:1px solid var(--gold);padding:.5rem 1rem;}
+  .den-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.14em;font-weight:700;font-size:.9rem;color:var(--vellum);background:#5C6B3C;padding:.35rem .9rem;}
+  /* ---------- motion additions (2026-10-28): ember drift, stat count-up, child stagger ---------- */
+  /* Ember canvas: flat gold/pale dots over the hero painting, below the text.
+     Mechanism inspired by Subframe's "meteors" (small lights crossing a field),
+     re-voiced as embers rising — SpinWave's own image ("that ember still burns").
+     No gradients, no new colors: gold + pale parchment tones only. */
+  #ember-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  @media(max-width:760px){#ember-canvas{display:none;}}
+  /* Stat numbers: tabular figures so digits don't jitter mid-count (Subframe text-and-numbers guidance). */
+  .stat-num{font-variant-numeric:tabular-nums;}
+  /* Child stagger: pillars, phases and stats rise in sequence once their section reveals.
+     Scoped under .reveal so no-JS still shows everything. 60ms steps, whole sequence under ~500ms of stagger. */
+  .reveal .pillar,.reveal .phase,.reveal .stat{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in .pillar,.reveal.in .phase,.reveal.in .stat{opacity:1;transform:none;}
+  .reveal.in .pillar:nth-child(2),.reveal.in .phase:nth-child(2),.reveal.in .stat:nth-child(2){transition-delay:.06s;}
+  .reveal.in .pillar:nth-child(3),.reveal.in .phase:nth-child(3),.reveal.in .stat:nth-child(3){transition-delay:.12s;}
+  .reveal.in .pillar:nth-child(4),.reveal.in .stat:nth-child(4){transition-delay:.18s;}
+  .reveal.in .pillar:nth-child(5){transition-delay:.24s;}
+  .pillar-track{overflow-y:hidden;}
+  @media (prefers-reduced-motion: reduce){
+    .hero-inner > *{opacity:1;transform:none;}
+    body.boot .hero-inner > *{animation:none;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .reveal .pillar,.reveal .phase,.reveal .stat{opacity:1;transform:none;transition:none;}
+    .dot.live,.dot.pending{animation:none;}
+    .ticker-track{animation:none;}
+    #ember-canvas{display:none;}
+    .nav-drop .drop-menu{transition:none;}
+  }
+
+  /* ---------- dashboard: Operate mode (2026-10-29 impeccable pass) ----------
+     SpinWave world only: vellum, parchment, umber, oxblood, gold.
+     No eyebrow labels, no identical card grid, no hard offset shadows,
+     no purple, no gradient text. Dashboard appears at once — no
+     entrance fade — because this is a tool, not a landing moment. */
+  #dashboard{max-width:1120px;margin:0 auto;padding:2.5rem clamp(1.25rem,5vw,2.5rem) 4rem;text-align:left;}
+  #dashboard.reveal,#dashboard .reveal{opacity:1;transform:none;transition:none;}
+  .dash-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,4vw,2.9rem);line-height:1.1;color:var(--umber);margin:1.5rem 0 .75rem;}
+  .dash-lede{max-width:70ch;font-size:1.08rem;line-height:1.65;color:var(--sepia);margin:0 0 .5rem;}
+  .dash-email{color:var(--sepia);font-size:.98rem;margin:0 0 1.5rem;}
+  .dash-summary{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;border-top:3px double var(--gold);border-bottom:1px solid rgba(168,137,74,.5);padding:1rem 0;margin:0 0 2rem;}
+  .dash-summary > span{font-size:1.02rem;color:var(--umber);}
+  .dash-label{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.12em;font-weight:700;color:var(--oxblood);margin-right:.5rem;}
+  .dash-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:2rem 2.5rem;align-items:start;}
+  .dash-section{border-top:3px double var(--gold);padding:1.5rem 0 2rem;}
+  .dash-section h3{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:700;font-size:1.45rem;color:var(--oxblood);margin:1rem 0 .75rem;}
+  .dash-section p,.dash-panel p{font-size:1.02rem;line-height:1.65;color:var(--umber);margin:0 0 .85rem;max-width:70ch;}
+  .dash-note{color:var(--sepia) !important;font-size:.98rem !important;}
+  .dash-list{list-style:none;margin:0 0 1rem;}
+  .dash-list li{padding:.9rem 0;border-top:1px solid rgba(168,137,74,.4);line-height:1.6;}
+  .dash-list li:last-child{border-bottom:1px solid rgba(168,137,74,.4);}
+  .dash-list strong{font-family:'Cormorant Garamond',serif;font-size:1.18rem;}
+  .state-badge{display:inline-block;font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:700;font-size:.85rem;line-height:1;padding:.3rem .7rem;border-radius:999px;background:#E7DCC0;color:var(--umber);border:1px solid rgba(168,137,74,.6);white-space:nowrap;}
+  .state-badge.state-certified{background:var(--oxblood);color:var(--vellum);border-color:var(--oxblood);}
+  .state-badge.state-cancelled{background:#D8CFC0;color:var(--sepia);border-color:rgba(74,59,40,.4);}
+  .state-badge.state-payment-failed{background:#E3C9C0;color:var(--oxblood);border-color:rgba(110,50,50,.5);}
+  .dash-panel{background:var(--parchment);border-radius:12px;box-shadow:0 2px 14px rgba(46,36,25,.12);padding:1.5rem;margin:0 0 1.5rem;}
+  .dash-panel h3{font-family:'Cormorant Garamond',serif;font-variant:small-caps;letter-spacing:.08em;font-weight:700;font-size:1.3rem;color:var(--oxblood);margin:0 0 .75rem;}
+  .dash-panel p{font-size:1rem;}
+  .dash-join{border-top:1px solid rgba(168,137,74,.4);padding-top:1rem;margin-top:1rem;}
+  #dashboard .btn{box-shadow:0 2px 10px rgba(46,36,25,.18);border-radius:8px;letter-spacing:.12em;text-indent:0;}
+  .dash-join .btn{display:block;width:100%;margin:0 0 .6rem;white-space:nowrap;}
+  body.signed-in #verify .btn{box-shadow:0 2px 10px rgba(46,36,25,.18);border-radius:8px;letter-spacing:.12em;text-indent:0;}
+  body.signed-in #verify .btn:hover{transform:none;box-shadow:0 2px 14px rgba(46,36,25,.22);}
+  #dashboard .btn:hover{transform:none;box-shadow:0 2px 14px rgba(46,36,25,.22);}
+  #dashboard .btn:active{transform:translateY(1px);box-shadow:0 1px 6px rgba(46,36,25,.18);}
+  #dashboard input[type="text"],#dashboard input[type="number"],#dashboard select,#dashboard textarea{font-family:'EB Garamond',serif;font-size:1.02rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);border-radius:6px;padding:.6rem .8rem;width:100%;box-sizing:border-box;}
+  #dashboard select{width:auto;min-width:12rem;}
+  #dashboard textarea{min-height:6rem;resize:vertical;}
+  #dashboard input:focus,#dashboard select:focus,#dashboard textarea:focus{outline:2px solid var(--oxblood);outline-offset:2px;border-color:var(--oxblood);}
+  #dashboard label{font-size:1rem;color:var(--umber);}
+  .dash-checks label{display:inline-block;margin:0 .9rem .5rem 0;}
+  #dashboard a{color:var(--oxblood);text-underline-offset:3px;}
+  #dashboard a:focus-visible,#dashboard button:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+  body.signed-in #verify{max-width:1120px;margin:0 auto;padding:1rem clamp(1.25rem,5vw,2.5rem) 4rem;text-align:left;}
+  body.signed-in #verify.reveal{opacity:1;transform:none;transition:none;}
+  body.signed-in #verify .section-title{text-align:left;text-indent:0;}
+  body.signed-in #verify p{max-width:70ch;}
+  body.signed-in #verify input{font-family:'EB Garamond',serif;font-size:1.02rem;color:var(--umber);background:var(--vellum);border:1px solid var(--gold);border-radius:6px;padding:.6rem .8rem;}
+  @media(max-width:900px){
+    .dash-layout{grid-template-columns:1fr;}
+    .dash-summary{gap:.75rem 1.5rem;}
+    #dashboard{padding-top:1.5rem;}
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html#top">
+    <span class="brand-seal" aria-hidden="true"><img src="spinwave-fox-icon.jpg" alt=""></span>
+    <span class="brand-word">SpinWave</span>
+  </a>
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+  <nav class="nav-links" id="nav-links" aria-label="Primary">
+    <a href="tale.html">The tale</a>
+    <a href="how.html">How it works</a>
+    <a href="records.html">Records</a>
+    <div class="nav-drop">
+      <a href="trust.html" class="trust-link">Trust Center &#9662;</a>
+      <nav class="drop-menu" aria-label="Trust Center sections">
+        <a href="trust.html" class="drop-home">Trust Center</a>
+        <a href="how.html">How It Will Work</a>
+        <a href="flow.html">Capital Flow</a>
+        <a href="trust.html#pending">What Pending Means</a>
+        <a href="token.html">Token Status</a>
+        <a href="trust.html#risks">Risks</a>
+      </nav>
+    </div>
+    <a href="/auth/login" id="authLogin">Sign in</a>
+    <span id="authSigned" class="auth-signed" hidden>Signed in · <a href="/auth/logout">Sign out</a></span>
+  </nav>
+</nav>
+
+<p id="authError" class="auth-error" hidden></p>
+<section class="manifesto">
+  <p>It is not an investment, and it is not trading yet: the contract is live, the pool is deployed, and no market has formed. SpinWave is the database and storage layer of the Glenride think tank. STANZA is the mode of data transfer, represented by monetary value or attested certificates. The name comes first; the money, if it ever comes, comes later.</p>
+  <p>Centuries before the tale of Reynard, an ancient mathematician named Archimedes formally wrote down an axiom: of all lines which have the same extremities, the straight line is the least. Fast-forward to medieval times: a lion king summons a fox named Reynard. But instead of pleading, he decided to upset the court. Today, that ember still burns brightly.</p>
+  <p><strong>Set knowledge free &mdash; then prove it.</strong> Every work in the repository is Glenride-attested: verified authorship, verified claims, verified provenance. In a world of infinite plausible output, SpinWave is the place where knowledge is <em>proven</em>.</p>
+</section>
+<main class="wrap">
+<p class="fine" style="margin-top:1.15rem;">Published: 2026 &middot; Updated: October 19, 2026</p>
+<div class="fleuron" aria-hidden="true"><span>❦</span></div>
+<section id="maze">
+    <h2 class="section-title">The maze</h2>
+    <figure class="painting">
+      <img src="painting-maze.jpg" alt="The maze — scholars wandering torch-lit stone corridors of locked gates" width="1170" height="786">
+    </figure>
+    <div class="card">
+      <p>For decades, research has sat behind paywalls — written by scholars, locked by publishers. The tower built a maze and called it order. <strong>STANZA is the straight line through it.</strong></p>
+    </div>
+  </section>
+<div class="fleuron" aria-hidden="true"><span>❦</span></div>
+<section id="timeline">
+    <h2 class="section-title">The timeline</h2>
+    <div class="card">
+      <div class="era">
+        <p class="era-date">225 BCE — The axiom</p>
+        <p>Archimedes formalizes what every road-builder already knew: of all lines which have the same extremities, the straight line is the least. Common sense, written down.</p>
+      </div>
+      <div class="era">
+        <p class="era-date">c. 1175 — The tale</p>
+        <p>Across Europe, ordinary people tell stories of Reynard the Fox — small against kings and courts, who never petitions the powerful and simply does what should be done: he routes around them. The tales are satire, and that is the politics — among the first stories common people used to laugh at power. They loved him because he was obviously right.</p>
+      </div>
+      <div class="era">
+        <p class="era-date">Today — The token</p>
+        <p>Glenride is a think tank in the traditional structure — manuscripts, peer review, rigor, scholars named for their work. But ideologically separate: no tower decides what gets read or who gets honored. Independence needs a mechanism, because recognition can't run on goodwill. <strong>STANZA is that mechanism</strong> — and it is a promise: that those who truly move the world with research will be honored for it. Not by the court. By the commons. The straight line, drawn a third time.</p>
+      </div>
+    </div>
+  </section>
+<div class="fleuron" aria-hidden="true"><span>❦</span></div>
+<section id="reynard">
+    <h2 class="section-title">Who is Reynard?</h2>
+    <figure class="painting">
+      <img src="painting-reynard-court.jpg" alt="Reynard the fox standing before the lion king's court" width="1170" height="659">
+    </figure>
+    <div class="card">
+      <p class="dropcap">In the medieval tales, Reynard was the fox who outwitted kings — summoned to the lion&rsquo;s court, condemned by wolves, hunted by bears, and he talked his way out every single time. Not with force. With wit. The powerful built their courts and wrote their rules. Reynard built his exits. Eight hundred years later, the court is publishers and the walls are paywalls. The fox is back.</p>
+      <figure class="figure-sketch">
+        <img src="spinwave-fox-mark.jpg" alt="Reynard the fox — the SpinWave mark" width="1170" height="1170">
+        <figcaption>The SpinWave mark</figcaption>
+      </figure>
+    </div>
+  </section>
+<div class="fleuron" aria-hidden="true"><span>❦</span></div>
+<section>
+    <h2 class="section-title">The line</h2>
+    <figure class="painting">
+      <img src="painting-straight-line.jpg" alt="A hand drawing one straight ink line through a maze on vellum" width="1170" height="659">
+    </figure>
+    <div class="card">
+      <p>SpinWave is a scholarly manuscript and data repository built on one conviction: knowledge belongs to everyone.</p>
+      <ul class="ticks">
+        <li>Scholars bring manuscripts and datasets out of the maze.</li>
+        <li>Readers come to learn — no gates, no paywalls.</li>
+        <li>Every contribution recognized. Every scholar named.</li>
+        <li>STANZA is how the clever recognize their own.</li>
+      </ul>
+    </div>
+  </section>
+<div class="fleuron" aria-hidden="true"><span>❦</span></div>
+<section id="pillars">
+    <h2 class="section-title">The creed</h2>
+    <div class="pillar-track">
+      <div class="pillar"><span class="pillar-num">I</span><p>Wit over walls.</p></div>
+      <div class="pillar"><span class="pillar-num">II</span><p>Knowledge belongs to everyone.</p></div>
+      <div class="pillar"><span class="pillar-num">III</span><p>Honor the scholars.</p></div>
+      <div class="pillar"><span class="pillar-num">IV</span><p>No permission needed.</p></div>
+      <div class="pillar"><span class="pillar-num">V</span><p>Ideas set free.</p></div>
+    </div>
+    <p class="swipe-hint">swipe &rarr;</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="foot-inner">
+    <span class="seal-mark" aria-hidden="true">❦</span>
+    <p class="foot-tag">STANZA is a utility token on Base for recognizing scholars and powering the SpinWave repository.</p>
+    <p class="foot-contract"><code class="contract">0xf629f16ba91086e266accc417d10742f76207ba3</code></p>
+    <div class="foot-disclaimers">
+      <p>It is not an investment, and we make no promises about its value. Nothing here is financial advice.</p>
+      <p>Recognition is pending and locked until Phase 1.</p>
+    </div>
+    <nav class="foot-nav">
+      <a href="tale.html">The Tale</a> &nbsp;&middot;&nbsp; <a href="how.html">How It Will Work</a> &nbsp;&middot;&nbsp; <a href="trust.html">Trust Center</a>
+    </nav>
+    <nav class="foot-legal">
+      <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a>
+    </nav>
+    <p class="fineprint"><a href="/tale.md">View as Markdown</a></p>
+    <p class="fineprint">&copy; 2026 Glenride &middot; Built in the open, everything verifiable on-chain.</p>
+  </div>
+</footer>
+<script>
+/* ===== Slickness kit (no backend): status, motion, wallet ===== */
+(function(){
+  "use strict";
+  /* --- single source of truth for status (see status.js) --- */
+  var STATUS = window.SPIN_STATUS || [];
+  var board = document.getElementById("status-board");
+  if (board) board.innerHTML = STATUS.map(function(s){
+    return '<span class="chip"><span class="dot ' + s.state + '"></span>' + s.label + " · " + s.text + "</span>";
+  }).join("");
+  /* phase dots: Phase 0 live, Phase 1 pending, Phase 2 locked */
+  var phaseStates = ["live", "pending", "locked"];
+  Array.prototype.forEach.call(document.querySelectorAll(".phase"), function(p, i){
+    var d = document.createElement("span");
+    d.className = "pdot dot " + (phaseStates[i] || "locked");
+    p.appendChild(d);
+  });
+
+  /* --- motion --- */
+  document.body.classList.add("boot");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealEls = document.querySelectorAll("section, .card, .painting, .fleuron");
+  if (reduce || !("IntersectionObserver" in window)) {
+    Array.prototype.forEach.call(revealEls, function(el){ el.classList.add("in"); });
+  } else {
+    Array.prototype.forEach.call(revealEls, function(el){ el.classList.add("reveal"); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    Array.prototype.forEach.call(revealEls, function(el){ io.observe(el); });
+  }
+
+  /* --- ticker --- */
+  var tickItems = ["Wit over walls","Knowledge belongs to everyone","Honor the scholars","No permission needed","Ideas set free","STANZA is how the clever recognize their own"];
+  var half = tickItems.map(function(t){ return "<span>" + t + " <b>❦</b></span>"; }).join("");
+  var track = document.getElementById("ticker-track");
+  if (track) track.innerHTML = half + half;
+
+  /* --- 3D tilt on the founder's mark --- */
+  Array.prototype.forEach.call(document.querySelectorAll(".figure-sketch"), function(el){
+    el.setAttribute("data-tilt", "");
+    var glare = document.createElement("div");
+    glare.className = "tilt-glare";
+    el.appendChild(glare);
+    el.addEventListener("pointermove", tilt);
+    el.addEventListener("mousemove", tilt); /* fallback: some automation/synthetic input only fires mouse events */
+    function tilt(ev){
+      var r = el.getBoundingClientRect();
+      var px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
+      el.style.transform = "rotateX(" + ((0.5 - py) * 10).toFixed(2) + "deg) rotateY(" + ((px - 0.5) * 12).toFixed(2) + "deg)";
+      el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+      el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+    }
+    el.addEventListener("pointerleave", function(){ el.style.transform = ""; });
+  });
+
+  /* --- copy contract --- */
+  var copyBtn = document.getElementById("copy-contract");
+  if (copyBtn) copyBtn.addEventListener("click", function(){
+    var addr = document.getElementById("spin-contract").textContent.trim();
+    function done(ok){ copyBtn.textContent = ok ? "Copied ✓" : "Copy failed — long-press the address"; setTimeout(function(){ copyBtn.textContent = "Copy"; }, 2200); }
+    function fallback(){
+      try {
+        var t = document.createElement("textarea"); t.value = addr;
+        t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        var ok = document.execCommand("copy");
+        t.remove(); done(!!ok);
+      } catch(e){ done(false); }
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(addr).then(function(){ done(true); }, fallback);
+      else fallback();
+    } catch(e){ fallback(); }
+  });
+
+
+
+  /* --- wallet connect + holder check (Base) --- */
+  var BASE_CHAIN = "0x2105";
+  var STANZA = "0xf629f16ba91086e266accc417d10742f76207ba3";
+  var RPC = "https://mainnet.base.org";
+  var btn = document.getElementById("den-connect");
+  var result = document.getElementById("den-result");
+  var addrEl = document.getElementById("den-addr");
+  var badgeEl = document.getElementById("den-badge");
+  var noteEl = document.getElementById("den-note");
+  function short(a){ return a.slice(0, 6) + "…" + a.slice(-4); }
+  function balanceOf(addr){
+    var data = "0x70a08231" + addr.slice(2).toLowerCase().padStart(64, "0");
+    return fetch(RPC, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: STANZA, data: data }, "latest"] }) })
+      .then(function(res){ return res.json(); })
+      .then(function(j){ if (!j.result) throw new Error("rpc"); return BigInt(j.result); });
+  }
+  function fmt(b){
+    var s = b.toString().padStart(19, "0");
+    var ip = s.slice(0, -18), fp = s.slice(-18).replace(/0+$/, "");
+    return (ip === "" ? "0" : ip.replace(/^0+/, "") || "0") + (fp ? "." + fp.slice(0, 4) : "");
+  }
+  if (btn) btn.addEventListener("click", function(){
+    var eth = window.ethereum;
+    if (!eth) { noteEl.textContent = "No wallet found — open this page in your wallet's dApp browser (MetaMask, Coinbase Wallet, Rabby) and connect from there."; return; }
+    btn.disabled = true; btn.textContent = "Connecting…";
+    eth.request({ method: "eth_requestAccounts" }).then(function(accounts){
+      var addr = accounts[0];
+      return eth.request({ method: "eth_chainId" }).then(function(chainId){
+        if (chainId !== BASE_CHAIN) {
+          return eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: BASE_CHAIN }] })
+            .catch(function(){ throw new Error("switch"); });
+        }
+      }).then(function(){
+        addrEl.textContent = short(addr) + " · Base";
+        result.hidden = false;
+        btn.style.display = "none";
+        noteEl.textContent = "Checking your STANZA…";
+        return balanceOf(addr).then(function(bal){
+          if (bal > 0n) { badgeEl.hidden = false; noteEl.textContent = "Holding " + fmt(bal) + " STANZA. The den knows you."; }
+          else { badgeEl.hidden = true; noteEl.textContent = "No STANZA in this wallet yet."; }
+        }).catch(function(){
+          badgeEl.hidden = true; noteEl.textContent = "Couldn't reach the Base network just now — try again shortly.";
+        });
+      });
+    }).catch(function(err){
+      noteEl.textContent = (err && err.message === "switch")
+        ? "Please switch your wallet to the Base network."
+        : "Connection declined — no harm done.";
+      btn.disabled = false; btn.textContent = "Connect wallet";
+    });
+  });
+})();
+</script>
+<script>
+/* ===== Sign-in state (WorkOS, live 2026-10-28): shows Signed in + Sign out when a session exists ===== */
+(function(){
+  "use strict";
+  var TEXT = {
+    workos_rejected: "The sign-in was declined. Try again.",
+    invalid_state: "The sign-in expired before it finished. Try again.",
+    not_owner: "That account isn't on the owner list. Sign in with dvaughnhouse@gmail.com.",
+    workos_unreachable: "The sign-in service couldn't be reached. Try again.",
+    not_configured: "Sign-in isn't configured right now. Try again in a bit."
+  };
+  var login = document.getElementById("authLogin");
+  var signed = document.getElementById("authSigned");
+  var err = document.getElementById("authError");
+  var m = window.location.hash.match(/^#auth_error=([^&]+)/);
+  if (m) {
+    var msg = TEXT[decodeURIComponent(m[1])];
+    if (msg && err) { err.textContent = msg; err.hidden = false; }
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+  fetch("/api/me").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (d && d.email && login && signed) {
+      login.hidden = true;
+      signed.hidden = false;
+    }
+  }).catch(function(){});
+})();
+</script>
+<script>
+/* ===== Mobile nav toggle (2026-10-28): links hide under 760px, so Menu opens them ===== */
+(function(){
+  "use strict";
+  var t = document.getElementById("nav-toggle");
+  var l = document.getElementById("nav-links");
+  if (t && l) t.addEventListener("click", function(){
+    var open = l.classList.toggle("open");
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+    t.textContent = open ? "Close" : "Menu";
+  });
+})();
+</script>
+</body>
+</html>

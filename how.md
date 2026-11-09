@@ -3,7 +3,7 @@
 > The frozen SpinWave mechanism: scholar upload, license tiers, reader access. What's being built next.
 
 Canonical: https://spinwave.tech/how.html
-Last updated: 2026-10-21
+Last updated: 2026-11-05
 
 Frozen spec · Not live yet
 ## HOW IT WILL WORK
@@ -41,6 +41,24 @@ Exclusive
 Negotiated — including embargo-style timed exclusives: one outlet, one window, terms visible to everyone. A priced product, not a backroom deal.
 **Operated by Glenride.** Glenride holds the manuscripts and runs the platform day to day. Changes to this mechanism go through consensus of the larger Glenride body — and the trust center stays the public record of what is live versus planned.
 This spec was first drafted for $SPIN; the economy now runs on **STANZA** — the token going forward. The $SPIN deployment is superseded, kept on record at the [token page](https://spinwave.tech/token.html).
+## Recognition
+25,000
+STANZA · accepted manuscript
+40,000
+STANZA · accepted dataset
+55,000
+STANZA · dataset with worked example
+60%
+of every reader license — straight to the scholar
+Peer reviewers are honored for their part. If you do the work, you get named for it. That’s the whole of it.
+## The build
+Phase 0 · Now
+The foundation: the repository, the review standard, the token mechanics — built in the open. Today you can read the covenant, verify the contract, and see exactly where it stands.
+Phase 1 · Next
+For scholars: bring your manuscript or dataset out from behind the paywall and be recognized for it — named, counted, on the record. 25,000 STANZA for an accepted manuscript, 40,000 for a dataset, 55,000 with a worked example.
+Phase 2 · Then
+For readers: license what you need, directly — no subscriptions, no gates. 60% of every license goes straight to the scholar who wrote it.
+We’re building it in the open, and we’re telling you exactly where it stands.
 [BACK TO THE TRUST CENTER →](https://spinwave.tech/trust.html)
 
 ## Related

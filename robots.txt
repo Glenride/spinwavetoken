@@ -14,5 +14,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /auth/
+Disallow: /dashboard.html
 
 Sitemap: https://spinwave.tech/sitemap.xml
